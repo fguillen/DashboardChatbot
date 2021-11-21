@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
     resources :conversations
 
+    resources :impersonations, only: [:create]
   end
 
   namespace :api do

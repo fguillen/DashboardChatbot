@@ -14,6 +14,7 @@
     <th><%= t "activerecord.attributes.front_user.name" %></th>
     <th><%= t "activerecord.attributes.front_user.email" %></th>
     <th><%= t "activerecord.attributes.front_user.created_at" %> At</th>
+    <th class="text-center"><%= t "views.impersonations.create" %></th>
   </tr>
 
   <% @front_users.each do |front_user| %>
@@ -22,6 +23,11 @@
       <td><%= link_to front_user.name, [:admin, front_user] %></td>
       <td><%= front_user.email %></td>
       <td><%= front_user.created_at.to_fs(:datetimedb) %></td>
+      <td class="text-center">
+        <%= button_to admin_impersonations_path(front_user_id: front_user.id), method: :post do %>
+          <i class="bi bi-person-badge"></i>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>

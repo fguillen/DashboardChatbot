@@ -123,6 +123,9 @@ en:
       update:
         error: Errors were encountered when trying to update Front User
         success: Successfully updated Front User
+    impersonations:
+      create:
+        success: Success
     messages:
       create:
         error: Errors were encountered when trying to create Message
@@ -260,6 +263,8 @@ en:
         delete_confirmation: Delete confirmation
         edit_button: Edit button
         title: Title
+    impersonations:
+      create: Impersonate
     log_book_events:
       index:
         title: LogBook Events
