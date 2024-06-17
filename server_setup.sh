@@ -31,10 +31,10 @@ docker-compose --version
 # Download the App
 mkdir -p /var/apps
 cd /var/apps
-git clone https://fguillen@github.com/fguillen/RailsSkeleton.git
+git clone https://fguillen@github.com/fguillen/DashboardChatbot.git
 
 # Start the App
-cd /var/apps/RailsSkeleton
+cd /var/apps/DashboardChatbot
 docker-compose build
 docker-compose up -d
 docker-compose exec app bundle exec rake db:create db:schema:load

@@ -7,7 +7,7 @@ class Notifier < ActionMailer::Base
 
     mail(
       to: admin_user.email,
-      subject: "[RailsSkeleton] Password reset"
+      subject: "[DashboardChatbot] Password reset"
     )
   end
 
@@ -16,14 +16,14 @@ class Notifier < ActionMailer::Base
 
     mail(
       to: front_user.email,
-      subject: "[RailsSkeleton] Password reset"
+      subject: "[DashboardChatbot] Password reset"
     )
   end
 
   def simple_test_email(subject, to)
     mail(
       to: to,
-      subject: "[RailsSkeleton] #{subject}"
+      subject: "[DashboardChatbot] #{subject}"
     )
   end
 end

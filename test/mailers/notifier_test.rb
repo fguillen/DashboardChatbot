@@ -8,9 +8,9 @@ class NotifierTest < ActionMailer::TestCase
     email = Notifier.admin_user_reset_password(admin_user).deliver_now
     assert !ActionMailer::Base.deliveries.empty?
 
-    assert_equal ["it@railsskeleton.com"], email.from
+    assert_equal ["it@dashboardchatbot.com"], email.from
     assert_equal ["admin@email.com"], email.to
-    assert_equal "[RailsSkeleton] Password reset", email.subject
+    assert_equal "[DashboardChatbot] Password reset", email.subject
 
     # write_fixture("/notifier/admin_user_reset_password.txt", email.body.encoded)
     assert_equal(File.read(fixture("/notifier/admin_user_reset_password.txt")), email.body.encoded)
@@ -23,9 +23,9 @@ class NotifierTest < ActionMailer::TestCase
     email = Notifier.front_user_reset_password(front_user).deliver_now
     assert !ActionMailer::Base.deliveries.empty?
 
-    assert_equal ["it@railsskeleton.com"], email.from
+    assert_equal ["it@dashboardchatbot.com"], email.from
     assert_equal ["front@email.com"], email.to
-    assert_equal "[RailsSkeleton] Password reset", email.subject
+    assert_equal "[DashboardChatbot] Password reset", email.subject
 
     # write_fixture("/notifier/front_user_reset_password.txt", email.body.encoded)
     assert_equal(File.read(fixture("/notifier/front_user_reset_password.txt")), email.body.encoded)
@@ -35,9 +35,9 @@ class NotifierTest < ActionMailer::TestCase
     email = Notifier.simple_test_email("Wadus", "wadus@example.com").deliver_now
     assert !ActionMailer::Base.deliveries.empty?
 
-    assert_equal ["it@railsskeleton.com"], email.from
+    assert_equal ["it@dashboardchatbot.com"], email.from
     assert_equal ["wadus@example.com"], email.to
-    assert_equal "[RailsSkeleton] Wadus", email.subject
+    assert_equal "[DashboardChatbot] Wadus", email.subject
 
     # write_fixture("/notifier/simple_test_email.txt", email.body.encoded)
     assert_equal(File.read(fixture("/notifier/simple_test_email.txt")), email.body.encoded)

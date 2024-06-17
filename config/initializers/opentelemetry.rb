@@ -10,7 +10,7 @@ if APP_CONFIG["opentelemetry"]["traces_exporter"].present? && APP_CONFIG["opente
   require "opentelemetry-exporter-otlp"
 
   OpenTelemetry::SDK.configure do |c|
-    c.service_name = "railsskeleton.com"
+    c.service_name = "dashboardchatbot.com"
     c.use_all() # enables all instrumentation!
   end
 end

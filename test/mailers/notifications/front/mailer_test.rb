@@ -8,9 +8,9 @@ class Notifications::Front::MailerTest < ActionMailer::TestCase
     email = Notifications::Front::Mailer.on_new_article(front_user, article).deliver_now
     assert !ActionMailer::Base.deliveries.empty?
 
-    assert_equal ["it@railsskeleton.com"], email.from
+    assert_equal ["it@dashboardchatbot.com"], email.from
     assert_equal ["front@email.com"], email.to
-    assert_equal "[RailsSkeleton] New Article: NEW_ARTICLE", email.subject
+    assert_equal "[DashboardChatbot] New Article: NEW_ARTICLE", email.subject
 
     # write_fixture("/notifications/front/on_new_article.txt", email.body.encoded)
     assert_equal(File.read(fixture("/notifications/front/on_new_article.txt")), email.body.encoded)

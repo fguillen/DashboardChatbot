@@ -9,14 +9,14 @@ default: &default
 
 development:
   <<: *default
-  database: railsskeleton_development
+  database: dashboardchatbot_development
 
 test:
   <<: *default
-  database: railsskeleton_test
+  database: dashboardchatbot_test
 
 production:
   <<: *default
   host: db
-  database: railsskeleton
+  database: dashboardchatbot
   password: root

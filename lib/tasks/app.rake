@@ -1,4 +1,4 @@
-namespace :railsskeleton do
+namespace :dashboardchatbot do
   namespace :utils do
     desc "Renaming project to a new name"
     task :renaming_project, [:new_project_name] => :environment do |_t, args|

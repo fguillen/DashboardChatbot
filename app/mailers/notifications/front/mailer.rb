@@ -8,7 +8,7 @@ class Notifications::Front::Mailer < ActionMailer::Base
 
     mail(
       to: front_user.email,
-      subject: "[RailsSkeleton] New Article: #{@article.title}"
+      subject: "[DashboardChatbot] New Article: #{@article.title}"
     )
   end
 end

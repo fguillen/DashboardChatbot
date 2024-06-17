@@ -11,8 +11,8 @@ class RenamingProject
         end
 
       file_content = File.read(filepath)
-      file_content = file_content.gsub("RailsSkeleton", new_name)
-      file_content = file_content.gsub("railsskeleton", new_name.downcase)
+      file_content = file_content.gsub("DashboardChatbot", new_name)
+      file_content = file_content.gsub("dashboardchatbot", new_name.downcase)
 
       FileUtils.mkdir(File.dirname(new_filepath)) unless Dir.exist?(File.dirname(new_filepath))
       File.write(new_filepath, file_content)

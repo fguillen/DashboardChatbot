@@ -8,7 +8,7 @@ class Notifications::Admin::Mailer < ActionMailer::Base
 
     mail(
       to: admin_user.email,
-      subject: "[RailsSkeleton] New Article: #{@article.title}"
+      subject: "[DashboardChatbot] New Article: #{@article.title}"
     )
   end
 end

@@ -15,5 +15,5 @@ scrape_configs:
       - targets:
           - localhost
         labels:
-          job: railsskeleton.com
+          job: dashboardchatbot.com
           __path__: /var/log/rails/*.log
