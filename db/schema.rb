@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_29_060414) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_17_000001) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_id", null: false
@@ -73,6 +73,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_060414) do
     t.index ["uuid"], name: "index_articles_on_uuid", unique: true
   end
 
+  create_table "conversations", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "front_user_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["front_user_id"], name: "fk_rails_4db8d566b8"
+    t.index ["uuid"], name: "index_conversations_on_uuid", unique: true
+  end
+
   create_table "data_migrations", primary_key: "version", id: :string, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
   end
 
@@ -110,6 +119,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_060414) do
     t.datetime "updated_at", precision: nil, null: false
     t.index ["created_at"], name: "index_log_book_events_on_created_at"
     t.index ["historizable_id", "historizable_type", "created_at"], name: "index_log_book_events_on_historizable_and_created_at"
+  end
+
+  create_table "messages", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.string "role", null: false
+    t.text "body", null: false
+    t.string "conversation_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["conversation_id"], name: "fk_rails_7f927086d2"
+    t.index ["uuid"], name: "index_messages_on_uuid", unique: true
   end
 
   create_table "sessions", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
@@ -160,5 +179,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_060414) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "front_users", primary_key: "uuid"
+  add_foreign_key "conversations", "front_users", primary_key: "uuid"
+  add_foreign_key "messages", "conversations", primary_key: "uuid"
   add_foreign_key "taggings", "tags"
 end

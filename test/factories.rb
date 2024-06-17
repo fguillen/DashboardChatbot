@@ -29,6 +29,17 @@ FactoryBot.define do
     front_user
   end
 
+  factory :conversation do
+    title { Faker::Lorem.sentence(word_count: 4) }
+    front_user
+  end
+
+  factory :message do
+    role { Message.roles[:user] }
+    body { Faker::Lorem.sentence(word_count: 4) }
+    conversation
+  end
+
   factory :log_book_event, :class => LogBook::Event  do
     differences { "Wadus Event" }
     association :historizable, factory: :article

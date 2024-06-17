@@ -30,6 +30,8 @@ en:
         front_user_name: Front user name
         tags: Tags
         title: Title
+      conversation:
+        title: Conversation
       front_user:
         created_at: Created at
         email: Email
@@ -45,6 +47,9 @@ en:
         historizable: Historizable
         tags: Tags
         uuid: Uuid
+      message:
+        body: Body
+        role: Role
     models:
       admin_user: Admin User
   controllers:
@@ -83,6 +88,10 @@ en:
     articles_filter:
       create:
         error: Error
+    conversations:
+      create:
+        error: Errors were encountered when trying to create Conversation
+        success: Successfully created Conversation
     front:
       access_not_authorized: Access not authorized
       authentication_required: Authentication required
@@ -107,6 +116,10 @@ en:
       update:
         error: Errors were encountered when trying to update Front User
         success: Successfully updated Front User
+    messages:
+      create:
+        error: Errors were encountered when trying to create Message
+        success: Successfully created Message
   date:
     formats:
       ymd: "%Y-%d-%m"
@@ -125,6 +138,7 @@ en:
       admin_users: Admin Users
       articles: Articles
       articles_filters: Articles filters
+      conversations: Conversations
       edit: Edit
       forgot_password: Forgotten Password
       front_sessions: Front sessions
@@ -201,6 +215,13 @@ en:
       new:
         text: New Articles Filter
         title: Title
+    conversations:
+      index:
+        title: Conversations
+      new:
+        title: New Conversation
+      show:
+        title: Conversation
     front_sessions:
       forgot_password:
         reset_password_button: Reset Password

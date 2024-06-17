@@ -46,6 +46,9 @@ Rails.application.routes.draw do
     resources :front_sessions, only: [:new, :create, :destroy]
 
     resources :articles
+    resources :conversations, only: [:show, :new, :create, :index] do
+      resources :messages, only: [:create]
+    end
     resources :front_users, only: [:show, :new, :create, :edit, :update, :destroy]
   end
 
