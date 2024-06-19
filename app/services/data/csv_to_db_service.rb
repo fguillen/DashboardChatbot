@@ -16,7 +16,7 @@ class Data::CsvToDbService < Service
   private
 
   def connection
-    @connection ||= Sequel.connect("sqlite://#{APP_CONFIG["dashboard_db"]}")
+    @connection ||= Sequel.connect(APP_CONFIG["dashboard_db_connection"])
   end
 
   def get_table_name(csv_path)

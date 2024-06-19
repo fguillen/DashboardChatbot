@@ -22,7 +22,8 @@ test:
     secret_key: "SECRET_KEY"
   opentelemetry:
     traces_exporter: "none"
-  dashboard_db: "<%= Rails.root %>/csv_db/dashboard.test.sqlite3"
+  dashboard_db_connection: "sqlite://<%= Rails.root %>/csv_db/dashboard.test.sqlite3"
+  openai_api_key: "<%= Rails.application.credentials.openai_api_key %>"
 
 development:
   host: dashboardchatbot.com.pizza
@@ -45,33 +46,8 @@ development:
     secret_key: "<%= Rails.application.credentials.captcha.secret_key %>"
   opentelemetry:
     traces_exporter: "none" # console
-  dashboard_db: "<%= Rails.root %>/csv_db/dashboard.development.sqlite3"
-
-staging:
-  host: staging.dashboardchatbot.com
-  admin_email: it@dashboardchatbot.com
-  google_auth:
-    client_id: "<%= Rails.application.credentials.google_auth.client_id %>"
-    client_secret: "<%= Rails.application.credentials.google_auth.client_secret %>"
-  mini_graphite:
-    graphite_host: 10.0.128.44
-    graphite_port: 2003
-    statsd_host: 10.0.128.44
-    statsd_port: 8125
-    mock_mode: false
-    debug_mode: true
-  api:
-    admin_token:
-      - "<%= Rails.application.credentials.api_admin_token %>"
-    token:
-      - "<%= Rails.application.credentials.app_token %>"
-  captcha:
-    site_key: "<%= Rails.application.credentials.captcha.site_key %>"
-    secret_key: "<%= Rails.application.credentials.captcha.secret_key %>"
-  opentelemetry:
-    traces_exporter: "otlp"
-    otlp_endpoint: "http://otelcollector.railsskeleton.com:14318"
-  dashboard_db: "<%= Rails.root %>/csv_db/dashboard.staging.sqlite3"
+  dashboard_db_connection: "sqlite://<%= Rails.root %>/csv_db/dashboard.development.sqlite3"
+  openai_api_key: "<%= Rails.application.credentials.openai_api_key %>"
 
 production:
   host: dashboardchatbot.com
@@ -97,4 +73,5 @@ production:
   opentelemetry:
     traces_exporter: "otlp"
     otlp_endpoint: "http://otelcollector.railsskeleton.com:14318"
-  dashboard_db: "<%= Rails.root %>/csv_db/dashboard.sqlite3"
+  dashboard_db_connection: "sqlite://<%= Rails.root %>/csv_db/dashboard.sqlite3"
+  openai_api_key: "<%= Rails.application.credentials.openai_api_key %>"

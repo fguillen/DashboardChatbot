@@ -122,8 +122,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_000001) do
   end
 
   create_table "messages", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.integer "order", null: false
     t.string "role", null: false
-    t.text "body", null: false
+    t.text "content"
+    t.text "tool_calls"
+    t.string "tool_call_id"
     t.string "conversation_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false

@@ -36,7 +36,6 @@ FactoryBot.define do
 
   factory :message do
     role { Message.roles[:user] }
-    body { Faker::Lorem.sentence(word_count: 4) }
     conversation
   end
 

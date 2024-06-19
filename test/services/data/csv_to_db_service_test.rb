@@ -2,7 +2,7 @@ require "test_helper"
 
 class Data::CsvToDbServiceTest < ActiveSupport::TestCase
   test "should create table and insert data if force is true" do
-    connection = Sequel.connect("sqlite://#{APP_CONFIG["dashboard_db"]}")
+    connection = Sequel.connect(APP_CONFIG["dashboard_db_connection"])
     if connection.table_exists?(:articles)
       connection.drop_table(:articles)
     end

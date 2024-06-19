@@ -19,20 +19,34 @@ class MessageTest < ActiveSupport::TestCase
       message = FactoryBot.build(:message, role: "NO_EXITS")
     end
 
-    message = FactoryBot.build(:message, body: nil)
-    refute(message.valid?)
-
-    message = FactoryBot.build(:message, body: "")
-    refute(message.valid?)
-
-    message = FactoryBot.build(:message, body: "A" * 65_536)
-    refute(message.valid?)
-
-    message = FactoryBot.build(:message, body: "A" * 30)
-    assert(message.valid?)
-
     message = FactoryBot.build(:message, conversation: nil)
     refute(message.valid?)
+  end
+
+  def test_order_unique_per_conversation
+    # order unique per conversation
+    conversation_1 = FactoryBot.create(:conversation)
+    conversation_2 = FactoryBot.create(:conversation)
+
+    message = FactoryBot.build(:message, conversation: conversation_1, order: 1)
+    assert(message.valid?)
+
+    message.save!
+
+    message = FactoryBot.build(:message, conversation: conversation_1, order: 2)
+    assert(message.valid?)
+
+    message = FactoryBot.build(:message, conversation: conversation_2, order: 1)
+    assert(message.valid?)
+
+    message = FactoryBot.build(:message, conversation: conversation_1, order: 1)
+    refute(message.valid?)
+  end
+
+  def test_serialize_fields
+    message = FactoryBot.create(:message, tool_calls: ["a", "b"])
+    message.reload
+    assert_equal(["a", "b"], message.tool_calls)
   end
 
   def test_uuid_on_create
