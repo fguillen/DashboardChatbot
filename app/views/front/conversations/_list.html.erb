@@ -1,3 +1,5 @@
-<% conversations.each do |conversation| %>
-  <%= render conversation %>
-<% end %>
+<ul>
+  <% conversations.each do |conversation| %>
+    <li><%= link_to conversation.title, front_conversation_path(conversation) %></li>
+  <% end %>
+</ul>

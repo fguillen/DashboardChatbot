@@ -15,7 +15,7 @@ class Front::MessagesControllerTest < ActionDispatch::IntegrationTest
       params: {
         message: {
           role: Message.roles[:user],
-          body: "The Body Wadus"
+          content: "The Body Wadus"
         }
       }
     )
@@ -32,7 +32,7 @@ class Front::MessagesControllerTest < ActionDispatch::IntegrationTest
       params: {
         message: {
           role: Message.roles[:user],
-          body: "The Body Wadus"
+          content: "The Body Wadus"
         }
       }
     )
@@ -41,7 +41,7 @@ class Front::MessagesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to [:front, conversation]
 
     assert_equal("user", message.role)
-    assert_equal("The Body Wadus", message.body)
+    assert_equal("The Body Wadus", message.content)
     assert_equal(@front_user, message.front_user)
     assert_equal(conversation, message.conversation)
   end
@@ -54,7 +54,7 @@ class Front::MessagesControllerTest < ActionDispatch::IntegrationTest
   #     params: {
   #       message: {
   #         title: "The Body Wadus",
-  #         body: "The Body Wadus Wadus Wadus Wadus",
+  #         content: "The Body Wadus Wadus Wadus Wadus",
   #         tag_list: "one, two",
   #         pic: fixture_file_upload("yourule.png")
   #       }

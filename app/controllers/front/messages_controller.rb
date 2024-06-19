@@ -4,14 +4,15 @@ class Front::MessagesController < Front::BaseController
 
   def create
     @message = Message.new(message_params)
-    @message.front_user = current_front_user
     @message.conversation = @conversation
 
-    if @message.save
+    if @message.valid?
+      Conversation::ProcessUserMessageService.perform(@conversation, @message.role, @message.content)
       # Notifications::OnNewMessageNotificationService.perform(@message)
       HiPrometheus::Metrics.counter_increment(:num_messages, { user: current_front_user.id })
       redirect_to [:front, @conversation], notice: t("controllers.messages.create.success")
     else
+      puts ">>>> message.errors: #{@message.errors.full_messages}"
       flash.now[:alert] = t("controllers.messages.create.error")
       render template: "front/conversations/show"
     end
@@ -20,7 +21,7 @@ class Front::MessagesController < Front::BaseController
   protected
 
   def message_params
-    params.require(:message).permit(:role, :body)
+    params.require(:message).permit(:role, :content)
   end
 
   private

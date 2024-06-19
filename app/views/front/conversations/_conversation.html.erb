@@ -1,7 +1,7 @@
 <h1><%= conversation.title %></h1>
 
 <ul>
-  <% conversation.messages.each do |message| %>
-    <li><%= message.body %></li>
+  <% conversation.messages.in_order.each do |message| %>
+    <li><%= message.content %></li>
   <% end %>
 </ul>

@@ -10,4 +10,9 @@ namespace :dashboardchatbot do
   task test: :environment do
     Rails.logger.info("[#{Time.now}] This is the test task")
   end
+
+  desc "Load all the CSV data into the database"
+  task load_csvs: :environment do
+    Data::LoadAllCsvsService.perform(force: true)
+  end
 end
