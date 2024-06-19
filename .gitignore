@@ -37,3 +37,4 @@ rerun.txt
 /public/.well-known
 
 /config/master.key
+/csv_db

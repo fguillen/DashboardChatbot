@@ -38,3 +38,5 @@
 
 # mysql container is using this folder as data root
 _data/
+
+/csv_db
