@@ -4,6 +4,8 @@ class Conversation::ProcessUserMessageService < Service
 
     puts ">>>> role: #{role}"
 
+    add_instructions_if_no_present(conversation)
+
     assistant(conversation).add_message(role: role, content: content)
     assistant(conversation).run(auto_tool_execution: true) # TODO: Remove auto_tool_execution, it is danger
 
@@ -13,7 +15,7 @@ class Conversation::ProcessUserMessageService < Service
     new_messages =
       assistant(conversation).thread.messages[conversation.messages.count..].map(&:to_hash).map.with_index do |openai_message, index|
         puts ">>>> new_message: #{openai_message}"
-        conversation.messages.create(openai_message.merge(order: index + conversation.messages.count))
+        conversation.messages.create!(openai_message.merge(order: conversation.messages.maximum(:order) + 1))
       end
 
     new_messages
@@ -33,7 +35,7 @@ class Conversation::ProcessUserMessageService < Service
     @assistant = Langchain::Assistant.new(
       llm: llm,
       thread: thread(conversation),
-      instructions: "You are a data analist that is quering a database to answer the user's requests",
+      # instructions: "You are a data analist that is quering a database to answer the user's requests",
       tools: [
         tool_database
       ]
@@ -46,6 +48,12 @@ class Conversation::ProcessUserMessageService < Service
 
   def tool_database
     @tool_database ||= Langchain::Tool::Database.new(connection_string: APP_CONFIG["dashboard_db_connection"])
+  end
+
+  def add_instructions_if_no_present(conversation)
+    if conversation.messages.blank?
+      conversation.messages.create!(role: "system", content: "You are a data analist that is quering a database to answer the user's requests", order: 0)
+    end
   end
 
 
