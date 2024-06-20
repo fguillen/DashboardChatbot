@@ -1,0 +1,8 @@
+
+<%= turbo_frame_tag "messages" do %>
+  <div class="d-flex flex-column">
+    <% messages.each do |message| %>
+      <%= render partial: message %>
+    <% end %>
+  </div>
+<% end %>

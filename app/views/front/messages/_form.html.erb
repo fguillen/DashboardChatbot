@@ -1,6 +1,13 @@
-<%= form_for [:front, @conversation, @message] do |f| %>
+<%=
+  form_for(
+    [:front, @conversation, @message],
+    data: {
+      controller: "message-form",
+      action: "turbo:submit-end->message-form#submit"
+    }
+  ) do |f|
+%>
   <%= render "/shared/form_errors", :object => f.object %>
-  <legend><%= "message attributes" %></legend>
   <hr>
 
   <div class="row mb-3">
@@ -18,9 +25,9 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mb-3">
     <div class="offset-sm-2 col">
-      <%= f.submit class: "btn btn-primary" %>
+      <%= f.submit "Send Message", class: "btn btn-primary" %>
     </div>
   </div>
 <% end %>

@@ -1,0 +1,5 @@
+<%= turbo_stream.append("messages") do %>
+  <% @messages.each do |message| %>
+    <%= render partial: message %>
+  <% end %>
+<% end %>

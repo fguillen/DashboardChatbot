@@ -1,7 +1,3 @@
 <h1><%= conversation.title %></h1>
 
-<ul>
-  <% conversation.messages.in_order.each do |message| %>
-    <li>(<%= message.order %>) [<%= message.role %>] <%= message.content %> | <%= message.tool_calls.join(",") %> | <%= message.tool_call_id %></li>
-  <% end %>
-</ul>
+<%= render partial: "front/messages/list", locals: { messages: conversation.messages.in_order } %>
