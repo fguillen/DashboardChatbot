@@ -48,7 +48,7 @@ en:
         tags: Tags
         uuid: Uuid
       message:
-        body: Body
+        content: Content
         role: Role
     models:
       admin_user: Admin User
@@ -152,6 +152,7 @@ en:
       admin_users: Admin Users
       articles: See all articles
       articles_filters_new: Articles filters new
+      conversations: Conversations
       edit_profile: Edit Profile
       features: Features
       front_users: Front users

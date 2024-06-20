@@ -2,6 +2,6 @@
 
 <ul>
   <% conversation.messages.in_order.each do |message| %>
-    <li><%= message.content %></li>
+    <li>(<%= message.order %>) [<%= message.role %>] <%= message.content %> | <%= message.tool_calls.join(",") %> | <%= message.tool_call_id %></li>
   <% end %>
 </ul>
