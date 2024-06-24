@@ -133,3 +133,68 @@
   display: block !important;
   transform: translateY(100%);
 }
+
+/* Message :: INI */
+.message .card {
+  border: none;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.message .card hr {
+  height: 2px;
+  border: none;
+  background-color: var(--bs-primary-border-subtle);
+  opacity: 1;
+  margin: 7px 0px;
+}
+
+.message.role-user .card {
+  margin-left: auto !important;
+  text-align: right !important;
+  background-color: rgba(var(--bs-light-rgb), 1) !important;
+}
+
+.message.role-assistant .card {
+  margin-right: auto !important;
+  text-align: left !important;
+  background-color: rgba(var(--bs-white-rgb), 1) !important;
+}
+
+.message.role-tool .card {
+  margin-right: auto !important;
+  text-align: left !important;
+  background-color: var(--bs-primary-border-subtle) !important;
+  border: var(--bs-body-color), 2px solid !important;
+}
+
+.message.role-tool .card hr {
+  background-color: var(--bs-body-color);
+}
+/* Message :: INI */
+
+/* Message Form :: INI */
+.message-form .form-control::placeholder {
+  color: #BFBCB5 !important;
+  opacity: 1;
+}
+
+.message-form select {
+  background-color: var(--bs-primary-border-subtle) !important;
+  border: var(--bs-body-color), 2px solid !important;
+}
+
+.message-form .input-group .form-control {
+  border-radius: 8px 0 0 8px;
+  border: none;
+  padding: 16px;
+  background-color: var(--bs-white);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.message-form .input-group .btn {
+  border-radius: 0 8px 8px 0;
+  padding-right: 20px;
+}
+/* Message Form :: END */

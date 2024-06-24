@@ -19,6 +19,7 @@ module ApplicationHelper
   end
 
   def markdown(text)
+    return "" if text.blank?
     MarkdownRenderer.render(text).html_safe
   end
 end

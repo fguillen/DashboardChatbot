@@ -1,8 +1,7 @@
-
-<%= turbo_frame_tag "messages" do %>
-  <div class="d-flex flex-column">
+<div class="messages-list mb-3 flex-grow-1 d-flex flex-column justify-content-end">
+  <%= turbo_frame_tag "messages" do %>
     <% messages.each do |message| %>
       <%= render partial: message %>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+</div>
