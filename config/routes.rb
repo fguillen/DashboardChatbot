@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   end
 
   namespace :front do
-    root to: redirect("front/articles")
+    root to: redirect("front/conversations")
 
     get "login", to: "front_sessions#new", as: :login
     get "logout", to: "front_sessions#destroy", as: :logout
@@ -45,11 +45,11 @@ Rails.application.routes.draw do
 
     resources :front_sessions, only: [:new, :create, :destroy]
 
-    resources :articles
+    # resources :articles
     resources :conversations, only: [:show, :new, :create, :index] do
       resources :messages, only: [:create]
     end
-    resources :front_users, only: [:show, :new, :create, :edit, :update, :destroy]
+    resources :front_users, only: [:show, :edit, :update] # , :new, :create, :destroy
   end
 
   namespace :guest do

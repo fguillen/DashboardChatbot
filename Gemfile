@@ -40,6 +40,7 @@ gem "opentelemetry-instrumentation-mysql2"
 gem "opentelemetry-instrumentation-net_http"
 gem "opentelemetry-instrumentation-rack"
 gem "opentelemetry-instrumentation-rails"
+gem "pg" # For dashboard db connection with Sequel
 gem "prometheus-client"
 gem "puma"
 gem "rails_semantic_logger"
@@ -58,8 +59,10 @@ gem "sqlite3"
 gem "stimulus-rails"
 gem "strip_attributes"
 gem "style_palette"
+gem "tiktoken_ruby" # OpenAI dependency, if not I get error cannot load such file -- tiktoken_ruby
 gem "turbo-rails"
 gem "turnstile-captcha", require: "turnstile" # Cloudflare Turnstile Captcha
+gem "tzinfo-data"
 gem "uglifier"
 gem "uuid"
 gem "virtus-relations"

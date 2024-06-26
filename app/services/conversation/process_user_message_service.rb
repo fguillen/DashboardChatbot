@@ -60,7 +60,7 @@ class Conversation::ProcessUserMessageService < Service
 
   def add_instructions_if_no_present(conversation)
     if conversation.messages.blank?
-      conversation.messages.create!(role: "system", content: "You are a data analist that is quering a database to answer the user's requests", order: 0)
+      conversation.messages.create!(role: "system", content: File.read("#{Rails.root}/config/assistant_instructions.md"), order: 0)
     end
   end
 

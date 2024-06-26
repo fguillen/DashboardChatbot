@@ -1,17 +1,26 @@
 # Originally inspired on: https://gist.github.com/satendra02/1b335b06bfc5921df486f26bd98e0e89
-
-version: '3'
 services:
   db:
     image: mysql:8.0
     volumes:
-      - ./_data:/var/lib/mysql
+      - ./_data/mysql:/var/lib/mysql
     restart: always
     ports:
       - 127.0.0.1:13306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
     command: [--default-authentication-plugin=mysql_native_password]
+
+  dashboard_db:
+    image: postgres:16-alpine
+    ports:
+      - 127.0.0.1:15432:5432
+    volumes:
+      - ./_data/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=dashboard
+      - POSTGRES_USER=dashboard
+      - POSTGRES_DB=dashboard
 
   app:
     build:
@@ -22,6 +31,22 @@ services:
     restart: always
     depends_on:
       - db
+      - dashboard_db
+    # environment:
+    #   - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+
+  # cron:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/cron/DockerFile
+  #   volumes:
+  #     - .:/var/www/app
+  #   restart: always
+  #   depends_on:
+  #     - db
+  #     - dashboard_db
+  #   environment:
+  #     - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
   web:
     build:
@@ -42,15 +67,6 @@ services:
       - ./data/certbot/www:/var/www/certbot
     restart: always
 
-  cron:
-    build:
-      context: .
-      dockerfile: ./docker/cron/DockerFile
-    volumes:
-      - .:/var/www/app
-    restart: always
-    depends_on:
-      - db
 
   certbot:
     image: certbot/certbot
@@ -75,7 +91,7 @@ services:
       # Remember to use read-only bind mounts.
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
-      - /:/rootfs:ro,rslave
+      - /:/rootfs:ro #,rslave
     command:
       - "--web.listen-address=:9100"
       - "--path.procfs=/host/proc"
