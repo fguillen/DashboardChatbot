@@ -2,9 +2,8 @@ Admin Notification
 
 New Article has been created
 
-* http://dashboardchatbot.com.test/admin/articles/ARTICLE_UUID
+* http://dashboardchatbot.fernandoguillen.info.test/admin/articles/ARTICLE_UUID
 
 =======
 DashboardChatbot
-* hello dashboardchatbot.com.test
-
+* hello dashboardchatbot.fernandoguillen.info.test
