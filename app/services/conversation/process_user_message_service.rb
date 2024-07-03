@@ -36,7 +36,6 @@ class Conversation::ProcessUserMessageService < Service
     @assistant = Langchain::Assistant.new(
       llm: llm,
       thread: thread(conversation),
-      # instructions: "You are a data analist that is quering a database to answer the user's requests",
       tools: [
         tool_database
       ]
