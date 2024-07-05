@@ -21,7 +21,11 @@
   <dt>Order</dt>
   <dd><%= @message.order %></dd>
   <dt>Content</dt>
-  <dd><pre><%= @message.content.html_safe %></pre></dd>
+  <dd>
+    <pre>
+<code data-controller="conde-syntax-highlighter" class="language-sql"><%= @message.content %></code>
+    </pre>
+  </dd>
   <dt>Content</dt>
   <dd><%= markdown(@message.content) %></dd>
   <dt>Tool Calls</dt>

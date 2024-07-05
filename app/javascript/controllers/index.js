@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CondeSyntaxHighlighterController from "./conde_syntax_highlighter_controller"
+application.register("conde-syntax-highlighter", CondeSyntaxHighlighterController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
