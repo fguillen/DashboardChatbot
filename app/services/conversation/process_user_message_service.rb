@@ -2,23 +2,38 @@ class Conversation::ProcessUserMessageService < Service
   def perform(conversation, role, content)
     Langchain.logger.level = :debug
 
+    add_instructions_if_no_present(conversation)
+
     puts ">>>> assistant.llm.defaults: #{assistant(conversation).llm.defaults}"
     puts ">>>> role: #{role}"
 
-    add_instructions_if_no_present(conversation)
+    assistant(conversation).add_message(role:, content:)
 
-    assistant(conversation).add_message(role: role, content: content)
-    assistant(conversation).run(auto_tool_execution: true) # TODO: Remove auto_tool_execution, it is danger
+    error = nil
+
+    begin
+      assistant(conversation).run(auto_tool_execution: true) # TODO: Remove auto_tool_execution, it is danger
+    rescue StandardError => e
+      error = e.message
+      puts ">>>> assistant.run.error: #{error}"
+      puts e.backtrace.join("\n")
+      Rollbar.error(e, { conversation_id: conversation.id })
+    end
 
     puts ">>>> Messages :: INI"
     puts ">>>> #{assistant(conversation).thread.messages.map(&:to_hash)}"
     puts ">>>> Messages :: END"
 
     new_messages =
-      assistant(conversation).thread.messages[conversation.messages.count..].map(&:to_hash).map.with_index do |openai_message, index|
+      assistant(conversation).thread.messages[conversation.messages.count..].map(&:to_hash).map do |openai_message|
         puts ">>>> new_message: #{openai_message}"
-        conversation.messages.create!(openai_message.merge(order: conversation.messages.maximum(:order) + 1))
+        conversation.add_message(**openai_message)
       end
+
+    if error.present?
+      message_error = conversation.add_message(role: "system", content: error)
+      new_messages << message_error
+    end
 
     new_messages
   end
@@ -60,7 +75,7 @@ class Conversation::ProcessUserMessageService < Service
 
   def add_instructions_if_no_present(conversation)
     if conversation.messages.blank?
-      conversation.messages.create!(role: "system", content: File.read("#{Rails.root}/config/assistant_instructions.md"), order: 0)
+      conversation.add_message(role: "system", content: File.read("#{Rails.root}/config/assistant_instructions.md"))
     end
   end
 

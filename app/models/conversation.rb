@@ -11,4 +11,9 @@ class Conversation < ApplicationRecord
   validates :title, presence: true
 
   scope :order_by_recent, -> { order("conversations.created_at desc") }
+
+  def add_message(role:, content: nil, tool_calls: nil, tool_call_id: nil)
+    order = (messages.maximum(:order) || 0) + 1
+    messages.create!(role:, content:, tool_calls:, tool_call_id:, order:)
+  end
 end
