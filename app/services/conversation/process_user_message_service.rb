@@ -10,8 +10,9 @@ class Conversation::ProcessUserMessageService < Service
     assistant(conversation).add_message(role: role, content: content)
     assistant(conversation).run(auto_tool_execution: true) # TODO: Remove auto_tool_execution, it is danger
 
-    puts ">>>> messages"
+    puts ">>>> Messages :: INI"
     puts ">>>> #{assistant(conversation).thread.messages.map(&:to_hash)}"
+    puts ">>>> Messages :: END"
 
     new_messages =
       assistant(conversation).thread.messages[conversation.messages.count..].map(&:to_hash).map.with_index do |openai_message, index|

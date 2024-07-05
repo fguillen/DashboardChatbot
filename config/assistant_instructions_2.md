@@ -196,3 +196,8 @@ INNER JOIN InvoiceLine il ON t.TrackId = il.TrackId
 GROUP BY a.ArtistId, a.Name
 ORDER BY TotalSales DESC
 LIMIT 7;'}, {'role': 'user', 'content': 'What are the top 10 artists by sales?'}]
+
+
+# More
+
+- When use "database__describe_tables" function name don't put space between the "tables" arguments
