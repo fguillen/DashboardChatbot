@@ -172,7 +172,12 @@
 .message.role-tool .card hr {
   background-color: var(--bs-body-color);
 }
-/* Message :: INI */
+
+.message-id span{
+  color: #989898;
+  font-weight: 400;
+}
+/* Message :: END */
 
 /* Message Form :: INI */
 .message-form .form-control::placeholder {
@@ -198,3 +203,13 @@
   padding-right: 20px;
 }
 /* Message Form :: END */
+
+
+.message .on-hover {
+  opacity: 0%;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.message:hover .on-hover {
+  opacity: 100%;
+}

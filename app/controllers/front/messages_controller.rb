@@ -1,6 +1,10 @@
 class Front::MessagesController < Front::BaseController
   before_action :require_front_user
-  before_action :load_conversation
+  before_action :load_conversation, only: [:create]
+  before_action :load_message, only: [:show]
+
+  def show
+  end
 
   def create
     @message = Message.new(message_params)
@@ -33,5 +37,9 @@ class Front::MessagesController < Front::BaseController
 
   def load_conversation
     @conversation = current_front_user.conversations.find(params[:conversation_id])
+  end
+
+  def load_message
+    @message = Message.find(params[:id])
   end
 end

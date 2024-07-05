@@ -1,7 +1,16 @@
 <%= turbo_frame_tag message do %>
-  <div class="message mt-3 d-flex flex-row role-<%= message.role %>">
+  <div class="message mt-3 d-flex flex-row role-<%= message.role %>" id="message-<%= message.id %>">
     <div class="card">
       <div class="card-body">
+        <div class="d-flex flex-row mb-2 message-id on-hover">
+          <a href="#message-<%= message.id %>" data-turbo="false">
+            <i class="bi bi-link"></i>
+          </a>
+
+          <%= link_to front_message_path(message), class: "ms-auto", data: { turbo: false }  do %>
+            <span class="badge text-bg-light"><%= message.id %></span>
+          <% end %>
+        </div>
         <% if message.content.present? %>
           <div class="card-text message-content">
             <%= markdown(message.content) %>

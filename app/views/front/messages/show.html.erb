@@ -1,0 +1,35 @@
+<% title t("views.messages.show.title", :message_uuid => @message.uuid) %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("layouts.breadcrumbs.conversations"), :front_conversations %></li>
+    <li class="breadcrumb-item"><%= link_to @message.conversation.title, front_conversation_path(@message.conversation) %></li>
+    <li class="breadcrumb-item">Messages</li>
+    <li class="breadcrumb-item active"><%= @message.uuid %></li>
+  </ol>
+</nav>
+
+<%= render @message %>
+
+<dl>
+  <dt>ID</dt>
+  <dd><%= @message.id %></dd>
+  <dt>Role</dt>
+  <dd><%= @message.role %></dd>
+  <dt>Conversation</dt>
+  <dd><%= link_to @message.conversation.id, front_conversation_path(@message.conversation) %></dd>
+  <dt>Order</dt>
+  <dd><%= @message.order %></dd>
+  <dt>Content</dt>
+  <dd><pre><%= @message.content.html_safe %></pre></dd>
+  <dt>Content</dt>
+  <dd><%= markdown(@message.content) %></dd>
+  <dt>Tool Calls</dt>
+  <dd>
+    <pre>
+<%= JSON.pretty_generate(@message.tool_calls).strip %>
+    </pre>
+  </dd>
+  <dt>Tool Call ID</dt>
+  <dd><%= @message.tool_call_id %></dd>
+</dl>
