@@ -177,6 +177,25 @@
   color: #989898;
   font-weight: 400;
 }
+
+.message .on-hover {
+  opacity: 0%;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.message .card:hover .on-hover {
+  opacity: 100%;
+}
+
+.code-copy-icon {
+  margin-top: -40px;
+  margin-right: 10px;
+}
+
+.message ol p {
+  margin: 1em 0 0 0;
+}
+
 /* Message :: END */
 
 /* Message Form :: INI */
@@ -203,18 +222,3 @@
   padding-right: 20px;
 }
 /* Message Form :: END */
-
-
-.message .on-hover {
-  opacity: 0%;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.message .card:hover .on-hover {
-  opacity: 100%;
-}
-
-.code-copy-icon {
-  margin-top: -40px;
-  margin-right: 10px;
-}

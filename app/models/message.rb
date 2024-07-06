@@ -25,6 +25,8 @@ class Message < ApplicationRecord
       JSON.parse(tool_call["function"]["arguments"])["input"]
     when "database__describe_tables"
       JSON.parse(tool_call["function"]["arguments"])["tables"]
+    when "database__list_tables"
+      nil
     else
       raise "unknown tool call name: '#{tool_call["function"]["name"]}'"
     end
@@ -36,6 +38,61 @@ class Message < ApplicationRecord
       "sql"
     when "database__describe_tables"
       "txt"
+    when "database__list_tables"
+      "txt"
+    else
+      raise "unknown tool call name: '#{tool_call["function"]["name"]}'"
+    end
+  end
+
+  def content_language
+    return "txt" if content.blank?
+    return "markdown" if !tool_call_id.present?
+
+    tool_call = conversation.find_tool_call_by_id(tool_call_id)
+
+    if tool_call.nil?
+      message = "ToolCall not Found: #{tool_call_id}"
+      Rails.logger.error(message)
+
+      return "markdown"
+    end
+
+    case tool_call["function"]["name"]
+    when "database__execute"
+      "json"
+    when "database__describe_tables"
+      "sql"
+    when "database__list_tables"
+      "json"
+    else
+      raise "unknown tool call name: '#{tool_call["function"]["name"]}'"
+    end
+
+  end
+
+  def content_parsed
+    return content if content.blank? || tool_call_id.blank?
+
+    tool_call = conversation.find_tool_call_by_id(tool_call_id)
+
+    if tool_call.nil?
+      message = "ToolCall not Found: #{tool_call_id}"
+      Rails.logger.error(message)
+
+      return "#{message}\n\n#{content}"
+    end
+
+    case tool_call["function"]["name"]
+    when "database__execute"
+      content_fixed = content.gsub(/:(\w+)=>/, '"\1":')
+      content_fixed = content_fixed.gsub(":nil", ":null")
+      JSON.pretty_generate(JSON.parse(content_fixed))
+    when "database__describe_tables"
+      content
+    when "database__list_tables"
+      content_fixed = content.gsub(/:(\w+)/, '"\1"')
+      JSON.pretty_generate(JSON.parse(content_fixed))
     else
       raise "unknown tool call name: '#{tool_call["function"]["name"]}'"
     end

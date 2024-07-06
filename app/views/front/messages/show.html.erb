@@ -9,8 +9,6 @@
   </ol>
 </nav>
 
-<%= render @message %>
-
 <dl>
   <dt>ID</dt>
   <dd><%= @message.id %></dd>
@@ -21,18 +19,14 @@
   <dt>Order</dt>
   <dd><%= @message.order %></dd>
   <dt>Content</dt>
-  <dd>
-    <pre>
-<code data-controller="conde-syntax-highlighter" class="language-sql"><%= @message.content %></code>
-    </pre>
-  </dd>
-  <dt>Content</dt>
-  <dd><%= markdown(@message.content) %></dd>
+  <dd><%= @message.content %></dd>
   <dt>Tool Calls</dt>
   <dd>
-    <pre>
-<%= JSON.pretty_generate(@message.tool_calls).strip %>
-    </pre>
+    <% if @message.tool_calls.present? %>
+      <pre>
+<%= JSON.pretty_generate(@message.tool_calls) %>
+      </pre>
+    <% end %>
   </dd>
   <dt>Tool Call ID</dt>
   <dd><%= @message.tool_call_id %></dd>

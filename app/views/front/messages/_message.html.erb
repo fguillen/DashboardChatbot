@@ -15,7 +15,7 @@
         <div class="message-body mb-1">
           <% if message.content.present? %>
             <div class="card-text message-content">
-              <%= markdown(message.content) %>
+              <%= message_content(message) %>
             </div>
           <% end %>
 

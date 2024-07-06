@@ -16,4 +16,12 @@ class Conversation < ApplicationRecord
     order = (messages.maximum(:order) || 0) + 1
     messages.create!(role:, content:, tool_calls:, tool_call_id:, order:)
   end
+
+  def find_tool_call_by_id(tool_call_id)
+    messages.map(&:tool_calls).flatten.each do |tool_call|
+      return tool_call if tool_call["id"] == tool_call_id
+    end
+
+    nil
+  end
 end

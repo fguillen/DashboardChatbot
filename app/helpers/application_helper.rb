@@ -22,4 +22,20 @@ module ApplicationHelper
     return "" if text.blank?
     MarkdownRenderer.render(text).html_safe
   end
+
+  def message_content(message)
+    content_language = message.content_language
+    if content_language == "markdown"
+      markdown(message.content)
+    else
+      result = <<~HTML.html_safe
+        <pre><code
+          class="language-#{content_language}"
+          data-controller="conde-syntax-highlighter"
+        >#{message.content_parsed}</code></pre>
+      HTML
+
+      result
+    end
+  end
 end
