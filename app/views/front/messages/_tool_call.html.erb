@@ -1,0 +1,15 @@
+<dl>
+  <dt>ID</dt>
+  <dd><%= tool_call["id"] %></dd>
+  <dt>Type</dt>
+  <dd><%= tool_call["type"] %></dd>
+  <dt>Function.name</dt>
+  <dd><%= tool_call["function"]["name"] %></dd>
+  <dt>Function.arguments</dt>
+  <dd>
+    <pre><code class="language-<%= Message.extract_function_arguments_language(tool_call) %>" data-controller="conde-syntax-highlighter" ><%= Message.extract_function_arguments(tool_call) %></code></pre>
+    <div class="d-flex flex-row on-hover code-copy-icon">
+      <a href="#" class="icon-link icon-link-hover ms-auto text-decoration-none" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);"><i class="bi bi-copy"></i> Copy</a>
+    </div>
+  </dd>
+</dl>

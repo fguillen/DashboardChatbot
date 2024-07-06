@@ -210,6 +210,11 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.message:hover .on-hover {
+.message .card:hover .on-hover {
   opacity: 100%;
+}
+
+.code-copy-icon {
+  margin-top: -40px;
+  margin-right: 10px;
 }

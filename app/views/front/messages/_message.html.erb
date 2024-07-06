@@ -18,9 +18,10 @@
         <% end %>
 
         <% if message.tool_calls.present? %>
-          <pre class="card-text message-tool-calls">
-<%= JSON.pretty_generate(message.tool_calls).strip %>
-          </pre>
+          <h3>Tool calls</h3>
+          <% message.tool_calls.each do |tool_call| %>
+            <%= render partial: "/front/messages/tool_call", locals: { tool_call: tool_call } %>
+          <% end %>
         <% end %>
 
         <% if message.tool_call_id.present? %>
