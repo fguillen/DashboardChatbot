@@ -7,6 +7,9 @@ import { application } from "./application"
 import CondeSyntaxHighlighterController from "./conde_syntax_highlighter_controller"
 application.register("conde-syntax-highlighter", CondeSyntaxHighlighterController)
 
+import CopyToClipboardController from "./copy_to_clipboard_controller"
+application.register("copy-to-clipboard", CopyToClipboardController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

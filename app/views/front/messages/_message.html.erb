@@ -11,27 +11,30 @@
             <span class="badge text-bg-light"><%= message.id %></span>
           <% end %>
         </div>
-        <% if message.content.present? %>
-          <div class="card-text message-content">
-            <%= markdown(message.content) %>
-          </div>
-        <% end %>
 
-        <% if message.tool_calls.present? %>
-          <h3>Tool calls</h3>
-          <% message.tool_calls.each do |tool_call| %>
-            <%= render partial: "/front/messages/tool_call", locals: { tool_call: tool_call } %>
+        <div class="message-body mb-1">
+          <% if message.content.present? %>
+            <div class="card-text message-content">
+              <%= markdown(message.content) %>
+            </div>
           <% end %>
-        <% end %>
 
-        <% if message.tool_call_id.present? %>
-          <p class="card-text  message-tool-call-id">
-            <%= message.tool_call_id %>
-          </p>
-        <% end %>
+          <% if message.tool_calls.present? %>
+            <h3>Tool calls</h3>
+            <% message.tool_calls.each do |tool_call| %>
+              <%= render partial: "/front/messages/tool_call", locals: { tool_call:, message: } %>
+            <% end %>
+          <% end %>
+
+          <% if message.tool_call_id.present? %>
+            <p class="card-text  message-tool-call-id">
+              <%= message.tool_call_id %>
+            </p>
+          <% end %>
+        </div>
 
         <% if message.role != "user" %>
-          <footer class="blockquote-footer"><%= message.role %></footer>
+          <footer class="blockquote-footer mt-1"><%= message.role %></footer>
         <% end %>
 
         <% if message.role != "user" %>
@@ -39,7 +42,14 @@
           <div class="d-flex flex-row">
             <a href="#" class="icon-link" style="--bs-link-hover-color-rgb: var(--bs-link-hover-color)"><i class="bi bi-hand-thumbs-up"></i></a>
             <a href="#" class="icon-link ms-1" style="--bs-link-hover-color-rgb: var(--bs-link-hover-color)"><i class="bi bi-hand-thumbs-down"></i></a>
-            <a href="#" class="icon-link icon-link-hover ms-auto text-decoration-none" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);"><i class="bi bi-copy"></i> Copy</a>
+            <a
+              href="#"
+              class="icon-link icon-link-hover ms-auto text-decoration-none"
+              style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);"
+              data-controller="copy-to-clipboard"
+              data-action="click->copy-to-clipboard#copy"
+              data-copy-to-clipboard-element-to-copy-value="#message-<%= message.id %> .message-body"
+            ><i class="bi bi-copy"></i> Copy</a>
           </div>
         <% end %>
       </div>
