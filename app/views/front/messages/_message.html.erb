@@ -1,5 +1,5 @@
 <%= turbo_frame_tag message do %>
-  <div class="message mt-3 d-flex flex-row role-<%= message.role %>" id="message-<%= message.id %>">
+  <div class="message mt-3 d-flex flex-row role-<%= message.role %> language-<%= message.content_language %>" id="message-<%= message.id %>">
     <div class="card">
       <div class="card-body">
         <div class="d-flex flex-row mb-2 message-id on-hover">

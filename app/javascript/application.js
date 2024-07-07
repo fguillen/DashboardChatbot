@@ -4,3 +4,7 @@ console.log(">>>> Loading application.js");
 import "@hotwired/turbo-rails"
 import "controllers"
 import "turbo_events_debug"
+
+// Chartkick
+import "chartkick"
+import "Chart.bundle"

@@ -173,6 +173,11 @@
   background-color: var(--bs-body-color);
 }
 
+.message.language-chart_line .card,
+.message.language-chart_column .card {
+  width: 100%;
+}
+
 .message-id span{
   color: #989898;
   font-weight: 400;
