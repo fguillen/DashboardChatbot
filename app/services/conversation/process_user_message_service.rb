@@ -53,7 +53,8 @@ class Conversation::ProcessUserMessageService < Service
       llm: llm,
       thread: thread(conversation),
       tools: [
-        tool_database
+        tool_database,
+        tool_chart
       ]
     )
   end
@@ -71,6 +72,10 @@ class Conversation::ProcessUserMessageService < Service
 
   def tool_database
     @tool_database ||= Langchain::Tool::Database.new(connection_string: APP_CONFIG["dashboard_db_connection"])
+  end
+
+  def tool_chart
+    @tool_chart ||= Langchain::Tool::Chart.new()
   end
 
   def add_instructions_if_no_present(conversation)

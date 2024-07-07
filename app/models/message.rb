@@ -28,7 +28,8 @@ class Message < ApplicationRecord
     when "database__list_tables"
       nil
     else
-      raise "unknown tool call name: '#{tool_call["function"]["name"]}'"
+      puts ">>> unknown tool call name: '#{tool_call["function"]["name"]}'"
+
     end
   end
 
@@ -38,10 +39,12 @@ class Message < ApplicationRecord
       "sql"
     when "database__describe_tables"
       "txt"
-    when "database__list_tables"
-      "txt"
+    when "chart__create_line_chart"
+      "chart_line"
+    when "chart__create_column_chart"
+      "chart_column"
     else
-      raise "unknown tool call name: '#{tool_call["function"]["name"]}'"
+      puts ">>> unknown tool call name: '#{tool_call["function"]["name"]}'"
     end
   end
 
@@ -65,8 +68,13 @@ class Message < ApplicationRecord
       "sql"
     when "database__list_tables"
       "json"
+    when "chart__create_line_chart"
+      "chart_line"
+    when "chart__create_column_chart"
+      "chart_column"
     else
-      raise "unknown tool call name: '#{tool_call["function"]["name"]}'"
+      puts ">>> unknown tool call name: '#{tool_call["function"]["name"]}'"
+      "txt"
     end
 
   end
@@ -85,16 +93,26 @@ class Message < ApplicationRecord
 
     case tool_call["function"]["name"]
     when "database__execute"
-      content_fixed = content.gsub(/:(\w+)=>/, '"\1":')
-      content_fixed = content_fixed.gsub(":nil", ":null")
-      JSON.pretty_generate(JSON.parse(content_fixed))
+      # content_fixed = content.gsub(/:(\w+)=>/, '"\1":')
+      # content_fixed = content_fixed.gsub(":nil", ":null")
+      # content_fixed = content_fixed.gsub(/:(\w{3},\s[\w\s]+\d{4})/) { |e| ":\"#{Date.parse(e)}\"" } # dates like: "Thu, 09 May 2024"
+      # content_fixed = content_fixed.gsub(/:(\d\d\d\d-\d\d-\d\d\s\d\d:\d\d:\d\d\s.\d\d\d\d),/) { |e| ":\"#{Date.parse(e)}\"," } # dates like: "2024-06-01 00:00:00 +0200"
+      # JSON.pretty_generate(JSON.parse(content_fixed))
+
+      JSON.pretty_generate(SafeRuby.eval(content))
     when "database__describe_tables"
       content
     when "database__list_tables"
-      content_fixed = content.gsub(/:(\w+)/, '"\1"')
-      JSON.pretty_generate(JSON.parse(content_fixed))
+      # content_fixed = content.gsub(/:(\w+)/, '"\1"')
+      # JSON.pretty_generate(JSON.parse(content_fixed))
+      JSON.pretty_generate(SafeRuby.eval(content))
+    when "chart__create_line_chart"
+      content
+    when "chart__create_column_chart"
+      content
     else
-      raise "unknown tool call name: '#{tool_call["function"]["name"]}'"
+      puts ">>> unknown tool call name: '#{tool_call["function"]["name"]}'"
+      content
     end
   end
 end

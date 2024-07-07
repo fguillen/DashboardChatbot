@@ -27,6 +27,10 @@ module ApplicationHelper
     content_language = message.content_language
     if content_language == "markdown"
       markdown(message.content)
+    elsif content_language == "chart_line"
+      line_chart(SafeRuby.eval(message.content))
+    elsif content_language == "chart_column"
+      column_chart(SafeRuby.eval(message.content))
     else
       result = <<~HTML.html_safe
         <pre><code

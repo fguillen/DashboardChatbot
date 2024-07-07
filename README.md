@@ -85,3 +85,9 @@ Or maybe
 #### Nginx reload
 
     docker compose exec web nginx -s reload
+
+
+## Bugs found
+
+- https://community.openai.com/t/chatgpt-occasionally-reuses-tool-ids-in-the-same-session/577207
+- https://community.openai.com/t/parallel-assistant-function-calls-returning-undocumented-function-multi-tool-use-parallel/697047
