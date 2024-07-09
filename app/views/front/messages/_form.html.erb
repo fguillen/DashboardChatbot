@@ -3,7 +3,7 @@
     [:front, @conversation, @message],
     data: {
       controller: "message-form",
-      action: "turbo:submit-end->message-form#submit"
+      action: "turbo:submit-end->message-form#submitEnd turbo:submit-start->message-form#submitStart"
     }
   ) do |f|
 %>
@@ -11,9 +11,19 @@
 
   <div class="message-form mb-3">
     <div class="input-group">
-      <%= f.text_area :content, class: "form-control", placeholder: "Ask anything", autofocus: true %>
+      <%=
+        f.text_area(
+          :content,
+          class: "form-control",
+          placeholder: "Ask anything",
+          autofocus: true,
+          data: { controller: "submit-on-cmd-enter" }
+        )
+      %>
       <%= f.button(class: "btn btn-primary") do %>
-        <i class="bi bi-send fs-5 ms-1"></i>
+        <span class="badge rounded-pill text-bg-light">ctr+&#9166;</span>
+        <i class="bi bi-send fs-5 ms-1 on-no-disabled"></i>
+        <i class="bi bi-hourglass-split fs-5 ms-1 on-disabled"></i>
       <% end %>
     </div>
 

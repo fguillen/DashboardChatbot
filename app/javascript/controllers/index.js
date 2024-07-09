@@ -15,3 +15,6 @@ application.register("hello", HelloController)
 
 import MessageFormController from "controllers/message_form_controller"
 application.register("message-form", MessageFormController)
+
+import SubmitOnCmdEnterController from "controllers/submit_on_cmd_enter_controller"
+application.register("submit-on-cmd-enter", SubmitOnCmdEnterController)
