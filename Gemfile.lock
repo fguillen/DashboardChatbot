@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:fguillen/langchainrb.git
+  remote: https://github.com/fguillen/langchainrb.git
   revision: dc0705e3a685064c3d902ce3a7d3302a0ac0ac64
   branch: personal_changes
   specs:
