@@ -1,4 +1,18 @@
 GIT
+  remote: git@github.com:fguillen/langchainrb.git
+  revision: dc0705e3a685064c3d902ce3a7d3302a0ac0ac64
+  branch: personal_changes
+  specs:
+    langchainrb (0.13.5)
+      baran (~> 0.1.9)
+      colorize (~> 1.1.0)
+      json-schema (~> 4)
+      matrix
+      pragmatic_segmenter (~> 0.3.0)
+      to_bool (~> 2.0.0)
+      zeitwerk (~> 2.5)
+
+GIT
   remote: https://github.com/fguillen/ruby_regex.git
   revision: fddb65579850b49e4ef95a95959d6b83fadbd158
   specs:
@@ -235,14 +249,6 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    langchainrb (0.13.5)
-      baran (~> 0.1.9)
-      colorize (~> 1.1.0)
-      json-schema (~> 4)
-      matrix
-      pragmatic_segmenter (~> 0.3.0)
-      to_bool (~> 2.0.0)
-      zeitwerk (~> 2.5)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -612,7 +618,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   kaminari
-  langchainrb
+  langchainrb!
   log_book
   minitest
   mocha

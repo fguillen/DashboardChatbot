@@ -21,6 +21,8 @@ class Conversation::ProcessUserMessageService < Service
     end
 
     puts ">>>> Messages :: INI"
+    puts ">>>> #{assistant(conversation).thread.messages}"
+    puts ">>>>> to hash"
     puts ">>>> #{assistant(conversation).thread.messages.map(&:to_hash)}"
     puts ">>>> Messages :: END"
 

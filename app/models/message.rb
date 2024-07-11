@@ -18,6 +18,19 @@ class Message < ApplicationRecord
   scope :order_by_recent, -> { order("messages.created_at desc") }
   scope :in_order, -> { order("messages.order asc") }
 
+  # If content can be parsed to JSON
+  # store it as JSON
+  def content=(data)
+    puts ">>> message.data: #{data}"
+    puts ">>> message.data.class.name: #{data.class.name}"
+
+    begin
+      super(JSON.pretty_generate(JSON.parse(data)))
+    rescue JSON::ParserError
+      super(data)
+    end
+  end
+
   def self.extract_function_arguments(tool_call)
     puts ">>>> tool_call: #{tool_call}"
     case tool_call["function"]["name"]
@@ -27,8 +40,12 @@ class Message < ApplicationRecord
       JSON.parse(tool_call["function"]["arguments"])["tables"]
     when "database__list_tables"
       nil
+    when "chart__create_line_chart"
+      JSON.parse(tool_call["function"]["arguments"])["data"]
+    when "chart__create_column_chart"
+      JSON.parse(tool_call["function"]["arguments"])["data"]
     else
-      puts ">>> unknown tool call name: '#{tool_call["function"]["name"]}'"
+      puts ">>> (extract_function_arguments) unknown tool call name: '#{tool_call["function"]["name"]}'"
 
     end
   end
@@ -44,7 +61,7 @@ class Message < ApplicationRecord
     when "chart__create_column_chart"
       "chart_column"
     else
-      puts ">>> unknown tool call name: '#{tool_call["function"]["name"]}'"
+      puts ">>> (extract_function_arguments_language) unknown tool call name: '#{tool_call["function"]["name"]}'"
     end
   end
 
@@ -73,7 +90,7 @@ class Message < ApplicationRecord
     when "chart__create_column_chart"
       "chart_column"
     else
-      puts ">>> unknown tool call name: '#{tool_call["function"]["name"]}'"
+      puts ">>> (content_language) unknown tool call name: '#{tool_call["function"]["name"]}'"
       "txt"
     end
 
