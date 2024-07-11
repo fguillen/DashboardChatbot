@@ -9,8 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Integrating "tool" to draw charts (line, column)
-- Message form capture ctrl + Enter to send message
+- Integrating "tool" to draw charts (line, column).
+- Message form capture ctrl + Enter to send message.
+- Schema description added into the system instructions.
 
 
 ## [0.0.3] - 2024-07-07
