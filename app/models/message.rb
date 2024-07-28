@@ -129,8 +129,19 @@ class Message < ApplicationRecord
     when "chart__create_column_chart"
       content
     else
-      puts ">>> unknown tool call name: '#{tool_call["function"]["name"]}'"
+      message = "ToolCall not Found: #{tool_call["function"]["name"]}"
+      puts ">>> #{message}"
+      Rails.logger.error(message)
+
       content
     end
+
+  rescue => e
+    message = "Exception while parsing message [#{id}] content: #{e.message}, content: #{content}"
+    puts ">>> #{message}"
+    Rails.logger.error(message)
+    Rails.logger.error(e.backtrace.join("\n"))
+
+    content
   end
 end
