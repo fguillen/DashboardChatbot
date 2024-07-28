@@ -1,5 +1,7 @@
-<ul>
+<div class="row row-cols-1 row-cols-xl-3 g-2">
   <% conversations.each do |conversation| %>
-    <li><%= link_to conversation.title, front_conversation_path(conversation) %></li>
+    <div class="col">
+      <%= render partial: "/front/conversations/card", locals: { conversation: } %>
+    </div>
   <% end %>
-</ul>
+</div>

@@ -1,5 +1,5 @@
 class Front::ConversationsController < Front::BaseController
-  before_action :load_conversation, only: [:show]
+  before_action :load_conversation, only: [:show, :update]
   before_action :require_front_user
   before_action :validate_current_front_user, only: [:show]
 
@@ -25,6 +25,15 @@ class Front::ConversationsController < Front::BaseController
     else
       flash.now[:alert] = t("controllers.conversations.create.error")
       render action: :new
+    end
+  end
+
+  def update
+    if @conversation.update(conversation_params)
+      redirect_to front_conversations_path, notice: t("controllers.conversations.update.success")
+    else
+      flash.now[:alert] = t("controllers.conversations.update.error")
+      render action: :edit
     end
   end
 

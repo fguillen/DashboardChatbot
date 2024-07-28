@@ -1,0 +1,45 @@
+<div class="conversation card">
+  <div class="card-body">
+    <h5 class="card-title"><%= conversation.title %></h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary"><%= conversation.updated_at.to_formatted_s(:datetimedb_short) %></h6>
+    <p class="card-text">
+      <b><%= conversation.messages.count %></b> messages. From wich <b><%= conversation.messages.by_role(Message.roles[:user]).count %></b> are from <i>user</i>.
+    </p>
+    <%= link_to "Open", front_conversation_path(conversation), class: "card-link" %>
+    <button type="button" class="card-link" data-bs-toggle="modal" data-bs-target="#conversation-modal-<%= conversation.id %>">
+      Edit
+    </button>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="conversation-modal-<%= conversation.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_for [:front, conversation] do |f| %>
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <%= render "/shared/form_errors", :object => f.object %>
+
+          <div class="row mb-3">
+            <%= f.label :title, class: "col-sm-2 col-form-label text-end"%>
+            <div class="col-sm-10">
+              <%= f.text_field :title, class: "form-control", placeholder: t("activerecord.attributes.conversation.title"), autofocus: true %>
+              <div class="form-text">Give a title to your conversation.</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <%= f.submit "Save changes", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

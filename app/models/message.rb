@@ -17,6 +17,7 @@ class Message < ApplicationRecord
 
   scope :order_by_recent, -> { order("messages.created_at desc") }
   scope :in_order, -> { order("messages.order asc") }
+  scope :by_role, -> (role) { where(role: role) }
 
   # If content can be parsed to JSON
   # store it as JSON
