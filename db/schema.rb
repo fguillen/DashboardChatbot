@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_29_230524) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_30_191514) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_id", null: false
@@ -125,13 +125,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_230524) do
     t.integer "order", null: false
     t.string "role", null: false
     t.text "content"
-    t.text "tool_calls"
     t.string "tool_call_id"
     t.string "conversation_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.json "raw"
     t.string "model"
+    t.json "tool_calls"
     t.index ["conversation_id"], name: "fk_rails_7f927086d2"
     t.index ["uuid"], name: "index_messages_on_uuid", unique: true
   end

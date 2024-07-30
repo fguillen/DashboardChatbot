@@ -15,7 +15,7 @@ class Conversation::ProcessUserMessageOpenRouterService < Service
           role: ai_message.data[:role],
           content: ai_message.data[:content],
           raw: ai_message.raw,
-          tool_calls: ai_message.data[:tool_calls],
+          tool_calls: ai_message.data[:tool_calls]&.map(&:to_hash),
           tool_call_id: ai_message.data[:tool_call_id],
           model: @assistant.model
         )

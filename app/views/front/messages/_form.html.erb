@@ -32,7 +32,7 @@
         <div class="col row">
           <%= f.label :model, class: "col-5 col-form-label text-end"%>
           <div class="col-7">
-            <%= f.select :model, AI_CLIENT.models, {}, class: "form-control" %>
+            <%= f.select :model, AI_CLIENT.models, {include_blank: 'auto'}, class: "form-control" %>
           </div>
         </div>
       </div>

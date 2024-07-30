@@ -6,4 +6,8 @@ class Assistants::DataAnalyst < AI::Assistant
   def client
     AI_CLIENT.client
   end
+
+  def tools
+    [Tools::Math.new]
+  end
 end

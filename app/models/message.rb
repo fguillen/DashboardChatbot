@@ -7,8 +7,6 @@ class Message < ApplicationRecord
 
   enum :role, { system: "system", user: "user", assistant: "assistant", tool: "tool" }
 
-  serialize :tool_calls, type: Array, coder: YAML
-
   belongs_to :conversation
   has_one :front_user, through: :conversation
 
@@ -39,6 +37,11 @@ class Message < ApplicationRecord
   def content=(data)
     puts ">>> message.data: #{data}"
     puts ">>> message.data.class.name: #{data.class.name}"
+
+    if data.nil?
+      super(data)
+      return
+    end
 
     begin
       super(JSON.pretty_generate(JSON.parse(data)))
