@@ -9,4 +9,14 @@ class AI::ConversationTest < ActiveSupport::TestCase
     puts ">>>> conversation.messages: #{conversation.messages}"
     puts ">>>> conversation.messages_data: #{conversation.messages_data}"
   end
+
+  test "should reset new messages" do
+    message = FactoryBot.create(:message)
+    ai_message = AI::Message.from_message(message)
+
+    conversation = AI::Conversation.new
+    conversation.add_message(ai_message)
+
+    puts ">>>> conversation.messages_data: #{conversation.messages_data}"
+  end
 end

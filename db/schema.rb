@@ -130,7 +130,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_230524) do
     t.string "conversation_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.json "meta"
+    t.json "raw"
+    t.string "model"
     t.index ["conversation_id"], name: "fk_rails_7f927086d2"
     t.index ["uuid"], name: "index_messages_on_uuid", unique: true
   end

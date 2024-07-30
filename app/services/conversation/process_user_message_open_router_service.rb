@@ -1,21 +1,28 @@
 class Conversation::ProcessUserMessageOpenRouterService < Service
-  def perform(conversation, role, content)
+  def perform(conversation, role, content, model = nil)
     @ai_conversation = Conversation::ConversationToAIConversationService.perform(conversation)
     @ai_conversation.reset_new_messages
-    @assistant = Assistants::DataAnalyst.new(ai_conversation: @ai_conversation)
+    @assistant = Assistants::DataAnalyst.new(ai_conversation: @ai_conversation, model: model)
 
     new_ai_messages = @assistant.completion({ role:, content: })
+    new_messages = []
 
     new_ai_messages.each do |ai_message|
       puts ">>>>> new_ai_message: #{ai_message.inspect}"
 
-      conversation.add_message(
-        role: ai_message.data[:role],
-        content: ai_message.data[:content],
-        meta: ai_message.meta,
-        tool_calls: ai_message.data[:tool_calls],
-        tool_call_id: ai_message.data[:tool_call_id]
-      )
+      new_message =
+        conversation.add_message(
+          role: ai_message.data[:role],
+          content: ai_message.data[:content],
+          raw: ai_message.raw,
+          tool_calls: ai_message.data[:tool_calls],
+          tool_call_id: ai_message.data[:tool_call_id],
+          model: @assistant.model
+        )
+
+      puts ">>>>> new_message: #{new_message.inspect}"
+
+      new_messages << new_message
     end
 
     # error = nil
@@ -46,7 +53,7 @@ class Conversation::ProcessUserMessageOpenRouterService < Service
     #   new_messages << message_error
     # end
 
-    new_ai_messages.last
+    new_messages
   end
 
   private

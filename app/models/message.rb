@@ -15,9 +15,24 @@ class Message < ApplicationRecord
   validates :role, presence: true
   validates :order, uniqueness: { scope: :conversation_id }
 
+  before_create :init_order
+
   scope :order_by_recent, -> { order("messages.created_at desc") }
   scope :in_order, -> { order("messages.order asc") }
   scope :by_role, -> (role) { where(role: role) }
+
+  def to_hash
+    hash = {
+      role:,
+      content:,
+    }
+
+    hash[:tool_calls] = tool_calls if tool_calls.present?
+    hash[:tool_call_id] = tool_call_id if tool_call_id.present?
+
+    hash
+  end
+
 
   # If content can be parsed to JSON
   # store it as JSON
@@ -143,5 +158,9 @@ class Message < ApplicationRecord
     Rails.logger.error(e.backtrace.join("\n"))
 
     content
+  end
+
+  def init_order
+    self.order ||= 0
   end
 end

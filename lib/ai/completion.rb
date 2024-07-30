@@ -22,13 +22,13 @@
 # }
 
 class AI::Completion
-  attr_reader :data
+  attr_reader :raw
 
-  def initialize(data)
-    @data = data
+  def initialize(raw)
+    @raw = raw
   end
 
   def message
-    @data["choices"][0]["message"]
+    @raw["choices"][0]["message"]
   end
 end

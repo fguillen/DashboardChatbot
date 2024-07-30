@@ -9,6 +9,7 @@ class Front::ConversationsController < Front::BaseController
 
   def show
     @message = @conversation.messages.new(role: Message.roles[:user])
+    @message.model = @conversation.messages.in_order.last&.model
   end
 
   def new

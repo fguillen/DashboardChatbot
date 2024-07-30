@@ -22,43 +22,43 @@
 # }
 
 class AI::Message
-  attr_reader :data, :meta
+  attr_reader :data, :raw
 
-  def initialize(data:, meta: nil)
+  def initialize(data:, raw: nil)
     @data = data
-    @meta = meta
+    @raw = raw
   end
 
   private_class_method :new
 
   def role
-    @data["role"]
+    @raw["role"]
   end
 
   def content
-    @data["content"]
+    @raw["content"]
   end
 
-  def meta
-    @meta
+  def raw
+    @raw
   end
 
   def tool_calls
-    @data["tool_calls"]
+    @raw["tool_calls"]
   end
 
   def tool_call_id
-    @data["tool_call_id"]
+    @raw["tool_call_id"]
   end
 
-  def self.from_message(message)
-    new(data: message)
+  def self.from_hash(hash)
+    new(data: hash)
   end
 
   def self.from_completion(completion)
     data = completion.message
-    meta = completion.data
+    raw = completion.raw
 
-    new(data:, meta:)
+    new(data:, raw:)
   end
 end
