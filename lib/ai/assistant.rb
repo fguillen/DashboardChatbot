@@ -1,5 +1,5 @@
 class AI::Assistant
-  def initialize(model: "openrouter/auto", ai_conversation: nil, system_directive: nil)
+  def initialize(model: "openrouter/auto", ai_conversation: nil)
     @client = ::OpenRouter::Client.new(access_token: ENV["OPEN_ROUTER_KEY"])
     @system_directive = system_directive
     @model = model
@@ -7,7 +7,7 @@ class AI::Assistant
     init_conversation
   end
 
-  def completion(message)
+  def completion(message, model: nil)
     ai_message = AI::Message.from_message(message)
     @conversation.add_message(ai_message)
 
@@ -18,22 +18,24 @@ class AI::Assistant
     response =
       @client.complete(
         @conversation.messages_data,
-        model: @model
+        model: model || @model
       )
 
     completion = AI::Completion.new(response)
     message = AI::Message.from_completion(completion)
     @conversation.add_message(message)
 
-    message
+    @conversation.new_messages
+  end
+
+  def system_directive
+    nil
   end
 
   private
 
   def init_conversation
-    return if @conversation.present? or @system_directive.blank?
-
-    @conversation = AI::Conversation.new
+    return if @conversation.messages.present? or @system_directive.blank?
 
     if system_directive.present?
       message = AI::Message.from_message({ role: "system", content: system_directive })

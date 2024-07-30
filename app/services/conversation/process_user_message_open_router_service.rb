@@ -1,17 +1,22 @@
 class Conversation::ProcessUserMessageOpenRouterService < Service
   def perform(conversation, role, content)
     @ai_conversation = Conversation::ConversationToAIConversationService.perform(conversation)
-    @assistant = AI::Assistant.new(ai_conversation: @ai_conversation, system_directive: File.read("#{Rails.root}/config/assistant_instructions.md"))
+    @ai_conversation.reset_new_messages
+    @assistant = Assistants::DataAnalyst.new(ai_conversation: @ai_conversation)
 
-    ai_message = @assistant.completion({ role:, content: })
+    new_ai_messages = @assistant.completion({ role:, content: })
 
-    conversation.add_message(
-      role: ai_message.role,
-      content: ai_message.content,
-      meta: ai_message.meta,
-      tool_calls: ai_message.tool_calls,
-      tool_call_id: ai_message.tool_call_id
-    )
+    new_ai_messages.each do |ai_message|
+      puts ">>>>> new_ai_message: #{ai_message.inspect}"
+
+      conversation.add_message(
+        role: ai_message.data[:role],
+        content: ai_message.data[:content],
+        meta: ai_message.meta,
+        tool_calls: ai_message.data[:tool_calls],
+        tool_call_id: ai_message.data[:tool_call_id]
+      )
+    end
 
     # error = nil
 
@@ -41,7 +46,7 @@ class Conversation::ProcessUserMessageOpenRouterService < Service
     #   new_messages << message_error
     # end
 
-    ai_message
+    new_ai_messages.last
   end
 
   private
