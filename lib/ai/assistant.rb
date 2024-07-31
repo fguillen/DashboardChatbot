@@ -46,7 +46,7 @@ class AI::Assistant
       tool_instance =
         tools.find do |t|
           t.class_name_sanitized == tool_name
-        end or raise ArgumentError, "Tool not found in assistant.tools"
+        end or raise ArgumentError, "Tool not found in assistant.tools '#{tool_name}'"
 
       output = tool_instance.send(method_name, **tool_arguments)
 

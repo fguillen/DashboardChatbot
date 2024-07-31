@@ -10,7 +10,8 @@ class Assistants::DataAnalyst < AI::Assistant
   def tools
     [
       Tools::Math.new,
-      Tools::Database.new(connection_string: APP_CONFIG["dashboard_db_connection"])
+      Tools::Database.new(connection_string: APP_CONFIG["dashboard_db_connection"]),
+      Tools::Chart.new
     ]
   end
 end
