@@ -31,4 +31,12 @@ class AI::Completion
   def message
     @raw["choices"][0]["message"]
   end
+
+  def tool_calls
+    @raw["choices"][0]["message"]["tool_calls"]
+  end
+
+  def tools?
+    tool_calls.present?
+  end
 end

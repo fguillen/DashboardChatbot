@@ -2,7 +2,7 @@
   {
     "type": "function",
     "function": {
-      "name": "math__sum",
+      "name": "sum",
       "description": "Math Tool: sum two numbers",
       "parameters": {
         "type": "object",
@@ -17,7 +17,8 @@
           }
         },
         "required": [
-          "num_1"
+          "num_1",
+          "num_2"
         ]
       }
     }

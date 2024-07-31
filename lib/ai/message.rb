@@ -61,4 +61,8 @@ class AI::Message
 
     new(data:, raw:)
   end
+
+  def to_s
+    raw
+  end
 end
