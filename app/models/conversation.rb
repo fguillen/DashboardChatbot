@@ -18,7 +18,7 @@ class Conversation < ApplicationRecord
   end
 
   def find_tool_call_by_id(tool_call_id)
-    messages.map(&:tool_calls).flatten.find do |tool_call|
+    messages.map(&:tool_calls).flatten.compact.find do |tool_call|
       tool_call["id"] == tool_call_id
     end
   end
