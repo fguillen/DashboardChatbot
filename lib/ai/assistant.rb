@@ -141,7 +141,7 @@ class AI::Assistant
   #   "content": "{\"temperature\": \"22\", \"unit\": \"celsius\", \"description\": \"Sunny\"}"
   # }
   def submit_tool_output(tool_call_id:, name:, output:)
-    message = AI::Message.from_hash({ role: "tool", tool_call_id:, name:, content: output })
+    message = AI::Message.from_hash({ role: "tool", tool_call_id:, name:, content: output.to_s })
     puts ">>>> submit_tool_output.message: #{message.inspect}"
     @conversation.add_message(message)
   end

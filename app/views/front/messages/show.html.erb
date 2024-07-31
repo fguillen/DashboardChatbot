@@ -30,4 +30,13 @@
   </dd>
   <dt>Tool Call ID</dt>
   <dd><%= @message.tool_call_id %></dd>
+
+  <dt>Raw</dt>
+  <dd>
+    <% if @message.raw.present? %>
+      <pre>
+<%= JSON.pretty_generate(@message.raw) %>
+      </pre>
+    <% end %>
+  </dd>
 </dl>
