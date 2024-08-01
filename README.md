@@ -1,5 +1,9 @@
 # DashboardChatbot
 
+## Theme
+
+- https://themeforest.net/item/connectme-chat-application-html-template/44050248
+
 ## Skeleton
 
 This project has been created using this Rails template:
