@@ -22,7 +22,7 @@ test:
     secret_key: "SECRET_KEY"
   opentelemetry:
     traces_exporter: "none"
-  dashboard_db_connection: "sqlite://<%= Rails.root %>/csv_db/dashboard.test.sqlite3"
+  dashboard_db_connection: "postgresql://@127.0.0.1/orbita_dashboard"
   openai_api_key: "<%= Rails.application.credentials.openai_api_key %>"
 
 development:

@@ -1,0 +1,26 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "sum",
+      "description": "Math Tool: sum two numbers",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "num_1": {
+            "type": "number",
+            "description": "The first number to sum"
+          },
+          "num_2": {
+            "type": "number",
+            "description": "The second number to sum"
+          }
+        },
+        "required": [
+          "num_1",
+          "num_2"
+        ]
+      }
+    }
+  }
+]

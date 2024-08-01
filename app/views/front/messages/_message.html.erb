@@ -37,6 +37,10 @@
           <footer class="blockquote-footer mt-1"><%= message.role %></footer>
         <% end %>
 
+        <% if message.model %>
+          <footer class="blockquote-footer mt-1"><%= message.model %></footer>
+        <% end %>
+
         <% if message.role != "user" %>
           <hr>
           <div class="d-flex flex-row">

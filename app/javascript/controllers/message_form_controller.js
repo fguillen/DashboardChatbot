@@ -22,7 +22,12 @@ export default class extends Controller {
 
   submitEnd() {
     console.log("MessageForm controller submitEnd, this.sending:", this.sending);
+
+    // Reset whole form but not the model
+    const modelSelectedIndex = this.element.querySelector("#message_model").selectedIndex;
     this.element.reset();
+    this.element.querySelector("#message_model").selectedIndex = modelSelectedIndex;
+
     this.element.scrollIntoView();
     this.button.disabled = false;
     this.sending = false;
