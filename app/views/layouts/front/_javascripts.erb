@@ -1,0 +1,27 @@
+<script>
+  var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+  var navbarTop = document.querySelector('.navbar-top');
+  if (navbarTopStyle === 'darker') {
+    navbarTop.setAttribute('data-navbar-appearance', 'darker');
+  }
+
+  var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+  var navbarVertical = document.querySelector('.navbar-vertical');
+  if (navbarVertical && navbarVerticalStyle === 'darker') {
+    navbarVertical.setAttribute('data-navbar-appearance', 'darker');
+  }
+</script>
+
+<!-- ===============================================-->
+<!--    JavaScripts-->
+<!-- ===============================================-->
+<%= javascript_include_tag "phoenix/vendors/popper/popper.min.js" %>
+<%= javascript_include_tag "phoenix/vendors/bootstrap/bootstrap.min.js" %>
+<%= javascript_include_tag "phoenix/vendors/anchorjs/anchor.min.js" %>
+<%= javascript_include_tag "phoenix/vendors/is/is.min.js" %>
+<%= javascript_include_tag "phoenix/vendors/fontawesome/all.min.js" %>
+<%= javascript_include_tag "phoenix/vendors/lodash/lodash.min.js" %>
+<%= javascript_include_tag "phoenix/vendors/list.js/list.min.js" %>
+<%= javascript_include_tag "phoenix/vendors/feather-icons/feather.min.js" %>
+<%= javascript_include_tag "phoenix/vendors/dayjs/dayjs.min.js" %>
+<%= javascript_include_tag "phoenix/assets/js/phoenix.js" %>

@@ -1,5 +1,6 @@
 //= link_tree ../images
 //= link_directory ../stylesheets .css
-//= link_directory ../../../vendor/stylesheets .css
 //= link_tree ../../javascript .js
-//= link_tree ../../../vendor/javascript .js
+
+// Phoenix Theme
+//= link_tree ../../../vendor/themes
