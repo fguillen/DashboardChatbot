@@ -2,7 +2,7 @@
 
 ## Theme
 
-- https://themeforest.net/item/connectme-chat-application-html-template/44050248
+- https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/
 
 ## Skeleton
 
