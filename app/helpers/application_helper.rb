@@ -42,4 +42,12 @@ module ApplicationHelper
       result
     end
   end
+
+  def formatted_date_or_empty(date)
+    if date.present?
+      l(date, format: :short)
+    else
+      "-"
+    end
+  end
 end

@@ -29,11 +29,11 @@
     </div>
 
     <div class="d-flex align-items-center mt-4">
-      <p class="mb-0 fw-bold fs-9">Started :<span class="fw-semibold text-body-tertiary text-opactity-85 ms-1">	<%= conversation.messages.in_order.first.created_at.to_formatted_s(:short) %></span></p>
+      <p class="mb-0 fw-bold fs-9">Started :<span class="fw-semibold text-body-tertiary text-opactity-85 ms-1">	<%= formatted_date_or_empty(conversation.first_message_at) %></span></p>
     </div>
 
     <div class="d-flex align-items-center mt-2">
-      <p class="mb-0 fw-bold fs-9">Last message : <span class="fw-semibold text-body-tertiary text-opactity-85 ms-1"><%= conversation.messages.in_order.last.created_at.to_formatted_s(:short) %></span></p>
+      <p class="mb-0 fw-bold fs-9">Last message : <span class="fw-semibold text-body-tertiary text-opactity-85 ms-1"><%= formatted_date_or_empty(conversation.last_message_at) %></span></p>
     </div>
 
     <div class="d-flex d-lg-block d-xl-flex justify-content-between align-items-center mt-3">

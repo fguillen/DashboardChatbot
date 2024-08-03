@@ -22,4 +22,12 @@ class Conversation < ApplicationRecord
       tool_call["id"] == tool_call_id
     end
   end
+
+  def first_message_at
+    messages.minimum(:created_at)
+  end
+
+  def last_message_at
+    messages.maximum(:created_at)
+  end
 end
