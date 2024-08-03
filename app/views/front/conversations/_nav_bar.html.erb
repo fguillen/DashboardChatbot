@@ -1,0 +1,97 @@
+<div class="card p-3 p-xl-1 mt-xl-n1 chat-sidebar me-3 phoenix-offcanvas phoenix-offcanvas-start" id="chat-sidebar">
+  <div class="d-none d-sm-block d-xl-none mb-5">
+    <button class="btn w-100 mx-auto" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-bars text-body-tertiary text-opacity-85 fs-7"></span></button>
+    <ul class="dropdown-menu dropdown-menu-end p-0">
+      <li><a class="dropdown-item" href="#!">All</a></li>
+      <li><a class="dropdown-item" href="#!">Read</a></li>
+      <li><a class="dropdown-item" href="#!">Unread</a></li>
+    </ul>
+  </div>
+  <div class="form-icon-container mb-4 d-sm-none d-xl-block">
+    <input class="form-control form-icon-input" type="text" placeholder="People, Groups and Messages" /><span class="fas fa-user text-body fs-9 form-icon"></span>
+  </div>
+  <ul class="nav nav-phoenix-pills mb-5 d-sm-none d-xl-flex" id="contactListTab" data-chat-thread-tab="data-chat-thread-tab" role="tablist">
+    <li class="nav-item" role="presentation"><a class="nav-link cursor-pointer active" data-bs-toggle="tab" data-chat-thread-list="all" role="tab" aria-selected="true">All</a></li>
+    <li class="nav-item" role="presentation"><a class="nav-link cursor-pointer" data-bs-toggle="tab" role="tab" data-chat-thread-list="read" aria-selected="false">Read</a></li>
+    <li class="nav-item" role="presentation"><a class="nav-link cursor-pointer" data-bs-toggle="tab" role="tab" data-chat-thread-list="unread" aria-selected="false">Unread</a></li>
+  </ul>
+  <div class="scrollbar">
+    <div class="tab-content">
+      <div data-chat-thread-tab-content="data-chat-thread-tab-content">
+        <ul class="nav chat-thread-tab flex-column list">
+          <% current_front_user.conversations.order_by_recent.each do |conversation| %>
+            <li class="nav-item <%= [nil, "read"].sample %> me-1" role="presentation">
+              <%=
+                link_to(
+                  "#tab-conversation-#{conversation.id}",
+                  class: "nav-link d-flex align-items-center justify-content-center p-2 #{"active" if conversation == conversation_active}",
+                  aria: { selected: conversation == conversation_active },
+                  role: "tab",
+                  data: {
+                    bs_toggle: "tab",
+                    chat_thread: "data-chat-thread"
+                  },
+                  turbo: false
+                ) do
+              %>
+                <div class="flex-1 d-sm-none d-xl-block">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="text-body fw-normal name line-clamp-1"><%= conversation.title %></h5>
+                    <p class="fs-10 text-body-tertiary text-opacity-85 mb-0 text-nowrap"><%= formatted_date_or_empty(conversation.last_message_at) %></p>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <p class="fs-9 mb-0 line-clamp-1 text-body-tertiary text-opacity-85 message">Some small summary</p>
+                    <span class="badge badge-phoenix badge-phoenix-primary px-1 unread-badge"><%= conversation.messages.count %></span>
+                  </div>
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+
+          <li class="nav-item read" role="presentation">
+            <a
+              class="nav-link d-flex align-items-center justify-content-center p-2"
+              data-bs-toggle="tab"
+              data-chat-thread="data-chat-thread"
+              href="#tab-conversation-2"
+              role="tab"
+              aria-selected="true"
+            >
+              <div class="avatar avatar-xl status-online position-relative me-2 me-sm-0 me-xl-2">
+                <%= image_tag("https://robohash.org/50U.png?set=set3&size=40x40", class: "rounded-circle border border-2 border-light-subtle") %>
+              </div>
+              <div class="flex-1 d-sm-none d-xl-block">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h5 class="text-body fw-normal name line-clamp-1">Urito Nisemuno</h5>
+                  <p class="fs-10 text-body-tertiary text-opacity-85 mb-0 text-nowrap">Yesterday, 11 PM</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <p class="fs-9 mb-0 line-clamp-1 text-body-tertiary text-opacity-85 message">Say Hi to your new friend now</p>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="nav-item unread" role="presentation">
+            <a class="nav-link d-flex align-items-center justify-content-center p-2 unread " data-bs-toggle="tab" data-chat-thread="data-chat-thread" href="#tab-conversation-4" role="tab" aria-selected="true">
+              <div class="avatar avatar-xl status-online position-relative me-2 me-sm-0 me-xl-2">
+                <%= image_tag("https://robohash.org/50UB.png?set=set3&size=40x40", class: "rounded-circle border border-2 border-light-subtle") %>
+                <span class="bg-primary rounded-circle top-0 end-0 position-absolute text-white d-flex flex-center fs-10 fw-semibold d-none d-sm-flex d-xl-none lh-1" style="height: 1rem; width: 1rem;">3</span>
+              </div>
+              <div class="flex-1 d-sm-none d-xl-block">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h5 class="text-body fw-normal name line-clamp-1">Abshini Thipano</h5>
+                  <p class="fs-10 text-body-tertiary text-opacity-85 mb-0 text-nowrap">Yesterday, 10 PM</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <p class="fs-9 mb-0 line-clamp-1 text-body-tertiary text-opacity-85 message">WHAT!</p>
+                  <span class="badge badge-phoenix badge-phoenix-primary px-1 unread-badge">3+</span>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
