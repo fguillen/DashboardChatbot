@@ -23,14 +23,10 @@
             <li class="nav-item <%= [nil, "read"].sample %> me-1" role="presentation">
               <%=
                 link_to(
-                  "#tab-conversation-#{conversation.id}",
+                  front_conversation_path(conversation),
                   class: "nav-link d-flex align-items-center justify-content-center p-2 #{"active" if conversation == conversation_active}",
                   aria: { selected: conversation == conversation_active },
                   role: "tab",
-                  data: {
-                    bs_toggle: "tab",
-                    chat_thread: "data-chat-thread"
-                  },
                   turbo: false
                 ) do
               %>

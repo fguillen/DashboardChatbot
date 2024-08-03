@@ -16,9 +16,7 @@
   <!-- Conversation/NavBar :: END -->
 
   <div class="card tab-content flex-1 phoenix-offcanvas-container">
-    <% current_front_user.conversations.order_by_recent[0, 2].each do |conversation| %>
-      <%= render partial: "front/conversations/conversation", locals: { conversation:, active: conversation == @conversation } %>
-    <% end %>
+    <%= render partial: "front/conversations/conversation", locals: { conversation: @conversation, active: true } %>
 
     <div class="tab-pane h-100 fade" id="tab-conversation-2" role="tabpanel" aria-labelledby="tab-conversation-2">
       <div class="d-flex flex-column h-100">
@@ -311,7 +309,7 @@
           <div class="chat-textarea outline-none scrollbar mb-1" contenteditable="true"></div>
           <div class="d-flex justify-content-between align-items-end">
             <div>
-              <button class="btn btn-link py-0 ps-0 pe-2 text-body fs-9 btn-emoji" data-picmo="data-picmo"><span class="fa-regular fa-face-smile"></span></button>
+              <button class="btn btn-link py-0 ps-0 pe-2 text-body fs-9 btn-emoji"><span class="fa-regular fa-face-smile"></span></button>
               <label class="btn btn-link py-0 px-2 text-body fs-9" for="chatPhotos-0"><span class="fa-solid fa-image"></span></label>
               <input class="d-none" type="file" accept="image/*" id="chatPhotos-0" />
               <label class="btn btn-link py-0 px-2 text-body fs-9" for="chatAttachment-0"> <span class="fa-solid fa-paperclip"></span></label>
@@ -697,7 +695,7 @@
           <div class="chat-textarea outline-none scrollbar mb-1" contenteditable="true"></div>
           <div class="d-flex justify-content-between align-items-end">
             <div>
-              <button class="btn btn-link py-0 ps-0 pe-2 text-body fs-9 btn-emoji" data-picmo="data-picmo"><span class="fa-regular fa-face-smile"></span></button>
+              <button class="btn btn-link py-0 ps-0 pe-2 text-body fs-9 btn-emoji"><span class="fa-regular fa-face-smile"></span></button>
               <label class="btn btn-link py-0 px-2 text-body fs-9" for="chatPhotos-3"><span class="fa-solid fa-image"></span></label>
               <input class="d-none" type="file" accept="image/*" id="chatPhotos-3" />
               <label class="btn btn-link py-0 px-2 text-body fs-9" for="chatAttachment-3"> <span class="fa-solid fa-paperclip"></span></label>
