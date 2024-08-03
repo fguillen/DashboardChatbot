@@ -185,7 +185,8 @@
                 [:front, conversation, @message],
                 data: {
                   controller: "message-form",
-                  action: "turbo:submit-end->message-form#submitEnd turbo:submit-start->message-form#submitStart"
+                  action: "turbo:submit-end->message-form#submitEnd turbo:submit-start->message-form#submitStart",
+                  turbo: true
                 }
               ) do |f|
             %>

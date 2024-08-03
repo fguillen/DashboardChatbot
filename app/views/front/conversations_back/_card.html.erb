@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center">
       <h4 class="mb-2 line-clamp-1 lh-sm flex-1 me-5"><%= conversation.title %></h4>
       <div class="hover-actions top-0 end-0 mt-4 me-4">
-        <%= link_to front_conversation_path(conversation), class: "btn btn-primary btn-icon flex-shrink-0" do %>
+        <%= link_to front_conversation_path(conversation), class: "btn btn-primary btn-icon flex-shrink-0", data: { turbo: false } do %>
           <span class="fa-solid fa-chevron-right"></span>
         <% end %>
       </div>

@@ -8,3 +8,6 @@ import "turbo_events_debug"
 // Chartkick
 import "chartkick"
 import "Chart.bundle"
+
+// Turbo only activate when explicitly activated
+// Turbo.setFormMode("optin") // => Not working :/
