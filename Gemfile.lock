@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:fguillen/ruby_regex.git
+  remote: https://github.com/fguillen/ruby_regex.git
   revision: fddb65579850b49e4ef95a95959d6b83fadbd158
   specs:
     ruby_regex (0.1.3)
