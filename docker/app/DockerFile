@@ -4,26 +4,6 @@ FROM ruby:3.2.4-alpine3.19
 RUN apk update --no-cache
 RUN apk upgrade
 
-# -RUN apk --no-cache add \
-# -  build-base \
-# -  libstdc++ \
-# -  openssl-dev \
-# -  git \
-# -  mariadb-dev \
-# -  nodejs \
-# -  bash
-# +
-
-
-# From: https://blog.siposdani87.com/posts/create-alpine-docker-image-for-rails-7
-# Install dependencies:
-# - build-base git curl: To ensure certain gems can be compiled
-# - bash libstdc++ zlib pkgconfig autoconf automake libtool nasm: Additional build
-# - tzdata: Rails 7
-# - nodejs npm openjdk8: image optimalization asset install
-# - libxml2 libxslt1 gcompat: Nokogiri
-# - imagemagick: CarrierWave::MiniMagick
-# - gifsicle jpegoptim libjpeg-turbo libjpeg-turbo-utils optipng pngcrush pngquant advancecomp jhead: image_optim
 RUN apk add --no-cache build-base git curl
 RUN apk add --no-cache bash libstdc++ zlib pkgconfig autoconf automake libtool nasm
 RUN apk add --no-cache tzdata nodejs npm openjdk8 libxml2 libxslt gcompat imagemagick
@@ -31,6 +11,7 @@ RUN apk add --no-cache gifsicle jpegoptim libpng libjpeg-turbo libjpeg-turbo-uti
 RUN apk add --no-cache advancecomp --repository http://dl-cdn.alpinelinux.org/alpine/edge/community
 RUN apk add --no-cache jhead --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
 RUN npm install -g --force --unsafe-perm=true --allow-root svgo advpng-bin
+RUN apk add --update --no-cache openssh
 
 # For mysql
 RUN apk add --no-cache mariadb-dev
