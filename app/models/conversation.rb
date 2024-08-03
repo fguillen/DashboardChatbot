@@ -44,4 +44,8 @@ class Conversation < ApplicationRecord
   def to_json
     JSON.pretty_generate(to_hash)
   end
+
+  def tokens
+    messages.map(&:tokens).compact.sum
+  end
 end

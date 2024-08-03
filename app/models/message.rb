@@ -36,6 +36,10 @@ class Message < ApplicationRecord
     JSON.pretty_generate(to_hash)
   end
 
+  def tokens
+    raw&.dig("usage", "total_tokens")
+  end
+
 
   # If content can be parsed to JSON
   # store it as JSON
