@@ -50,4 +50,19 @@ module ApplicationHelper
       "-"
     end
   end
+
+  def message_card_classes_by_role(role)
+    case role
+    when "user"
+      "border border-primary"
+    when "assistant"
+      "border border-light"
+    when "system"
+      "border border-warning"
+    when "tool"
+      "border border-warning"
+    else
+      Rails.logger.error("unknown role: #{role}")
+    end
+  end
 end

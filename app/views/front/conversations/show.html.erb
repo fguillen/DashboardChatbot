@@ -33,7 +33,7 @@
         <div data-chat-thread-tab-content="data-chat-thread-tab-content">
           <ul class="nav chat-thread-tab flex-column list">
             <% current_front_user.conversations.order_by_recent.each do |conversation| %>
-              <li class="nav-item read" role="presentation">
+              <li class="nav-item <%= [nil, "read"].sample %>" role="presentation">
                 <%=
                   link_to(
                     "#tab-conversation-#{conversation.id}",
@@ -115,91 +115,7 @@
 
   <div class="card tab-content flex-1 phoenix-offcanvas-container">
     <% current_front_user.conversations.order_by_recent[0, 2].each do |conversation| %>
-      <div class="tab-pane h-100 fade <%= "active show" if conversation == @conversation %>"% id="tab-conversation-<%= conversation.id %>" role="tabpanel" aria-labelledby="tab-conversation-<%= conversation.id %>">
-        <div class="d-flex flex-column h-100">
-          <div class="card-header p-3 p-md-4 d-flex flex-between-center">
-            <div class="d-flex align-items-center">
-              <button class="btn ps-0 pe-2 text-body-tertiary d-sm-none" data-phoenix-toggle="offcanvas" data-phoenix-target="#chat-sidebar"><span class="fa-solid fa-chevron-left"></span></button>
-              <div class="d-flex flex-column flex-md-row align-items-md-center">
-                <button class="btn fs-7 fw-semibold text-body-emphasis d-flex align-items-center p-0 me-3 text-start" data-phoenix-toggle="offcanvas" data-phoenix-target="#thread-details-0">
-                  <span class="line-clamp-1"><%= conversation.title %></span>
-                  <span class="fa-solid fa-chevron-down ms-2 fs-10"></span>
-                </button>
-                <p class="fs-9 mb-0 me-2"> <span class="fa-solid fa-circle text-success fs-11 me-2"></span>Active now</p>
-              </div>
-            </div>
-            <div class="d-flex">
-              <button class="btn btn-icon btn-primary me-1"><span class="fa-solid fa-phone"></span></button>
-              <button class="btn btn-icon btn-primary me-1"><span class="fa-solid fa-video"></span></button>
-              <button class="btn btn-icon btn-phoenix-primary" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-ellipsis-vertical"></span></button>
-              <ul class="dropdown-menu dropdown-menu-end p-0">
-                <li><a class="dropdown-item" href="#!">Add to favourites</a></li>
-                <li><a class="dropdown-item" href="#!">View profile</a></li>
-                <li><a class="dropdown-item" href="#!">Report</a></li>
-                <li><a class="dropdown-item" href="#!">Manage notifications</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="card-body p-3 p-sm-4 scrollbar chat-content-body-0">
-            <%= turbo_frame_tag "#{conversation.id}_messages" do %>
-              <% conversation.messages.order_by_recent.reverse_order.each do |message| %>
-                <%= render partial: "front/messages/message", locals: { message: message } %>
-              <% end %>
-            <% end %>
-          </div>
-          <div class="card-footer">
-            <%=
-              form_for(
-                [:front, conversation, @message],
-                data: {
-                  controller: "message-form",
-                  action: "turbo:submit-end->message-form#submitEnd turbo:submit-start->message-form#submitStart",
-                  turbo: true
-                }
-              ) do |f|
-            %>
-              <div class="chat-textarea outline-none scrollbar mb-1" contenteditable="true">
-              </div>
-              <%=
-                f.text_area(
-                  :content,
-                  class: "form-control",
-                  placeholder: "Ask anything",
-                  autofocus: true,
-                  data: { controller: "submit-on-cmd-enter" }
-                )
-              %>
-              <%= f.hidden_field :role %>
-              <div class="d-flex justify-content-between align-items-end">
-                <div>
-                  <button class="btn btn-link py-0 ps-0 pe-2 text-body fs-9 btn-emoji" data-picmo="data-picmo"><span class="fa-regular fa-face-smile"></span></button>
-                  <label class="btn btn-link py-0 px-2 text-body fs-9" for="chatPhotos-0"><span class="fa-solid fa-image"></span></label>
-                  <input class="d-none" type="file" accept="image/*" id="chatPhotos-0" />
-                  <label class="btn btn-link py-0 px-2 text-body fs-9" for="chatAttachment-0"> <span class="fa-solid fa-paperclip"></span></label>
-                  <input class="d-none" type="file" id="chatAttachment-0" />
-                  <button class="btn btn-link py-0 px-2 text-body fs-9"><span class="fa-solid fa-microphone"></span></button>
-                  <button class="btn btn-link py-0 px-2 text-body fs-9"><span class="fa-solid fa-ellipsis"></span></button>
-                </div>
-                <div>
-                  <button class="btn btn-primary fs-10" type="submit">Send<span class="fa-solid fa-paper-plane ms-1"></span></button>
-                </div>
-              </div>
-            <% end %>
-          </div>
-          <div class="phoenix-offcanvas phoenix-offcanvas-top h-100 w-100 bg-body-emphasis scrollbar z-index-0 rounded" id="thread-details-0">
-            <div class="border-bottom border-translucent p-4">
-              <div class="d-flex flex-between-center">
-                <button class="btn p-0" data-phoenix-dismiss="offcanvas"><span class="fa-solid fa-chevron-left text-body-tertiary"></span></button>
-                <button class="btn p-0 btn-reveal dropdown-toggle dropdown-caret-none transition-none" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-v text-body-tertiary"></span></button>
-                <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item" href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
-                  <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Remove</a>
-                </div>
-              </div>
-            </div>
-            OFF CANVAS
-          </div>
-        </div>
-      </div>
+      <%= render partial: "front/conversations/conversation", locals: { conversation:, active: conversation == @conversation } %>
     <% end %>
 
     <div class="tab-pane h-100 fade" id="tab-conversation-2" role="tabpanel" aria-labelledby="tab-conversation-2">

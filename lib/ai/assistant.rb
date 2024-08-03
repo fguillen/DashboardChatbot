@@ -43,12 +43,19 @@ class AI::Assistant
     tool_calls.each do |tool_call|
       tool_call_id, tool_name, method_name, tool_arguments = extract_tool_call_args(tool_call)
 
-      tool_instance =
-        tools.find do |t|
-          t.class_name_sanitized == tool_name
-        end or raise ArgumentError, "Tool not found in assistant.tools '#{tool_name}'"
+      output = nil
+      begin
+        tool_instance =
+          tools.find do |t|
+            t.class_name_sanitized == tool_name
+          end or raise ArgumentError, "Tool not found in assistant.tools '#{tool_name}'"
 
-      output = tool_instance.send(method_name, **tool_arguments)
+        output = tool_instance.send(method_name, **tool_arguments)
+      rescue => e
+        Rails.logger.error(e.message)
+        Rails.logger.error(e.backtrace.join("\n"))
+        output = e.message
+      end
 
       submit_tool_output(tool_call_id: tool_call_id, name: tool_call["function"]["name"], output: output)
     end

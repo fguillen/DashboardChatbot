@@ -5,6 +5,10 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.message .card .card-body {
+  padding: 10px 20px;
+}
+
 .message .card hr {
   height: 2px;
   /* background-color: var(--bs-primary-border-subtle); */
@@ -63,6 +67,10 @@
   margin: 1em 0 0 0;
 }
 
+.message-body h3 {
+  margin-top: 1em;
+}
+
 .message pre:has(> code) {
   max-height: 50em;
 }
@@ -81,16 +89,15 @@
 }
 
 .message-form .input-group .form-control {
-  border-radius: 8px 0 0 8px;
-  border: none;
   padding: 16px;
-  /* background-color: var(--bs-white); */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .message-form .input-group .btn {
   border-radius: 0 8px 8px 0;
   padding-right: 20px;
+  padding-right: 18px;
+  padding-left: 12px;
 }
 
 /* Button disabled style */
@@ -106,8 +113,8 @@
 
 .message-form .badge {
   position: absolute;
-  margin-top: -25px;
-  margin-left: -10px;
+  margin-top: -12px;
+  margin-left: 8px;
 }
 
 /* Message Form :: END */

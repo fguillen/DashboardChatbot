@@ -1,6 +1,6 @@
 <%= turbo_frame_tag message do %>
-  <div class="message mt-3 d-flex flex-row role-<%= message.role %> language-<%= message.content_language %>" id="message-<%= message.id %>">
-    <div class="card">
+  <div class="message mt-3 d-flex flex-row role-<%= message.role %> language-<%= message.content_language %>" id="message-<%= message.id %>" data-order="<%= message.order %>">
+    <div class="card <%= message_card_classes_by_role(message.role)%>">
       <div class="card-body">
         <div class="d-flex flex-row mb-2 message-id on-hover">
           <a href="#message-<%= message.id %>" data-turbo="false">
@@ -33,19 +33,27 @@
           <% end %>
         </div>
 
-        <% if message.role != "user" %>
-          <footer class="blockquote-footer mt-1"><%= message.role %></footer>
-        <% end %>
+        <div class="d-flex on-hover">
+          <div class="p-0 me-3 fs-10 fw-bolder">
+            <i class="bi bi-person-fill"></i>
+            <%= message.role %>
+          </div>
 
-        <% if message.model %>
-          <footer class="blockquote-footer mt-1"><%= message.model %></footer>
-        <% end %>
+          <% if message.model %>
+            <div class="text-body p-0 fs-10 me-3 fw-bolder">
+              <i class="bi bi-robot"></i>
+              <%= message.model%>
+            </div>
+          <% end %>
+        </div>
+
+        <footer class="blockquote-footer mt-1"><%= message.created_at.to_formatted_s(:short) %></footer>
 
         <% if message.role != "user" %>
           <hr>
-          <div class="d-flex flex-row">
-            <a href="#" class="icon-link" style="--bs-link-hover-color-rgb: var(--bs-link-hover-color)"><i class="bi bi-hand-thumbs-up"></i></a>
-            <a href="#" class="icon-link ms-1" style="--bs-link-hover-color-rgb: var(--bs-link-hover-color)"><i class="bi bi-hand-thumbs-down"></i></a>
+          <div class="d-flex flex-row on-hover">
+            <a href="#" class="icon-link"><i class="bi bi-hand-thumbs-up"></i></a>
+            <a href="#" class="icon-link ms-1"><i class="bi bi-hand-thumbs-down"></i></a>
             <a
               href="#"
               class="icon-link icon-link-hover ms-auto text-decoration-none"

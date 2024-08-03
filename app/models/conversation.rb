@@ -30,4 +30,18 @@ class Conversation < ApplicationRecord
   def last_message_at
     messages.maximum(:created_at)
   end
+
+  def to_hash
+    {
+      uuid:,
+      title:,
+      first_message_at:,
+      last_message_at:,
+      messages: messages.map(&:to_hash),
+    }
+  end
+
+  def to_json
+    JSON.pretty_generate(to_hash)
+  end
 end

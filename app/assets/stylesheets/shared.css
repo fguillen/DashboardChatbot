@@ -41,9 +41,9 @@ pre:has(> code) {
   font-family: var(--phoenix-font-monospace);
   font-size: .8rem;
   hyphens: none;
-  line-height: 1.5;
-  margin: 0;
-  padding: 1.5rem;
+  line-height: 1;
+  margin: 0.5rem 0;
+  padding: 1rem;
   tab-size: 4;
   text-align: left;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);

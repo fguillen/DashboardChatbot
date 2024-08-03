@@ -1,9 +1,10 @@
 <%=
   form_for(
-    [:front, @conversation, @message],
+    [:front, conversation, message],
     data: {
       controller: "message-form",
-      action: "turbo:submit-end->message-form#submitEnd turbo:submit-start->message-form#submitStart"
+      action: "turbo:submit-end->message-form#submitEnd turbo:submit-start->message-form#submitStart",
+      turbo: true
     }
   ) do |f|
 %>
@@ -27,23 +28,34 @@
       <% end %>
     </div>
 
-    <div class="row mt-3">
-      <div class="col">
-        <div class="col row">
-          <%= f.label :model, class: "col-5 col-form-label text-end"%>
-          <div class="col-7">
-            <%= f.select :model, AI_CLIENT.models, {include_blank: 'auto'}, class: "form-control" %>
+    <div class="row row-cols-lg-auto g-3 justify-content-end mt-3">
+        <div class="col-12 mt-0">
+          <div class="form-floating">
+            <%=
+              f.select(
+                :model,
+                AI_CLIENT.models,
+                { include_blank: "auto" },
+                class: "form-select"
+              )
+            %>
+            <%= f.label :model %>
           </div>
         </div>
-      </div>
 
-      <div class="col row">
-        <%= f.label :role, class: "col-9 col-form-label text-end"%>
-        <div class="col-3">
-          <%= f.select :role, Message.roles, {}, class: "form-control" %>
+        <div class="col-12 mt-0">
+          <div class="form-floating">
+            <%=
+              f.select(
+                :role,
+                Message.roles,
+                {},
+                class: "form-select"
+              )
+            %>
+            <%= f.label :role %>
+          </div>
         </div>
-      </div>
-
     </div>
   </div>
 <% end %>

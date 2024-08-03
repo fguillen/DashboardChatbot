@@ -23,12 +23,17 @@ class Message < ApplicationRecord
     hash = {
       role:,
       content:,
+      raw:
     }
 
     hash[:tool_calls] = tool_calls if tool_calls.present?
     hash[:tool_call_id] = tool_call_id if tool_call_id.present?
 
     hash
+  end
+
+  def to_json
+    JSON.pretty_generate(to_hash)
   end
 
 
