@@ -166,7 +166,7 @@ class Message < ApplicationRecord
     end
 
   rescue => e
-    message = "Exception while parsing message [#{id}] content: #{e.message}, content: #{content}"
+    message = "Exception while parsing message [#{id}] error: #{e.message}, content: #{content}"
     puts ">>> #{message}"
     Rails.logger.error(message)
     Rails.logger.error(e.backtrace.join("\n"))

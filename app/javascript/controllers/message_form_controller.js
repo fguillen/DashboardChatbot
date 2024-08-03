@@ -33,7 +33,17 @@ export default class extends Controller {
       modelSelectElement.selectedIndex = modelSelectedIndex;
     }
 
-    this.element.scrollIntoView();
+    setTimeout(
+      () => {
+        const messagesListElement = document.querySelector("#messages-list");
+        messagesListElement.scrollTo({
+          top: messagesListElement.scrollHeight,
+          behavior: "smooth"
+        })
+      },
+      500
+    );
+
     this.button.disabled = false;
     this.sending = false;
   }

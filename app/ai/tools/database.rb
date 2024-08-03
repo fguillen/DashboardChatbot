@@ -2,7 +2,6 @@ require "sequel"
 
 # Inspired in: https://github.com/dghirardo/langchainrb/blob/5cd81647caf02a0520cd210db9fbbbb52fec4a44/lib/langchain/tool/database.rb
 class Tools::Database < AI::Tool
-  attr_reader :db
 
   def tool_description_path
     "#{__dir__}/database.json"
@@ -10,12 +9,13 @@ class Tools::Database < AI::Tool
 
   def initialize(connection_string:)
     puts ">>>> Database.initialize(#{connection_string})"
-
-    @db = Sequel.connect(connection_string)
+    @connection_string = connection_string
   end
 
   def list_tables
-    db.tables
+    connection do |db|
+      db.tables
+    end
   end
 
   def describe_tables(tables:)
@@ -29,34 +29,52 @@ class Tools::Database < AI::Tool
   def dump_schema
     puts ">>>> Database.dump_schema"
 
+    tables =
+      connection do |db|
+        db.tables
+      end
+
     schema = ""
-    db.tables.each do |table|
+    tables.each do |table|
       describe_table(table, schema)
     end
+
     schema
   end
 
   def describe_table(table, schema)
-    primary_key_columns = []
-    primary_key_column_count = db.schema(table).count { |column| column[1][:primary_key] == true }
-
     schema << "CREATE TABLE #{table}(\n"
-    db.schema(table).each do |column|
+
+    columns =
+      connection do |db|
+        db.schema(table)
+      end
+
+    primary_key_columns = []
+    primary_key_column_count = columns.count { |column| column[1][:primary_key] == true }
+
+    columns.each do |column|
       schema << "#{column[0]} #{column[1][:type]}"
       if column[1][:primary_key] == true
         schema << " PRIMARY KEY" if primary_key_column_count == 1
       else
         primary_key_columns << column[0]
       end
-      schema << ",\n" unless column == db.schema(table).last && primary_key_column_count == 1
+      schema << ",\n" unless column == columns.last && primary_key_column_count == 1
     end
     if primary_key_column_count > 1
       schema << "PRIMARY KEY (#{primary_key_columns.join(",")})"
     end
-    db.foreign_key_list(table).each do |fk|
-      schema << ",\n" if fk == db.foreign_key_list(table).first
+
+    foreign_keys =
+      connection do |db|
+        db.foreign_key_list(table)
+      end
+
+    foreign_keys.each do |fk|
+      schema << ",\n" if fk == foreign_keys.first
       schema << "FOREIGN KEY (#{fk[:columns][0]}) REFERENCES #{fk[:table]}(#{fk[:key][0]})"
-      schema << ",\n" unless fk == db.foreign_key_list(table).last
+      schema << ",\n" unless fk == foreign_keys.last
     end
     schema << ");\n"
   end
@@ -64,8 +82,20 @@ class Tools::Database < AI::Tool
   def execute(input:)
     puts ">>>> Database.execute(#{input})"
 
-    db[input].to_a
+    connection do |db|
+      db[input].to_a
+    end
+
   rescue Sequel::DatabaseError => e
     Langchain.logger.error(e.message, for: self.class)
+  end
+
+  private
+
+  def connection(&block)
+    db = Sequel.connect(@connection_string)
+    result = block.call(db)
+    db.disconnect
+    result
   end
 end
