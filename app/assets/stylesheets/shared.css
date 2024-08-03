@@ -28,3 +28,27 @@
   display: block;
   font-family: Verdana;
 }
+
+
+pre:has(> code) {
+  -moz-tab-size: 4;
+  -ms-hyphens: none;
+  -o-tab-size: 4;
+  -webkit-hyphens: none;
+  background-color: var(--phoenix-docs-language-bg);
+  border-radius: 0;
+  color: #f8f8f2;
+  font-family: var(--phoenix-font-monospace);
+  font-size: .8rem;
+  hyphens: none;
+  line-height: 1.5;
+  margin: 0;
+  padding: 1.5rem;
+  tab-size: 4;
+  text-align: left;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  white-space: pre;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+}
