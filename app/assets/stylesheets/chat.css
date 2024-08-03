@@ -75,6 +75,13 @@
   max-height: 50em;
 }
 
+.message .blockquote-footer {
+  color: var(--phoenix-secondary-light);
+}
+
+.message-id a {
+  color: inherit;
+}
 /* Message :: END */
 
 /* Message Form :: INI */

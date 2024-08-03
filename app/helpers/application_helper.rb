@@ -54,7 +54,7 @@ module ApplicationHelper
   def message_card_classes_by_role(role)
     case role
     when "user"
-      "border border-primary"
+      "text-white bg-info"
     when "assistant"
       "border border-light"
     when "system"
