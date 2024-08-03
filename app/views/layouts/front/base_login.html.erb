@@ -4,7 +4,7 @@
     <%= render "/layouts/front/header" %>
   </head>
 
-  <body>
+  <body data-turbo="false">
     <% if !Rails.env.production? %>
       <div class="environment_badge"><%= Rails.env %></div>
     <% end %>
