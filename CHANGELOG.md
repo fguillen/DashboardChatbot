@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.11] - 2024-08-03
+
+### Changed
+
+- Integrated profesional [theme Phoenix](https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/)
+- Refactor structure to implement a more low level API interface
+- Integrated OpenRouter API
+
+### Added
+
+- Posibility to choose the model
+- Automatic scroll when new messages appear
+- Styling Conversations list page
+
 ## [0.0.5] - 2024-07-11
 
 ### Added
