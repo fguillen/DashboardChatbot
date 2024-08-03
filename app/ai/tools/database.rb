@@ -85,9 +85,6 @@ class Tools::Database < AI::Tool
     connection do |db|
       db[input].to_a
     end
-
-  rescue Sequel::DatabaseError => e
-    Langchain.logger.error(e.message, for: self.class)
   end
 
   private

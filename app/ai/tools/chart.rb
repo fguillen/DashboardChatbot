@@ -10,10 +10,6 @@ class Tools::Chart < AI::Tool
   #
   # Gem requirements:
   #     gem "chartkick"
-  #
-  # Usage:
-  #     chart = Langchain::Tool::Chart.new()
-  #
 
   # @return [Chart] Chart object
   def initialize()
