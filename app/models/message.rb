@@ -63,6 +63,8 @@ class Message < ApplicationRecord
       JSON.parse(tool_call["function"]["arguments"])["data"]
     when "Tools-Chart__create_column_chart"
       JSON.parse(tool_call["function"]["arguments"])["data"]
+    when "Tools-Math__sum"
+      JSON.parse(tool_call["function"]["arguments"])["data"]
     else
       puts ">>> (extract_function_arguments) unknown tool call name: '#{tool_call["function"]["name"]}'"
 
