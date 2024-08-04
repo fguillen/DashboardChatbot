@@ -11,6 +11,13 @@ services:
       MYSQL_ROOT_PASSWORD: root
     command: [--default-authentication-plugin=mysql_native_password]
 
+  redis:
+    image: "redis:7-alpine"
+    ports:
+      - 6379
+    volumes:
+    - ./_data/redis:/var/lib/redis/data
+
   dashboard_db:
     image: postgres:16-alpine
     ports:
@@ -32,6 +39,7 @@ services:
     depends_on:
       - db
       - dashboard_db
+      - redis
     # environment:
     #   - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
