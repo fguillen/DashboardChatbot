@@ -14,6 +14,8 @@
   <dd><%= @message.id %></dd>
   <dt>Role</dt>
   <dd><%= @message.role %></dd>
+  <dt>Model</dt>
+  <dd><%= @message.model %></dd>
   <dt>Conversation</dt>
   <dd><%= link_to @message.conversation.id, front_conversation_path(@message.conversation) %></dd>
   <dt>Order</dt>

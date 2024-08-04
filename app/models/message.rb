@@ -14,6 +14,7 @@ class Message < ApplicationRecord
   validates :order, uniqueness: { scope: :conversation_id }
 
   before_create :init_order
+  before_save :set_model_from_raw, if: Proc.new { |message| message.model.nil? }
 
   scope :order_by_recent, -> { order("messages.created_at desc") }
   scope :in_order, -> { order("messages.order asc") }
@@ -178,5 +179,11 @@ class Message < ApplicationRecord
 
   def init_order
     self.order ||= 0
+  end
+
+  def set_model_from_raw
+    return if raw.nil?
+
+    self.model ||= raw["model"]
   end
 end

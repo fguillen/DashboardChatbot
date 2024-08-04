@@ -1,11 +1,12 @@
 class AI::Assistant
   attr_reader :model
 
-  def initialize(model: "openrouter/auto", ai_conversation: nil)
+  def initialize(model: "openrouter/auto", ai_conversation: nil, on_new_message: nil)
     @client = client || AI::Client.new(access_token: ENV["OPEN_ROUTER_KEY"])
     @system_directive = system_directive
     @model = model
     @conversation = ai_conversation || AI::Conversation.new
+    @on_new_message = on_new_message
     init_conversation
   end
 
@@ -13,7 +14,7 @@ class AI::Assistant
     @model = model || @model
 
     ai_message = AI::Message.from_hash(hash)
-    @conversation.add_message(ai_message)
+    add_new_message(ai_message)
 
     puts ">>>> @conversation: #{@conversation.class.name}"
     puts ">>>> @conversation.messages: #{@conversation.messages.map { |e| e.class.name }}"
@@ -81,7 +82,7 @@ class AI::Assistant
 
     completion = AI::Completion.new(response)
     message = AI::Message.from_completion(completion)
-    @conversation.add_message(message)
+    add_new_message(message)
 
     if(completion.tools?)
       run_tools(completion.message["tool_calls"])
@@ -93,7 +94,7 @@ class AI::Assistant
 
     if system_directive.present?
       message = AI::Message.from_hash({ role: "system", content: system_directive })
-      @conversation.add_message(message)
+      add_new_message(message)
     end
   end
 
@@ -150,6 +151,13 @@ class AI::Assistant
   def submit_tool_output(tool_call_id:, name:, output:)
     message = AI::Message.from_hash({ role: "tool", tool_call_id:, name:, content: output.to_s })
     puts ">>>> submit_tool_output.message: #{message.inspect}"
+    add_new_message(message)
+  end
+
+  def add_new_message(message)
     @conversation.add_message(message)
+    if @on_new_message
+      @on_new_message.call(message)
+    end
   end
 end
