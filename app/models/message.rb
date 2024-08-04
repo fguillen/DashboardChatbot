@@ -16,6 +16,16 @@ class Message < ApplicationRecord
   before_create :init_order
   before_save :set_model_from_raw, if: Proc.new { |message| message.model.nil? }
 
+  after_create_commit do |message|
+    puts ">>>>> broadcasting to: '#{conversation.id}_messages_stream'"
+    broadcast_append_to(
+      "#{conversation.id}_messages_stream",
+      target: "#{conversation.id}_messages",
+      partial: "front/messages/message",
+      locals: { message: }
+    )
+  end
+
   scope :order_by_recent, -> { order("messages.created_at desc") }
   scope :in_order, -> { order("messages.order asc") }
   scope :by_role, -> (role) { where(role: role) }
