@@ -102,7 +102,7 @@ class Message < ApplicationRecord
     tool_call = conversation.find_tool_call_by_id(tool_call_id)
 
     if tool_call.nil?
-      message = "ToolCall not Found: #{tool_call_id}"
+      message = "Message.content_language ToolCall not Found: #{tool_call_id}"
       Rails.logger.error(message)
 
       return "markdown"
@@ -132,7 +132,7 @@ class Message < ApplicationRecord
     tool_call = conversation.find_tool_call_by_id(tool_call_id)
 
     if tool_call.nil?
-      message = "ToolCall not Found: #{tool_call_id}"
+      message = "Message.content_parsed ToolCall not Found: #{tool_call_id}"
       Rails.logger.error(message)
 
       return "#{message}\n\n#{content}"
@@ -157,8 +157,10 @@ class Message < ApplicationRecord
       content
     when "Tools-Chart__create_column_chart"
       content
+    when "Tools-Math__sum"
+      content
     else
-      message = "ToolCall not Found: #{tool_call["function"]["name"]}"
+      message = "Message.content_parsed 2 ToolCall not Found: #{tool_call["function"]["name"]}"
       puts ">>> #{message}"
       Rails.logger.error(message)
 
