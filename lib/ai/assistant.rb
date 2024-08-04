@@ -7,10 +7,11 @@ class AI::Assistant
     @model = model
     @conversation = ai_conversation || AI::Conversation.new
     @on_new_message = on_new_message
-    init_conversation
   end
 
   def completion(hash, model: nil)
+    init_system_directive
+
     @model = model || @model
 
     ai_message = AI::Message.from_hash(hash)
@@ -89,13 +90,11 @@ class AI::Assistant
     end
   end
 
-  def init_conversation
-    return if @conversation.messages.present?
+  def init_system_directive
+    return if @conversation.messages.present? || system_directive.blank?
 
-    if system_directive.present?
-      message = AI::Message.from_hash({ role: "system", content: system_directive })
-      add_new_message(message)
-    end
+    message = AI::Message.from_hash({ role: "system", content: system_directive })
+    add_new_message(message)
   end
 
   def extract_tools
