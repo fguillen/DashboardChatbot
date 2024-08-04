@@ -29,4 +29,9 @@ Rails.application.configure do
   config.rails_semantic_logger.format = :logfmt
 
   config.require_master_key = true
+
+  # Cable config
+  config.action_cable.allowed_request_origins = [ 'https://dashboardchatbot.fernandoguillen.info' ]
+  config.hosts << "dashboardchatbot.fernandoguillen.info"
+  config.hosts << "localhost"
 end
