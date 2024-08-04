@@ -82,6 +82,12 @@
 .message-id a {
   color: inherit;
 }
+
+.message.role-user{
+  top: 0px;
+  position: sticky;
+  z-index: 9;
+}
 /* Message :: END */
 
 /* Message Form :: INI */

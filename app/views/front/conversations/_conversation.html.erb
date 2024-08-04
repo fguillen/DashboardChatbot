@@ -37,7 +37,7 @@
       <%= render partial: "/front/messages/form", locals: { conversation:, message: @message } %>
     </div>
 
-    <div class="phoenix-offcanvas phoenix-offcanvas-top h-100 w-100 bg-body-emphasis scrollbar z-index-0 rounded" id="thread-details-<%= conversation.id %>">
+    <div class="conversation-details-over phoenix-offcanvas phoenix-offcanvas-top h-100 w-100 bg-body-emphasis scrollbar z-index-0 rounded" id="thread-details-<%= conversation.id %>">
       <div class="border-bottom border-translucent p-4">
         <div class="d-flex flex-between-center">
           <button class="btn p-0" data-phoenix-dismiss="offcanvas"><span class="fa-solid fa-chevron-left text-body-tertiary"></span></button>
