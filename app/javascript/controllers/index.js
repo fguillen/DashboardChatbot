@@ -2,19 +2,19 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from "controllers/application"
 
-import ConversationMessagesListController from "./conversation_messages_list_controller"
+import ConversationMessagesListController from "controllers/conversation_messages_list_controller"
 application.register("conversation-messages-list", ConversationMessagesListController)
 
-import CopyToClipboardController from "./copy_to_clipboard_controller"
+import CopyToClipboardController from "controllers/copy_to_clipboard_controller"
 application.register("copy-to-clipboard", CopyToClipboardController)
 
-import HelloController from "./hello_controller"
+import HelloController from "controllers/hello_controller"
 application.register("hello", HelloController)
 
-import MessageFormController from "./message_form_controller"
+import MessageFormController from "controllers/message_form_controller"
 application.register("message-form", MessageFormController)
 
-import SubmitOnCmdEnterController from "./submit_on_cmd_enter_controller"
+import SubmitOnCmdEnterController from "controllers/submit_on_cmd_enter_controller"
 application.register("submit-on-cmd-enter", SubmitOnCmdEnterController)
