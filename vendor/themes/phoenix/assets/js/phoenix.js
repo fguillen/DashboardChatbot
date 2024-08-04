@@ -4098,7 +4098,7 @@
             skin: 'oxide',
             menubar: false,
             content_style: `
-        .mce-content-body { 
+        .mce-content-body {
           color: ${getColor('emphasis-color')};
           background-color: ${getColor('tinymce-bg')};
         }
@@ -6426,4 +6426,3 @@
   return phoenix;
 
 }));
-//# sourceMappingURL=phoenix.js.map

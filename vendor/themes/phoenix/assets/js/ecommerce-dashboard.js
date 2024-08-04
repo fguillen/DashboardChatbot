@@ -2605,4 +2605,3 @@
   docReady(totalOrdersChartInit);
 
 }));
-//# sourceMappingURL=ecommerce-dashboard.js.map

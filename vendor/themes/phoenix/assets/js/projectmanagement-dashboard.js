@@ -636,4 +636,3 @@
   docReady(issuesDiscoveredChartInit);
 
 }));
-//# sourceMappingURL=projectmanagement-dashboard.js.map

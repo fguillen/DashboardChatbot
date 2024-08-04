@@ -211,7 +211,7 @@
       </div>
     `
       : ''
-  } 
+  }
   <div class="mt-4 ${
     event.extendedProps.location ? 'border-bottom pb-3 border-translucent' : ''
   }">
@@ -220,7 +220,7 @@
     ${
       window.dayjs &&
       window.dayjs(event.start).format('dddd, MMMM D, YYYY, h:mm A')
-    } 
+    }
     ${
       event.end
         ? `– ${
@@ -498,4 +498,3 @@
   docReady(appCalendarInit);
 
 }));
-//# sourceMappingURL=calendar.js.map

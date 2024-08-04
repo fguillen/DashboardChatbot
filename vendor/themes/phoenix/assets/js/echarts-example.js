@@ -2397,9 +2397,9 @@
     const $chartEl = document.querySelector('.echart-bar-gradient-chart-example');
 
     const tooltipFormatter = params => {
-      return `<div> 
+      return `<div>
         <h6 class="fs-9 text-body-tertiary mb-0">
-        <span class="fas fa-circle me-1 text-primary"></span> ${params[0].name} : ${params[0].value} 
+        <span class="fas fa-circle me-1 text-primary"></span> ${params[0].name} : ${params[0].value}
          </h6>
       </div> `;
     };
@@ -6882,4 +6882,3 @@
   docReady(heatmapSingleSeriesChartInit);
 
 }));
-//# sourceMappingURL=echarts-example.js.map
