@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import CondeSyntaxHighlighterController from "./conde_syntax_highlighter_controller"
-application.register("conde-syntax-highlighter", CondeSyntaxHighlighterController)
-
 import ConversationMessagesListController from "./conversation_messages_list_controller"
 application.register("conversation-messages-list", ConversationMessagesListController)
 

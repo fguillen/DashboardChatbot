@@ -35,7 +35,6 @@ module ApplicationHelper
       result = <<~HTML.html_safe
         <pre><code
           class="language-#{content_language}"
-          data-controller="conde-syntax-highlighter"
         >#{message.content_parsed}</code></pre>
       HTML
 

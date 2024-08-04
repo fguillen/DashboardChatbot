@@ -12,7 +12,6 @@
       <pre><code
         id="message-<%= message.id %>-tool-call-<%= tool_call["id"] %>"
         class="language-<%= Message.extract_function_arguments_language(tool_call) %>"
-        data-controller="conde-syntax-highlighter"
         ><%= Message.extract_function_arguments(tool_call) %></code></pre>
       <div class="d-flex flex-row on-hover code-copy-icon">
         <a
