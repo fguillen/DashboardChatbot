@@ -75,7 +75,8 @@ class AI::Assistant
         @conversation.messages_data,
         model: @model,
         extras: {
-          tools: extract_tools
+          tools: extract_tools,
+          temperature: 0
         }
       )
 
