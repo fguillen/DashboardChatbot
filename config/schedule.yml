@@ -1,0 +1,4 @@
+test_job:
+  cron: "* * * * *"
+  class: "CronTasks::TestJob"
+  queue: cron_tasks

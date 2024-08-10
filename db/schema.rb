@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_30_191514) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_10_093827) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_id", null: false
@@ -61,6 +61,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_30_191514) do
     t.index ["perishable_token"], name: "index_admin_users_on_perishable_token", unique: true
     t.index ["persistence_token"], name: "index_admin_users_on_persistence_token", unique: true
     t.index ["uuid"], name: "index_admin_users_on_uuid", unique: true
+  end
+
+  create_table "alerts", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.string "schedule", null: false
+    t.text "query", null: false
+    t.string "name", default: "Untitled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "articles", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
