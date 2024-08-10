@@ -17,6 +17,7 @@ export default class extends Controller {
       event.detail.formSubmission.stop();
       return;
     }
+    this.addSubconversationDiv();
     this.button.disabled = true;
     this.textarea.disabled = true;
     this.sending = true;
@@ -40,5 +41,10 @@ export default class extends Controller {
     this.sending = false;
   }
 
-
+  addSubconversationDiv() {
+    console.log("addSubconversationDiv");
+    const subconversationDiv = document.createElement("div");
+    subconversationDiv.classList.add("subconversation");
+    document.querySelector("#messages-list").appendChild(subconversationDiv);
+  }
 }

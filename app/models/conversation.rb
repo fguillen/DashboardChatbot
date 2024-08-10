@@ -31,6 +31,10 @@ class Conversation < ApplicationRecord
     messages.maximum(:created_at)
   end
 
+  def subconversations
+    Conversation::MessagesListToSubconversationsService.perform(self)
+  end
+
   def to_hash
     {
       uuid:,

@@ -5,7 +5,7 @@ class Message < ApplicationRecord
   self.primary_key = :uuid
   include HasUuid
 
-  enum :role, { system: "system", user: "user", assistant: "assistant", tool: "tool" }
+  enum :role, { system: "system", user: "user", assistant: "assistant", tool: "tool" }, prefix: true
 
   belongs_to :conversation
   has_one :front_user, through: :conversation
@@ -20,7 +20,8 @@ class Message < ApplicationRecord
     puts ">>>>> broadcasting to: '#{conversation.id}_messages_stream'"
     broadcast_append_to(
       "#{conversation.id}_messages_stream",
-      target: "#{conversation.id}_messages",
+      target: nil,
+      targets: "#messages-list .subconversation:last-child",
       partial: "front/messages/message",
       locals: { message: }
     )
