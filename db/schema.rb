@@ -63,12 +63,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_093827) do
     t.index ["uuid"], name: "index_admin_users_on_uuid", unique: true
   end
 
-  create_table "alerts", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "alerts", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "schedule", null: false
-    t.text "query", null: false
+    t.text "context", null: false
+    t.text "prompt", null: false
     t.string "name", default: "Untitled"
+    t.string "conversation_id"
+    t.string "front_user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "fk_rails_06c02833b7"
+    t.index ["front_user_id"], name: "fk_rails_7f4748ff04"
+    t.index ["uuid"], name: "index_alerts_on_uuid", unique: true
   end
 
   create_table "articles", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
@@ -191,6 +197,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_093827) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "alerts", "conversations", primary_key: "uuid"
+  add_foreign_key "alerts", "front_users", primary_key: "uuid"
   add_foreign_key "articles", "front_users", primary_key: "uuid"
   add_foreign_key "conversations", "front_users", primary_key: "uuid"
   add_foreign_key "messages", "conversations", primary_key: "uuid"

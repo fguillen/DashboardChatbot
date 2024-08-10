@@ -15,4 +15,9 @@ namespace :dashboardchatbot do
   task load_csvs: :environment do
     Data::LoadAllCsvsService.perform(force: true)
   end
+
+  desc "Load all Alerts and create cron jobs"
+  task load_alerts: :environment do
+    CronTasks::LoadAllAlertsService.perform
+  end
 end
