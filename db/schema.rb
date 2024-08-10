@@ -67,9 +67,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_093827) do
     t.string "schedule", null: false
     t.text "context", null: false
     t.text "prompt", null: false
-    t.string "name", default: "Untitled"
+    t.string "name", null: false
     t.string "conversation_id"
-    t.string "front_user_id", null: false
+    t.string "front_user_id"
+    t.string "model"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "fk_rails_06c02833b7"

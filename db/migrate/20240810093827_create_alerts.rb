@@ -5,9 +5,10 @@ class CreateAlerts < ActiveRecord::Migration[7.1]
       t.string :schedule, null: false
       t.text :context, null: false
       t.text :prompt, null: false
-      t.string :name, default: "Untitled"
+      t.string :name, null: false
       t.string :conversation_id
-      t.string :front_user_id, null: false
+      t.string :front_user_id
+      t.string :model
 
       t.timestamps
     end

@@ -2,6 +2,7 @@ class Alert < ApplicationRecord
   self.primary_key = :uuid
   include HasUuid
 
+  before_create :set_default_model
   after_commit :set_cron_job, on: [:create, :update]
   after_commit :remove_cron_job, on: :destroy
 
@@ -15,5 +16,14 @@ class Alert < ApplicationRecord
 
   def remove_cron_job
     Sidekiq::Cron::Job.destroy("Alert-#{self.id}")
+  end
+
+  def perform
+    messages = Alerts::ProcessAlertService.perform(self)
+    puts ">>>> Alert.process: #{messages}"
+  end
+
+  def set_default_model
+    self.model ||= "openai/gpt-4o"
   end
 end

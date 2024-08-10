@@ -11,7 +11,8 @@ class Assistants::DataAnalyst < AI::Assistant
     [
       Tools::Math.new,
       Tools::Database.new(connection_string: APP_CONFIG["dashboard_db_connection"]),
-      Tools::Chart.new
+      Tools::Chart.new,
+      Tools::AlertCreator.new
     ]
   end
 end

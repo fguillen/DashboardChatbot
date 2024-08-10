@@ -1,5 +1,5 @@
 class AlertExecuterJob < ApplicationJob
   def perform(alert)
-    puts ">>>> executing this alert: #{alert.name}"
+    alert.perform
   end
 end

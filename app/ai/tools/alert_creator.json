@@ -1,0 +1,31 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "create_alert",
+      "description": "AlertCreator Tool: Creates a recurrent alert email that will be sent to the user with the regularity specified in the parameters.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the alert. Descriptive and human friendly name that describes the content of the alert. Max length: 120 characters."
+          },
+          "schedule": {
+            "type": "string",
+            "description": "The regularity of the alert expressed in the crontab format. Like: 0 0 * * * for every day at 00:00"
+          },
+          "context": {
+            "type": "string",
+            "description": "The context that You need to understand what is the meaning of the prompt."
+          },
+          "prompt": {
+            "type": "string",
+            "description": "The prompt the user can use to ask you for the requested information."
+          }
+        },
+        "required": ["name", "schedule", "context", "prompt"]
+      }
+    }
+  }
+]
