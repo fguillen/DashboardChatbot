@@ -2,6 +2,10 @@ class Alert < ApplicationRecord
   self.primary_key = :uuid
   include HasUuid
 
+  has_many :alert_emails, dependent: :destroy
+
+  scope :order_by_recent, -> { order("alerts.created_at desc") }
+
   before_create :set_default_model
   after_commit :set_cron_job, on: [:create, :update]
   after_commit :remove_cron_job, on: :destroy
@@ -25,5 +29,13 @@ class Alert < ApplicationRecord
 
   def set_default_model
     self.model ||= "openai/gpt-4o"
+  end
+
+  def last_time_sent_at
+    alert_emails.order_by_recent.first&.created_at
+  end
+
+  def schedule_to_human
+    Cronex::ExpressionDescriptor.new(schedule).description
   end
 end

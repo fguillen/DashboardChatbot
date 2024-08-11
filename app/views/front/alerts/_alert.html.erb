@@ -1,0 +1,71 @@
+<div class="card mb-9">
+  <div class="card-body">
+    <h1 class="lh-sm fs-6 fs-xxl-4 mb-2"><%= alert.name %></h1>
+    <p class="fs-8 mb-4 text-body-tertiary"><%= alert.prompt %></p>
+    <div class="card mb-5 mb-xxl-7">
+      <div class="card-body">
+        <div class="row gy-5">
+          <div class="col-md-6 d-flex justify-content-between">
+            <div>
+              <div class="mb-3">
+                <div class="d-flex align-items-center">
+                  <div class="px-2 py-1 bg-info-subtle rounded"><span class="text-info" data-feather="map-pin"></span></div>
+                  <h5 class="ms-2 text-body-emphasis mb-0">Location</h5>
+                </div>
+              </div>
+              <p class="lh-sm mb-0 text-body-tertiary">36/4A, James Tiberius Auditorium,<br />Vancouver, British Columbia, Canada </p>
+            </div>
+            <div class="my-4 mx-3 border-start border-translucent d-none d-md-block"></div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3">
+              <div class="d-flex align-items-center">
+                <div class="px-2 py-1 bg-primary-subtle rounded">
+                  <i class="bi bi-calendar text-primary"></i>
+                </div>
+                <h5 class="ms-2 mb-0">Schedule</h5>
+              </div>
+            </div>
+            <p class="lh-sm mb-0 text-body-tertiary"><%= alert.schedule %><br /><%= alert.schedule_to_human %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row g-2">
+      <div class="col-12 col-md-auto flex-md-grow-1">
+        <button class="btn btn-primary w-100" type="button">Get Tickets</button>
+      </div>
+      <div class="col-12 col-sm-auto flex-sm-grow-1 flex-md-grow-0">
+        <button class="btn btn-phoenix-primary w-100" type="button"><span class="fa-regular fa-calendar-plus me-2"></span>Add to Calendar </button>
+      </div>
+      <div class="col-6 col-sm-auto">
+        <button class="btn btn-phoenix-primary w-100" type="button"><span class="fa-solid fa-heart me-2"></span>3677</button>
+      </div>
+      <div class="col-6 col-sm-auto">
+        <button class="btn btn-phoenix-primary w-100" type="button"><span class="fa-solid fa-share-nodes me-2"></span>4467</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row g-0 py-3 border-bottom border-dashed align-items-end justify-content-between">
+  <div class="col-auto">
+    <h3 class="flex-1 mb-0 text-nowrap me-3">Recent emails sent</h3>
+  </div>
+  <div class="col-auto"><a class="fw-bold fs-9" href="#!">See more</a></div>
+</div>
+<div class="py-3 border-bottom border-translucent border-dashed">
+  <div class="d-flex flex-between-center">
+    <p class="text-warning fs-10 mb-0 fw-bold mb-1">MON, FEB 21- MARCH 23</p>
+    <div class="btn-reveal-trigger">
+      <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none d-flex btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h"></span></button>
+      <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item" href="#!">Edit</a><a class="dropdown-item text-danger" href="#!">Delete</a><a class="dropdown-item" href="#!">Download</a><a class="dropdown-item" href="#!">Report abuse</a></div>
+    </div>
+  </div><a class="text-primary-hover text-body-highlight fw-bold mb-2 line-clamp-1 me-5 lh-base" href="#!">Master Class on FILM Studies THESIS on Makers</a>
+  <p class="text-body-secondary fs-9 mb-2">Organized by <br /><a class="fw-bold text-primary" href="#!">IAFM- International Academy of Film and Media</a></p>
+  <p class="fs-10 text-body-tertiary text-opacity-85">64 people going</p>
+  <p class="fs-9 text-body-tertiary fw-bold mb-1"><span class="fa-solid fa-clock text-body-secondary me-1"></span>12.30PM - 10PM</p>
+  <p class="fs-9 text-body-tertiary fw-bold mb-0"><span class="fa-solid fa-map-marker-alt text-body-secondary me-1"></span>Tavern on the Greend, New York</p>
+</div>

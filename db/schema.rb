@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_10_093827) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_11_095155) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_id", null: false
@@ -61,6 +61,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_093827) do
     t.index ["perishable_token"], name: "index_admin_users_on_perishable_token", unique: true
     t.index ["persistence_token"], name: "index_admin_users_on_persistence_token", unique: true
     t.index ["uuid"], name: "index_admin_users_on_uuid", unique: true
+  end
+
+  create_table "alert_emails", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.string "subject"
+    t.text "content"
+    t.string "from"
+    t.string "to"
+    t.string "alert_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["alert_id"], name: "fk_rails_6b6ec42417"
+    t.index ["uuid"], name: "index_alert_emails_on_uuid", unique: true
   end
 
   create_table "alerts", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
@@ -198,6 +210,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_093827) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "alert_emails", "alerts", primary_key: "uuid"
   add_foreign_key "alerts", "conversations", primary_key: "uuid"
   add_foreign_key "alerts", "front_users", primary_key: "uuid"
   add_foreign_key "articles", "front_users", primary_key: "uuid"

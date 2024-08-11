@@ -1,0 +1,41 @@
+<div class="card h-100 hover-actions-trigger">
+  <div class="card-body">
+    <div class="d-flex align-items-center">
+      <h4 class="mb-2 line-clamp-1 lh-sm flex-1 me-5"><%= alert.name %></h4>
+      <div class="hover-actions top-0 end-0 mt-4 me-4">
+        <%= link_to front_alert_path(alert), class: "btn btn-primary btn-icon flex-shrink-0" do %>
+          <span class="fa-solid fa-chevron-right"></span>
+        <% end %>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="d-flex align-items-normal mb-2">
+      <i class="bi bi-robot me-2 text-body-tertiary fs-9"></i>
+      <p class="fw-bold mb-0 lh-1">Model :
+        <span class="fw-light ms-1"><%= alert.model %></span>
+      </p>
+    </div>
+
+    <div class="d-flex align-items-center mb-4">
+      <i class="bi bi-calendar me-2 fs-9 text-body-tertiary"></i>
+      <p class="fw-bold mb-0 lh-1">Schedule : <span class="ms-1 text-body-emphasis"><%= alert.schedule %></span></p>
+    </div>
+
+    <div class="d-flex align-items-center mt-4">
+      <p class="mb-0 fw-bold fs-9">Started :<span class="fw-semibold text-body-tertiary text-opactity-85 ms-1">	<%= formatted_date_or_empty(alert.created_at) %></span></p>
+    </div>
+
+    <div class="d-flex align-items-center mt-2">
+      <p class="mb-0 fw-bold fs-9">Last time sent : <span class="fw-semibold text-body-tertiary text-opactity-85 ms-1"><%= formatted_date_or_empty(alert.last_time_sent_at) %></span></p>
+    </div>
+
+    <div class="d-flex d-lg-block d-xl-flex justify-content-between align-items-center mt-3">
+      <div class="mt-lg-3 mt-xl-0">
+        <i class="bi bi-send me-1"></i>
+        <p class="d-inline-block fw-bold mb-0"><%= alert.alert_emails.count %><span class="fw-normal">	times sent</span></p>
+      </div>
+    </div>
+  </div>
+</div>

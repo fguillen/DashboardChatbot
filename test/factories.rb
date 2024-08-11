@@ -43,4 +43,20 @@ FactoryBot.define do
     differences { "Wadus Event" }
     association :historizable, factory: :article
   end
+
+  factory :alert do
+    schedule { "*/5 * * * *" }
+    name { Faker::Lorem.sentence(word_count: 3) }
+    prompt { Faker::Lorem.sentence(word_count: 8) }
+    context { Faker::Lorem.sentence(word_count: 8) }
+  end
+
+  factory :alert_email do
+    subject { Faker::Lorem.sentence(word_count: 3) }
+    content { Faker::Lorem.sentence(word_count: 8) }
+    from { Faker::Internet.email }
+    to { Faker::Internet.email }
+    alert
+  end
+
 end

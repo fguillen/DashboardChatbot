@@ -14,14 +14,15 @@
   <div class="collapse navbar-collapse navbar-top-collapse order-1 order-lg-0 justify-content-center" id="navbarTopCollapse">
     <ul class="navbar-nav navbar-nav-top" data-dropdown-on-hover="data-dropdown-on-hover">
 
-      <li class="nav-item dropdown"><a class="nav-link dropdown-toggle lh-1" href="#!" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
-        <span class="uil fs-8 me-2 uil-chart-pie">
-        </span>Conversations</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle lh-1" href="#!" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
+          <i class="bi bi-chat me-2"></i>Conversations
+        </a>
         <ul class="dropdown-menu navbar-dropdown-caret">
           <li>
             <%= link_to front_conversations_path, class: "dropdown-item", data: {turbo: false} do %>
               <div class="dropdown-item-wrapper">
-                <span class="me-2 uil" data-feather="shopping-cart"></span>
+                <i class="bi bi-chat me-2"></i>
                 All
               </div>
             <% end %>
@@ -29,7 +30,7 @@
           <li>
             <a class="dropdown-item" href="#">
               <div class="dropdown-item-wrapper">
-                <span class="me-2 uil" data-feather="clipboard"></span>
+                <i class="bi bi-plus"></i>
                 Add new conversation
               </div>
             </a>
@@ -37,19 +38,10 @@
         </ul>
       </li>
 
-      <li class="nav-item dropdown"><a class="nav-link dropdown-toggle lh-1" href="#!" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
-        <span class="uil fs-8 me-2 uil-chart-pie">
-        </span>Alerts</a>
-        <ul class="dropdown-menu navbar-dropdown-caret">
-          <li>
-            <a class="dropdown-item" href="#">
-              <div class="dropdown-item-wrapper">
-                <span class="me-2 uil" data-feather="shopping-cart"></span>
-                All
-              </div>
-            </a>
-          </li>
-        </ul>
+      <li class="nav-item dropdown">
+        <%= link_to front_alerts_path, class: "nav-link lh-1", data: {turbo: false} do %>
+          <i class="bi bi-bell me-2"></i>Alerts
+        <% end %>
       </li>
 
       <li class="nav-item dropdown"><a class="nav-link dropdown-toggle lh-1" href="#!" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">

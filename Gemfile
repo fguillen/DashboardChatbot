@@ -19,6 +19,7 @@ gem "aws-sdk-s3", require: false
 gem "bluecloth"
 gem "bootsnap", require: false
 gem "chartkick"
+gem "cronex"
 gem "data_migrate"
 gem "dotenv-rails"
 gem "faker"

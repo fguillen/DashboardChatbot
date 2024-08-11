@@ -1,0 +1,11 @@
+<% title t("views.alerts.show.title", :alert_name => @alert.name) %>
+
+<nav class="mb-3" aria-label="breadcrumb">
+  <ol class="breadcrumb mb-0">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><%= link_to t("layouts.breadcrumbs.alerts"), :front_alerts %></li>
+    <li class="breadcrumb-item active"><%= @alert.name %></li>
+  </ol>
+</nav>
+
+<%= render partial: "front/alerts/alert", locals: { alert: @alert, active: true } %>
