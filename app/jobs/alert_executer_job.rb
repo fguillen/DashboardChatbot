@@ -1,5 +1,5 @@
 class AlertExecuterJob < ApplicationJob
   def perform(alert)
-    alert.perform
+    alert.process
   end
 end

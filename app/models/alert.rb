@@ -22,9 +22,9 @@ class Alert < ApplicationRecord
     Sidekiq::Cron::Job.destroy("Alert-#{self.id}")
   end
 
-  def perform
-    messages = Alerts::ProcessAlertService.perform(self)
-    puts ">>>> Alert.process: #{messages}"
+  def process
+    puts ">>>> Alert.perform: #{name}"
+    Alerts::AlertProcessor.perform(self)
   end
 
   def set_default_model

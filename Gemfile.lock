@@ -136,7 +136,7 @@ GEM
     childprocess (5.0.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
-    concurrent-ruby (1.3.3)
+    concurrent-ruby (1.3.4)
     connection_pool (2.4.1)
     crass (1.0.6)
     cronex (0.14.0)
@@ -212,7 +212,7 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.7.2)
-    irb (1.13.2)
+    irb (1.14.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jbuilder (2.12.0)
@@ -258,7 +258,7 @@ GEM
     mini_magick (4.13.1)
     mini_mime (1.1.5)
     mini_portile2 (2.8.7)
-    minitest (5.23.1)
+    minitest (5.24.1)
     mocha (2.4.0)
       ruby2_keywords (>= 0.0.5)
     msgpack (1.7.2)
@@ -279,10 +279,10 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
-    nokogiri (1.16.6)
+    nokogiri (1.16.7)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.16.6-x86_64-linux)
+    nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
     oauth2 (2.0.9)
       faraday (>= 0.17.3, < 3.0)
@@ -395,8 +395,8 @@ GEM
     puma (6.4.2)
       nio4r (~> 2.0)
     raabro (1.4.0)
-    racc (1.8.0)
-    rack (3.1.3)
+    racc (1.8.1)
+    rack (3.1.7)
     rack-protection (4.0.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0, < 4)
@@ -435,10 +435,6 @@ GEM
     rails-i18n (7.0.9)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
-    rails_semantic_logger (4.14.0)
-      rack
-      railties (>= 5.1)
-      semantic_logger (~> 4.13)
     railties (7.1.3.3)
       actionpack (= 7.1.3.3)
       activesupport (= 7.1.3.3)
@@ -479,8 +475,6 @@ GEM
     scrypt (3.0.8)
       ffi-compiler (>= 1.0, < 2.0)
       rake (>= 9, < 14)
-    semantic_logger (4.15.0)
-      concurrent-ruby (~> 1.0)
     sendgrid-actionmailer (3.2.0)
       mail (~> 2.7)
       sendgrid-ruby (~> 6.4)
@@ -578,7 +572,7 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.6.16)
+    zeitwerk (2.6.17)
 
 PLATFORMS
   ruby
@@ -596,6 +590,7 @@ DEPENDENCIES
   bundle-audit
   byebug
   chartkick
+  cronex
   data_migrate
   dockerfile-rails (>= 1.6)
   dotenv-rails
@@ -629,7 +624,6 @@ DEPENDENCIES
   puma
   rails (= 7.1.3.3)
   rails-controller-testing
-  rails_semantic_logger
   redcarpet
   redis (~> 4.0)
   rexml

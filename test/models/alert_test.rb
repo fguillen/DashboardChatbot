@@ -4,4 +4,6 @@ class AlertTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
+
+  def
 end

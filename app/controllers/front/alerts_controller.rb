@@ -1,5 +1,5 @@
 class Front::AlertsController < Front::BaseController
-  before_action :load_alert, only: [:show, :edit, :update, :destroy]
+  before_action :load_alert, only: [:show, :edit, :update, :destroy, :process_alert]
   # before_action :require_front_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   # before_action :validate_current_front_user, only: [:show, :edit, :update, :destroy]
 
@@ -41,6 +41,11 @@ class Front::AlertsController < Front::BaseController
   def destroy
     @alert.destroy
     redirect_to :front_alerts, notice: t("controllers.alerts.destroy.success")
+  end
+
+  def process_alert
+    @alert.process
+    redirect_to front_alert_path(@alert), notice: t("controllers.alerts.send.success")
   end
 
   protected

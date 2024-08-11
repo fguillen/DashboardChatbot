@@ -45,7 +45,7 @@ gem "opentelemetry-instrumentation-rails"
 gem "pg" # For dashboard db connection with Sequel
 gem "prometheus-client"
 gem "puma"
-gem "rails_semantic_logger"
+# gem "rails_semantic_logger"
 gem "redcarpet"
 gem "rexml"
 gem "rollbar"

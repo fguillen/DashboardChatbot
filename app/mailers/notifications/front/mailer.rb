@@ -11,4 +11,14 @@ class Notifications::Front::Mailer < ActionMailer::Base
       subject: "[DashboardChatbot] New Article: #{@article.title}"
     )
   end
+
+  def on_alert_email(alert_email)
+    @alert_email = alert_email
+
+    mail(
+      from: alert_email.from,
+      to: alert_email.to,
+      subject: "[DashboardChatbot] New Alert: #{@alert_email.subject}"
+    )
+  end
 end

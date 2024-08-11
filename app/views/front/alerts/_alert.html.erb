@@ -33,7 +33,10 @@
     </div>
     <div class="row g-2">
       <div class="col-12 col-md-auto flex-md-grow-1">
-        <button class="btn btn-primary w-100" type="button">Get Tickets</button>
+        <%= link_to process_alert_front_alert_path(alert), class: "btn btn-primary w-100" do %>
+          <i class="bi bi-gear"></i> <i class="bi bi-send me-2"></i>
+          Process and send
+        <% end %>
       </div>
       <div class="col-12 col-sm-auto flex-sm-grow-1 flex-md-grow-0">
         <button class="btn btn-phoenix-primary w-100" type="button"><span class="fa-regular fa-calendar-plus me-2"></span>Add to Calendar </button>

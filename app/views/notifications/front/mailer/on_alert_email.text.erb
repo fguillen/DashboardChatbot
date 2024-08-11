@@ -1,0 +1,18 @@
+Front Notification
+
+New AlertEmail has been created
+
+* To: <%= @alert_email.to %>
+* From: <%= @alert_email.from %>
+* Subject: <%= @alert_email.subject %>
+* Prompt: <%= @alert_email.alert.prompt %>
+* Alert name: <%= @alert_email.alert.name %>
+* ID: <%= @alert_email.id %>
+
+## Content
+
+<%= @alert_email.content %>
+
+=======
+DashboardChatbot
+* hello <%= APP_CONFIG["host"] %>

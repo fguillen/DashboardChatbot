@@ -1,4 +1,4 @@
-class Alerts::ProcessAlertService < Service
+class Alerts::RequestContent < Service
   def perform(alert)
     @ai_conversation = AI::Conversation.new
     @ai_conversation.reset_new_messages
