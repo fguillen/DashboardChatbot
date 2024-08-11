@@ -12,6 +12,7 @@ class AI::Conversation
     @new_messages << message
   end
 
+  # TODO: investigate why I see message.raw attribute here
   def messages_data
     @messages.map(&:data)
   end

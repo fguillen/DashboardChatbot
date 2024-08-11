@@ -19,7 +19,7 @@
     <div class="tab-content">
       <div data-chat-thread-tab-content="data-chat-thread-tab-content">
         <ul class="nav chat-thread-tab flex-column list">
-          <% current_front_user.conversations.order_by_recent.each do |conversation| %>
+          <% current_front_user.conversations.no_from_alert.order_by_recent.each do |conversation| %>
             <li class="nav-item <%= [nil, "read"].sample %> me-1" role="presentation">
               <%=
                 link_to(

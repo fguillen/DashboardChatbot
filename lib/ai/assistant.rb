@@ -1,7 +1,11 @@
 class AI::Assistant
   attr_reader :model
 
-  def initialize(model: "openrouter/auto", ai_conversation: nil, on_new_message: nil)
+  def initialize(
+    model: "openrouter/auto",
+    ai_conversation: nil,
+    on_new_message: nil
+  )
     @client = client || AI::Client.new(access_token: ENV["OPEN_ROUTER_KEY"])
     @system_directive = system_directive
     @model = model
@@ -100,7 +104,7 @@ class AI::Assistant
   def init_system_directive
     return if system_directive.blank?
     return if @conversation.messages.filter do |m|
-      m.role == "system" && m.content == system_directive
+      m.role == "system" && m.content == system_directive.strip
     end.present?
 
     message = AI::Message.from_hash({ role: "system", content: system_directive })
@@ -160,6 +164,9 @@ class AI::Assistant
   def submit_tool_output(tool_call_id:, name:, output:)
     message = AI::Message.from_hash({ role: "tool", tool_call_id:, name:, content: output.to_s })
     puts ">>>> submit_tool_output.message: #{message.inspect}"
+
+    byebug
+
     add_new_message(message)
   end
 

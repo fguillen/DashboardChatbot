@@ -1,4 +1,8 @@
 class Tools::AlertCreator < AI::Tool
+  def initialize(front_user:)
+    @front_user = front_user
+  end
+
   def tool_description_path
     "#{__dir__}/alert_creator.json"
   end
@@ -9,7 +13,8 @@ class Tools::AlertCreator < AI::Tool
       name:,
       schedule:,
       context:,
-      prompt:
+      prompt:,
+      front_user: @front_user
     )
   end
 end

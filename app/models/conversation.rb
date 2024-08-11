@@ -12,9 +12,10 @@ class Conversation < ApplicationRecord
   validates :title, presence: true
 
   scope :order_by_recent, -> { order("conversations.created_at desc") }
-  scope :no_alert, -> { where(alert_email_id: nil) }
+  scope :no_from_alert, -> { where(alert_email_id: nil) }
 
   def add_message(message)
+    puts ">>>> add_message: #{message.to_hash}"
     self.messages << message
   end
 
@@ -42,7 +43,7 @@ class Conversation < ApplicationRecord
       title:,
       first_message_at:,
       last_message_at:,
-      messages: messages.map(&:to_hash),
+      messages: messages.in_order.map(&:to_hash),
     }
   end
 

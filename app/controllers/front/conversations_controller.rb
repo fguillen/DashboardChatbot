@@ -4,7 +4,7 @@ class Front::ConversationsController < Front::BaseController
   before_action :validate_current_front_user, only: [:show]
 
   def index
-    @conversations = current_front_user.conversations.order_by_recent.page(params[:page]).per(30)
+    @conversations = current_front_user.conversations.no_from_alert.order_by_recent.page(params[:page]).per(30)
   end
 
   def show

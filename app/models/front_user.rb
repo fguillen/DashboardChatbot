@@ -16,6 +16,7 @@ class FrontUser < ApplicationRecord
 
   has_many :articles, dependent: :destroy
   has_many :conversations, dependent: :destroy
+  has_many :alerts, dependent: :destroy
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: RubyRegex::Email }

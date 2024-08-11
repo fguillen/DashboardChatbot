@@ -7,7 +7,8 @@ class Conversation::ProcessUserMessageOpenRouterService < Service
       Assistants::DataAnalyst.new(
         ai_conversation: @ai_conversation,
         model: model,
-        on_new_message: method(:on_new_message)
+        on_new_message: method(:on_new_message),
+        front_user: @conversation.front_user
       )
 
     @assistant.completion({ role:, content: })

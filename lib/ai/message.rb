@@ -48,7 +48,7 @@ class AI::Message
   end
 
   def tool_call_id
-    @raw&.dig("tool_call_id")
+    @data&.dig(:tool_call_id)
   end
 
   def model
@@ -56,7 +56,7 @@ class AI::Message
   end
 
   def self.from_hash(hash)
-    new(data: hash)
+    new(data: hash, raw: hash)
   end
 
   def self.from_completion(completion)
