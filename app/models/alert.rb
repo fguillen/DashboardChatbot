@@ -2,7 +2,9 @@ class Alert < ApplicationRecord
   self.primary_key = :uuid
   include HasUuid
 
+  belongs_to :front_user
   has_many :alert_emails, dependent: :destroy
+  has_one :conversation, dependent: :destroy
 
   scope :order_by_recent, -> { order("alerts.created_at desc") }
 

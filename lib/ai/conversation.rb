@@ -1,5 +1,5 @@
 class AI::Conversation
-  attr_reader :messages
+  attr_accessor :messages
   attr_reader :new_messages
 
   def initialize

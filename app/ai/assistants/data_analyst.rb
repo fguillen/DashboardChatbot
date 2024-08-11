@@ -1,6 +1,6 @@
 class Assistants::DataAnalyst < AI::Assistant
   def system_directive
-    File.read("#{Rails.root}/config/assistant_instructions.md")
+    File.read("#{Rails.root}/config/assistant_instructions_data_analyst.md")
   end
 
   def client

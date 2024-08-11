@@ -32,11 +32,11 @@ class AI::Message
   private_class_method :new
 
   def role
-    @raw["role"]
+    @data&.dig(:role)
   end
 
   def content
-    @raw["content"]
+    @data&.dig(:content)
   end
 
   def raw
@@ -44,11 +44,15 @@ class AI::Message
   end
 
   def tool_calls
-    @raw["tool_calls"]
+    @raw&.dig("tool_calls")
   end
 
   def tool_call_id
-    @raw["tool_call_id"]
+    @raw&.dig("tool_call_id")
+  end
+
+  def model
+    @raw&.dig("model")
   end
 
   def self.from_hash(hash)

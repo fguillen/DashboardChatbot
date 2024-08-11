@@ -7,6 +7,8 @@ class AI::Assistant
     @model = model
     @conversation = ai_conversation || AI::Conversation.new
     @on_new_message = on_new_message
+
+    after_initialize
   end
 
   def completion(hash, model: nil)
@@ -19,7 +21,7 @@ class AI::Assistant
 
     puts ">>>> @conversation: #{@conversation.class.name}"
     puts ">>>> @conversation.messages: #{@conversation.messages.map { |e| e.class.name }}"
-    puts ">>>> @conversation.messages_data: #{@conversation.messages_data}"
+    puts ">>>> @conversation.messages_data: #{JSON.pretty_generate(@conversation.messages_data)}"
 
     complete
 
@@ -37,6 +39,10 @@ class AI::Assistant
 
   def tools
     nil
+  end
+
+  def after_initialize
+
   end
 
   # From: https://github.com/patterns-ai-core/langchainrb/blob/ff699356068bd7d6bc768e5518f6b4fdcbdfc90f/lib/langchain/assistants/assistant.rb#L275
@@ -92,14 +98,17 @@ class AI::Assistant
   end
 
   def init_system_directive
-    return if @conversation.messages.present? || system_directive.blank?
+    return if system_directive.blank?
+    return if @conversation.messages.filter do |m|
+      m.role == "system" && m.content == system_directive
+    end.present?
 
     message = AI::Message.from_hash({ role: "system", content: system_directive })
     add_new_message(message)
   end
 
   def extract_tools
-    return nil if tools.nil?
+    return [] if tools.nil?
 
     tools.map do |tool|
       tool.tool_description

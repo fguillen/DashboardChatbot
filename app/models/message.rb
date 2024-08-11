@@ -189,7 +189,7 @@ class Message < ApplicationRecord
   end
 
   def init_order
-    self.order ||= 0
+    self.order ||= conversation.messages.maximum(:order).to_i + 1
   end
 
   def set_model_from_raw

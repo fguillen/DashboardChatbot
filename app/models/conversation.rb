@@ -6,15 +6,16 @@ class Conversation < ApplicationRecord
   include HasUuid
 
   belongs_to :front_user
+  belongs_to :alert_email, optional: true
   has_many :messages, dependent: :destroy
 
   validates :title, presence: true
 
   scope :order_by_recent, -> { order("conversations.created_at desc") }
+  scope :no_alert, -> { where(alert_email_id: nil) }
 
-  def add_message(role:, content: nil, raw: nil, tool_calls: nil, tool_call_id: nil, model: nil)
-    order = (messages.maximum(:order) || 0) + 1
-    messages.create!(role:, content:, raw:, tool_calls:, tool_call_id:, model:, order:)
+  def add_message(message)
+    self.messages << message
   end
 
   def find_tool_call_by_id(tool_call_id)

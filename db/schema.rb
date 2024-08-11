@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_11_095155) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_11_161908) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_id", null: false
@@ -105,6 +105,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_11_095155) do
     t.string "front_user_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.string "alert_email_id"
+    t.index ["alert_email_id"], name: "fk_rails_f29ffbaed7"
     t.index ["front_user_id"], name: "fk_rails_4db8d566b8"
     t.index ["uuid"], name: "index_conversations_on_uuid", unique: true
   end
@@ -214,6 +216,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_11_095155) do
   add_foreign_key "alerts", "conversations", primary_key: "uuid"
   add_foreign_key "alerts", "front_users", primary_key: "uuid"
   add_foreign_key "articles", "front_users", primary_key: "uuid"
+  add_foreign_key "conversations", "alert_emails", primary_key: "uuid"
   add_foreign_key "conversations", "front_users", primary_key: "uuid"
   add_foreign_key "messages", "conversations", primary_key: "uuid"
   add_foreign_key "taggings", "tags"

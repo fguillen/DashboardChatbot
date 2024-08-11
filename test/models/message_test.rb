@@ -83,4 +83,12 @@ class MessageTest < ActiveSupport::TestCase
       message.update!(body: "NEW_BODY")
     end
   end
+
+  def test_on_create_init_order
+    conversation = FactoryBot.create(:conversation)
+    message = FactoryBot.build(:message, conversation:)
+    assert_nil(message.order)
+    message.save!
+    assert_equal(1, message.order)
+  end
 end

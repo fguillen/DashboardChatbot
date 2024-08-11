@@ -45,6 +45,7 @@ FactoryBot.define do
   end
 
   factory :alert do
+    front_user
     schedule { "*/5 * * * *" }
     name { Faker::Lorem.sentence(word_count: 3) }
     prompt { Faker::Lorem.sentence(word_count: 8) }
@@ -52,11 +53,11 @@ FactoryBot.define do
   end
 
   factory :alert_email do
+    alert
     subject { Faker::Lorem.sentence(word_count: 3) }
     content { Faker::Lorem.sentence(word_count: 8) }
     from { Faker::Internet.email }
     to { Faker::Internet.email }
-    alert
   end
 
 end
