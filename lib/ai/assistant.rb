@@ -170,8 +170,6 @@ class AI::Assistant
     message = AI::Message.from_hash({ role: "tool", tool_call_id:, name:, content: output.to_s })
     puts ">>>> submit_tool_output.message: #{message.inspect}"
 
-    byebug
-
     add_new_message(message)
   end
 

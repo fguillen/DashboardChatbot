@@ -39,6 +39,8 @@ export default class extends Controller {
     this.button.disabled = false;
     this.textarea.disabled = false;
     this.sending = false;
+    this.textarea.focus();
+
   }
 
   addSubconversationDiv() {
