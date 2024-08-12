@@ -4,7 +4,7 @@ class Conversation::AIMessageToAppMessage < Service
       role: ai_message.role,
       content: ai_message.content,
       raw: ai_message.raw,
-      tool_calls: ai_message.tool_calls&.map(&:to_hash),
+      tool_calls: ai_message.tool_calls,
       tool_call_id: ai_message.tool_call_id,
       model: model || ai_message.model
     )

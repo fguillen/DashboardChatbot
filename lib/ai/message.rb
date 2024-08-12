@@ -44,7 +44,7 @@ class AI::Message
   end
 
   def tool_calls
-    @raw&.dig("tool_calls")
+    @data[:tool_calls]&.map(&:to_hash)
   end
 
   def tool_call_id
