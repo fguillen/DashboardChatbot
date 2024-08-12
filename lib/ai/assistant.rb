@@ -78,7 +78,12 @@ class AI::Assistant
   private
 
   def complete
-    puts ">>>> complete: #{@conversation.messages.last.inspect}"
+    puts ">>>> AI::Assistant.complete"
+    puts "model: #{@model}"
+    puts "@conversation.messages_data: #{JSON.pretty_generate(@conversation.messages_data)}"
+    puts "tools: #{extract_tools}"
+
+
 
     response =
       @client.complete(
