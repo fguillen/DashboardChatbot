@@ -5,7 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.0.13] - 2024-08-04 (bda27aaffa035c23f7f9fa996e619749e7cb8093)
+## [v0.0.17] - 2024-08-12 (720b6e0)
+
+### Added
+
+- Background processes to send scheduled email
+- User able to request model to create alerts to be sent by email
+- Interfaces to see the created Alerts and the emails sent
+
+### Changed
+
+- Set temperature = 0 on Model requests
+
+
+## [v0.0.13] - 2024-08-04 (bda27aaffa035c23f7f9fa996e619749e7cb8093)
 
 ### Added
 
@@ -20,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Any trace of langchainrb
 
 
-## [0.0.11] - 2024-08-03
+## [v0.0.11] - 2024-08-03
 
 ### Changed
 
@@ -34,7 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Automatic scroll when new messages appear
 - Styling Conversations list page
 
-## [0.0.5] - 2024-07-11
+## [v0.0.5] - 2024-07-11
 
 ### Added
 
@@ -43,7 +56,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Schema description added into the system instructions.
 
 
-## [0.0.3] - 2024-07-07
+## [v0.0.3] - 2024-07-07
 
 ### Added
 
