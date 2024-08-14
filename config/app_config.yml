@@ -24,6 +24,7 @@ test:
     traces_exporter: "none"
   dashboard_db_connection: "postgresql://@127.0.0.1/orbita_dashboard"
   openai_api_key: "<%= Rails.application.credentials.openai_api_key %>"
+  redis_url: "redis://localhost:6379/1"
 
 development:
   host: dashboardchatbot.fernandoguillen.info.pizza
@@ -48,6 +49,7 @@ development:
     traces_exporter: "none" # console
   dashboard_db_connection: "postgresql://@127.0.0.1/orbita_dashboard"
   openai_api_key: "<%= Rails.application.credentials.openai_api_key %>"
+  redis_url: "redis://localhost:6379/1"
 
 production:
   host: dashboardchatbot.fernandoguillen.info
@@ -75,3 +77,4 @@ production:
     otlp_endpoint: "http://otelcollector.railsskeleton.com:14318"
   dashboard_db_connection: "postgresql://dashboard:dashboard@dashboard_db/dashboard"
   openai_api_key: "<%= Rails.application.credentials.openai_api_key %>"
+  redis_url: "redis://redis:6379/1"

@@ -26,7 +26,7 @@ Rails.application.configure do
     api_key: ENV["SENDGRID_API_KEY"],
   }
 
-  config.rails_semantic_logger.format = :logfmt
+  # config.rails_semantic_logger.format = :logfmt
 
   config.require_master_key = true
 

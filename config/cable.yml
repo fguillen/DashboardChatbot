@@ -7,5 +7,7 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  url: redis://redis:6379/1
   channel_prefix: dashboardchatbot_production
+  ssl_params:
+    verify_mode: <%= OpenSSL::SSL::VERIFY_NONE %>

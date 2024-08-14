@@ -1,5 +1,28 @@
 # Originally inspired on: https://gist.github.com/satendra02/1b335b06bfc5921df486f26bd98e0e89
 services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/DockerFile
+    volumes:
+      - .:/var/www/app
+    restart: always
+    depends_on:
+      - db
+      - dashboard_db
+      - redis
+      - sidekiq
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: ./docker/app/DockerFile
+    volumes:
+      - .:/var/www/app
+    depends_on:
+      - redis
+    command: bundle exec sidekiq
+
   db:
     image: mysql:8.0
     volumes:
@@ -29,33 +52,6 @@ services:
       - POSTGRES_USER=dashboard
       - POSTGRES_DB=dashboard
 
-  app:
-    build:
-      context: .
-      dockerfile: ./docker/app/DockerFile
-    volumes:
-      - .:/var/www/app
-    restart: always
-    depends_on:
-      - db
-      - dashboard_db
-      - redis
-    # environment:
-    #   - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
-
-  # cron:
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/cron/DockerFile
-  #   volumes:
-  #     - .:/var/www/app
-  #   restart: always
-  #   depends_on:
-  #     - db
-  #     - dashboard_db
-  #   environment:
-  #     - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
-
   web:
     build:
       context: .
@@ -74,7 +70,6 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     restart: always
-
 
   certbot:
     image: certbot/certbot
