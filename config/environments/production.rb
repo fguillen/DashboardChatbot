@@ -31,7 +31,7 @@ Rails.application.configure do
   config.require_master_key = true
 
   # Cable config
-  config.action_cable.allowed_request_origins = [ "https://dashboardchatbot.fernandoguillen.info" ]
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
   config.hosts << "dashboardchatbot.fernandoguillen.info"
   config.hosts << "localhost"
   config.hosts << "upstream_app"
