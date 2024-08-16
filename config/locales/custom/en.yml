@@ -76,6 +76,9 @@ en:
       update:
         error: Errors were encountered when trying to update Admin User
         success: Successfully updated Admin User
+    alerts:
+      send:
+        success: La alerta ha sido enviada.
     articles:
       create:
         error: Errors were encountered when trying to create Article

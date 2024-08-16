@@ -6,7 +6,7 @@ class AI::Assistant
     ai_conversation: nil,
     on_new_message: nil
   )
-    @client = client || AI::Client.new(access_token: ENV["OPEN_ROUTER_KEY"])
+    @client = AI_CLIENT
     @system_directive = system_directive
     @model = model
     @conversation = ai_conversation || AI::Conversation.new
