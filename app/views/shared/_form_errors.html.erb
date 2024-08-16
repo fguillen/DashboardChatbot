@@ -1,11 +1,16 @@
 <% if object.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
-    <h4>Some errors found:</h4>
-    <br />
-    <ul>
-      <% object.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </ul>
+  <div class="toast show w-100 alert bg-danger-subtle text-danger-emphasis" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+    <div class="toast-header">
+      <strong class="me-auto">Some errors found</strong><small class="text-body-secondary"></small>
+
+      <button class="btn ms-2 p-0" type="button" data-bs-dismiss="toast" aria-label="Close"><span class="uil uil-times fs-7"></span></button>
+    </div>
+    <div class="toast-body">
+      <ul>
+        <% object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 <% end %>

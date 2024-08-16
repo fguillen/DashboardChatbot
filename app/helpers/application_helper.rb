@@ -2,9 +2,9 @@ module ApplicationHelper
   def bootstrap_alert_class(type)
     case type
     when :alert
-      "alert alert-danger"
+      "alert bg-danger-subtle text-danger-emphasis"
     when :notice
-      "alert alert-success"
+      "alert bg-success-subtle text-success-emphasis"
     else
       type.to_s
     end
