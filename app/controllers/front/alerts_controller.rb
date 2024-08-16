@@ -1,10 +1,10 @@
 class Front::AlertsController < Front::BaseController
   before_action :load_alert, only: [:show, :edit, :update, :destroy, :process_alert]
-  # before_action :require_front_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  # before_action :validate_current_front_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_front_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :validate_current_front_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @alerts = Alert.order_by_recent.page(params[:page]).per(10)
+    @alerts = current_front_user.alerts.order_by_recent.page(params[:page]).per(10)
   end
 
   def show; end
@@ -60,10 +60,10 @@ class Front::AlertsController < Front::BaseController
     @alert = Alert.find(params[:id])
   end
 
-  # def validate_current_front_user
-  #   if @alert.front_user != current_front_user
-  #     redirect_to [:front, @alert], alert: t("controllers.front.access_not_authorized")
-  #     false
-  #   end
-  # end
+  def validate_current_front_user
+    if @alert.front_user != current_front_user
+      redirect_to [:front, @alert], alert: t("controllers.front.access_not_authorized")
+      false
+    end
+  end
 end
