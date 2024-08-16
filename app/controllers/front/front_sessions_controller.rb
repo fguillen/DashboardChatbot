@@ -9,7 +9,7 @@ class Front::FrontSessionsController < Front::BaseController
     @front_session = FrontSession.new(front_session_params.to_h)
 
     if @front_session.save
-      flash[:notice] = t("controllers.front_sessions.authenticate.success")
+      flash[:notice] = t("controllers.front_sessions.authenticate.success", name: @front_session.record.name)
       HiPrometheus::Metrics.counter_increment(:num_logins, { role: "front", user: @front_session.id })
       redirect_back_or_default front_root_path
     else

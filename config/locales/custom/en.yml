@@ -98,7 +98,7 @@ en:
     front_sessions:
       authenticate:
         error: Authentication Failure
-        success: Front User Authenticated
+        success: Usuario aceptado, hola de nuevo %{name}
       forgot_password_submit:
         error: Sorry, %{email} can't be found in our database
         success: Password reset instructions have been sent to your email
