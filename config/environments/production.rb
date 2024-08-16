@@ -21,9 +21,10 @@ Rails.application.configure do
 
   config.active_record.dump_schema_after_migration = false
 
+  config.action_mailer.logger = ActiveSupport::Logger.new("#{Rails.root}/log/mailer.log")
   config.action_mailer.delivery_method = :sendgrid_actionmailer
   config.action_mailer.sendgrid_actionmailer_settings = {
-    api_key: ENV["SENDGRID_API_KEY"],
+    api_key: APP_CONFIG["sendgrid_api_key"],
   }
 
   # config.rails_semantic_logger.format = :logfmt

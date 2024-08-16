@@ -38,10 +38,14 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.perform_caching = false
+  # config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = false
   # config.action_mailer.logger = ActiveSupport::Logger.new("#{Rails.root}/log/mailer.log")
   # config.action_mailer.delivery_method = :test
+  config.action_mailer.delivery_method = :sendgrid_actionmailer
+  config.action_mailer.sendgrid_actionmailer_settings = {
+    api_key: Rails.application.credentials.sendgrid_api_key,
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

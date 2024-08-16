@@ -1,7 +1,7 @@
 ---
 test:
   host: dashboardchatbot.fernandoguillen.info.test
-  admin_email: it@dashboardchatbot.fernandoguillen.info
+  admin_email: fernando@playcocola.com
   google_auth:
     client_id: "GOOGLE_AUTH_CLIENT_ID"
     client_secret: "GOOGLE_AUTH_CLIENT_SECRET"
@@ -23,12 +23,13 @@ test:
   opentelemetry:
     traces_exporter: "none"
   dashboard_db_connection: "postgresql://@127.0.0.1/orbita_dashboard"
-  openai_api_key: "<%= Rails.application.credentials.openai_api_key %>"
+  open_router_key: "<%= Rails.application.credentials.open_router_key %>"
+  sendgrid_api_key: "<%= Rails.application.credentials.sendgrid_api_key %>"
   redis_url: "redis://localhost:6379/1"
 
 development:
   host: dashboardchatbot.fernandoguillen.info.pizza
-  admin_email: it@dashboardchatbot.fernandoguillen.info
+  admin_email: fernando@playcocola.com
   google_auth:
     client_id: "<%= Rails.application.credentials.google_auth.client_id %>"
     client_secret: "<%= Rails.application.credentials.google_auth.client_secret %>"
@@ -48,12 +49,13 @@ development:
   opentelemetry:
     traces_exporter: "none" # console
   dashboard_db_connection: "postgresql://@127.0.0.1/orbita_dashboard"
-  openai_api_key: "<%= Rails.application.credentials.openai_api_key %>"
+  open_router_key: "<%= Rails.application.credentials.open_router_key %>"
+  sendgrid_api_key: "<%= Rails.application.credentials.sendgrid_api_key %>"
   redis_url: "redis://localhost:6379/1"
 
 production:
   host: dashboardchatbot.fernandoguillen.info
-  admin_email: it@dashboardchatbot.fernandoguillen.info
+  admin_email: fernando@playcocola.com
   google_auth:
     client_id: "<%= Rails.application.credentials.google_auth.client_id %>"
     client_secret: "<%= Rails.application.credentials.google_auth.client_secret %>"
@@ -76,5 +78,5 @@ production:
     traces_exporter: "otlp"
     otlp_endpoint: "http://otelcollector.railsskeleton.com:14318"
   dashboard_db_connection: "postgresql://dashboard:dashboard@dashboard_db/dashboard"
-  openai_api_key: "<%= Rails.application.credentials.openai_api_key %>"
+  sendgrid_api_key: "<%= Rails.application.credentials.sendgrid_api_key %>"
   redis_url: "redis://redis:6379/1"

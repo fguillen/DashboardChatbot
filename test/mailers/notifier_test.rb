@@ -8,7 +8,7 @@ class NotifierTest < ActionMailer::TestCase
     email = Notifier.admin_user_reset_password(admin_user).deliver_now
     assert !ActionMailer::Base.deliveries.empty?
 
-    assert_equal ["it@dashboardchatbot.fernandoguillen.info"], email.from
+    assert_equal ["fernando@playcocola.com"], email.from
     assert_equal ["admin@email.com"], email.to
     assert_equal "[DashboardChatbot] Password reset", email.subject
 
@@ -23,7 +23,7 @@ class NotifierTest < ActionMailer::TestCase
     email = Notifier.front_user_reset_password(front_user).deliver_now
     assert !ActionMailer::Base.deliveries.empty?
 
-    assert_equal ["it@dashboardchatbot.fernandoguillen.info"], email.from
+    assert_equal ["fernando@playcocola.com"], email.from
     assert_equal ["front@email.com"], email.to
     assert_equal "[DashboardChatbot] Password reset", email.subject
 
@@ -35,7 +35,7 @@ class NotifierTest < ActionMailer::TestCase
     email = Notifier.simple_test_email("Wadus", "wadus@example.com").deliver_now
     assert !ActionMailer::Base.deliveries.empty?
 
-    assert_equal ["it@dashboardchatbot.fernandoguillen.info"], email.from
+    assert_equal ["fernando@playcocola.com"], email.from
     assert_equal ["wadus@example.com"], email.to
     assert_equal "[DashboardChatbot] Wadus", email.subject
 

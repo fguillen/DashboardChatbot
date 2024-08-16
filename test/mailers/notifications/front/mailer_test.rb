@@ -8,7 +8,7 @@ class Notifications::Front::MailerTest < ActionMailer::TestCase
     email = Notifications::Front::Mailer.on_new_article(front_user, article).deliver_now
     assert !ActionMailer::Base.deliveries.empty?
 
-    assert_equal ["it@dashboardchatbot.fernandoguillen.info"], email.from
+    assert_equal ["fernando@playcocola.com"], email.from
     assert_equal ["front@email.com"], email.to
     assert_equal "[DashboardChatbot] New Article: NEW_ARTICLE", email.subject
 
