@@ -6,7 +6,7 @@ class AI::Assistant
     ai_conversation: nil,
     on_new_message: nil
   )
-    @client = AI_CLIENT
+    @client = AI_CLIENT.client
     @system_directive = system_directive
     @model = model
     @conversation = ai_conversation || AI::Conversation.new
