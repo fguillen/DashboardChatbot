@@ -4,7 +4,7 @@ class Alert < ApplicationRecord
 
   belongs_to :front_user
   has_many :alert_emails, dependent: :destroy
-  has_one :conversation, dependent: :destroy
+  has_one :conversation
 
   scope :order_by_recent, -> { order("alerts.created_at desc") }
 

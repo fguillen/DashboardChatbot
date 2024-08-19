@@ -5,18 +5,6 @@
     <div class="card mb-5 mb-xxl-7">
       <div class="card-body">
         <div class="row gy-5">
-          <div class="col-md-6 d-flex justify-content-between">
-            <div>
-              <div class="mb-3">
-                <div class="d-flex align-items-center">
-                  <div class="px-2 py-1 bg-info-subtle rounded"><span class="text-info" data-feather="map-pin"></span></div>
-                  <h5 class="ms-2 text-body-emphasis mb-0">Location</h5>
-                </div>
-              </div>
-              <p class="lh-sm mb-0 text-body-tertiary">36/4A, James Tiberius Auditorium,<br />Vancouver, British Columbia, Canada </p>
-            </div>
-            <div class="my-4 mx-3 border-start border-translucent d-none d-md-block"></div>
-          </div>
           <div class="col-md-6">
             <div class="mb-3">
               <div class="d-flex align-items-center">
@@ -39,13 +27,14 @@
         <% end %>
       </div>
       <div class="col-12 col-sm-auto flex-sm-grow-1 flex-md-grow-0">
-        <button class="btn btn-phoenix-primary w-100" type="button"><span class="fa-regular fa-calendar-plus me-2"></span>Add to Calendar </button>
+        <%= link_to edit_front_alert_path(alert), class: "btn btn-phoenix-primary w-100" do %>
+          <i class="bi bi-pencil-square me-2"></i> Edit
+        <% end %>
       </div>
       <div class="col-6 col-sm-auto">
-        <button class="btn btn-phoenix-primary w-100" type="button"><span class="fa-solid fa-heart me-2"></span>3677</button>
-      </div>
-      <div class="col-6 col-sm-auto">
-        <button class="btn btn-phoenix-primary w-100" type="button"><span class="fa-solid fa-share-nodes me-2"></span>4467</button>
+        <%= button_to front_alert_path(alert), class: "btn btn-phoenix-warning w-100", method: :delete do %>
+          <i class="bi bi-trash me-2"></i> Delete
+        <% end %>
       </div>
     </div>
   </div>

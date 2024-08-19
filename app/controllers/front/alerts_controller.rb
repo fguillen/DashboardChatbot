@@ -27,16 +27,16 @@ class Front::AlertsController < Front::BaseController
   #   end
   # end
 
-  # def edit; end
+  def edit; end
 
-  # def update
-  #   if @alert.update(alert_params)
-  #     redirect_to [:front, @alert], notice: t("controllers.alerts.update.success")
-  #   else
-  #     flash.now[:alert] = t("controllers.alerts.update.error")
-  #     render action: :edit
-  #   end
-  # end
+  def update
+    if @alert.update(alert_params)
+      redirect_to [:front, @alert], notice: t("controllers.alerts.update.success")
+    else
+      flash.now[:alert] = t("controllers.alerts.update.error")
+      render action: :edit
+    end
+  end
 
   def destroy
     @alert.destroy
@@ -50,9 +50,9 @@ class Front::AlertsController < Front::BaseController
 
   protected
 
-  # def alert_params
-  #   params.require(:alert).permit(:front_user_id, :title, :body, :tag_list, :pic)
-  # end
+  def alert_params
+    params.require(:alert).permit(:name, :prompt, :schedule, :model)
+  end
 
   private
 

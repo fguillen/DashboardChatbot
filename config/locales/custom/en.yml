@@ -79,6 +79,10 @@ en:
     alerts:
       send:
         success: La alerta ha sido enviada.
+      updated:
+        success: La alerta ha sido actualizada.
+      destroy:
+        success: La alerta ha sido eliminada.
     articles:
       create:
         error: Errors were encountered when trying to create Article
