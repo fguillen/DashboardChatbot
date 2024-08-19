@@ -1,0 +1,20 @@
+Front Notification
+
+New AlertEmail has been created
+
+* To: ALERT_TO
+* From: ALERT_FROM
+* Subject: ALERT_SUBJECT
+* Prompt: ALERT_PROMPT
+* Alert name: ALERT_NAME
+* Model: ALERT_MODEL
+* ID: 1HRccfPcwl34dJodwioYxq
+
+## Content
+
+ALERT_CONTENT
+
+=======
+DashboardChatbot
+* hello dashboardchatbot.fernandoguillen.info.test
+
