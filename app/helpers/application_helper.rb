@@ -40,6 +40,11 @@ module ApplicationHelper
 
       result
     end
+  rescue => e
+    Rails.logger.error(e)
+    Rails.logger.error(e.backtrace.join("\n"))
+
+    "ERROR, trying to parse content type: #{message.content_language} for this content:\n #{message.content}"
   end
 
   def formatted_date_or_empty(date)
