@@ -6,6 +6,13 @@ GIT
       rake
       test-unit
 
+GIT
+  remote: https://github.com/jeromeag/safe_ruby.git
+  revision: 5012ae20a13605b9c1c5be774cf3b3706d3bae4c
+  specs:
+    safe_ruby (1.0.5)
+      childprocess (~> 5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -133,7 +140,8 @@ GEM
       thor (~> 1.0)
     byebug (11.1.3)
     chartkick (5.0.7)
-    childprocess (5.0.0)
+    childprocess (5.1.0)
+      logger (~> 1.5)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.3.4)
@@ -470,8 +478,6 @@ GEM
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     ruby_http_client (3.5.5)
-    safe_ruby (1.0.4)
-      childprocess (>= 0.3.9)
     scrypt (3.0.8)
       ffi-compiler (>= 1.0, < 2.0)
       rake (>= 9, < 14)
@@ -630,7 +636,7 @@ DEPENDENCIES
   rollbar
   ruby-openai
   ruby_regex!
-  safe_ruby
+  safe_ruby!
   scrypt
   sendgrid-actionmailer
   sequel
