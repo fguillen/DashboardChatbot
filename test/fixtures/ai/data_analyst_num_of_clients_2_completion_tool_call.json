@@ -1,0 +1,35 @@
+{
+  "id": "gen-R1EYFRqrUtMCKFUTcXngTeyHwcf9",
+  "model": "openai/gpt-4o",
+  "object": "chat.completion",
+  "created": 1724963193,
+  "choices": [
+    {
+      "logprobs": null,
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "refusal": null,
+        "tool_calls": [
+          {
+            "index": 0,
+            "id": "call_Ug03s1UO73zpyc5RW2jhcXUj",
+            "type": "function",
+            "function": {
+              "name": "LangMini-Tools-Database__execute",
+              "arguments": "{\"input\":\"SELECT COUNT(*) FROM dashboard_customernode;\"}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "system_fingerprint": "fp_157b3831f5",
+  "usage": {
+    "prompt_tokens": 1568,
+    "completion_tokens": 29,
+    "total_tokens": 1597
+  }
+}

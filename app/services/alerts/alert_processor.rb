@@ -2,7 +2,7 @@ class Alerts::AlertProcessor < Service
   def perform(alert)
     conversation = Conversation.create!(front_user: alert.front_user, title: alert.name)
     _messages =
-      Conversation::ProcessUserMessageOpenRouterService.perform(
+      Conversation::ProcessUserMessageService.perform(
         conversation,
         "user",
         alert.prompt,

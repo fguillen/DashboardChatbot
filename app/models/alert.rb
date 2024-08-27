@@ -16,7 +16,8 @@ class Alert < ApplicationRecord
     Sidekiq::Cron::Job.create(
       name: "Alert-#{self.id}",
       cron: self.schedule,
-      class: "AlertExecuterJob", args: self
+      class: "AlertExecuterJob",
+      args: self
     )
   end
 

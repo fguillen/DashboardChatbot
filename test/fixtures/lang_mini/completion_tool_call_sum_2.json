@@ -1,0 +1,24 @@
+{
+  "id": "gen-8TFyYWBP62QRkTLVosRIFYwJL0k5",
+  "model": "openai/gpt-4o",
+  "object": "chat.completion",
+  "created": 1724791538,
+  "choices": [
+    {
+      "logprobs": null,
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "2 plus 3 equals 5.",
+        "refusal": ""
+      }
+    }
+  ],
+  "system_fingerprint": "fp_157b3831f5",
+  "usage": {
+    "prompt_tokens": 130,
+    "completion_tokens": 9,
+    "total_tokens": 139
+  }
+}

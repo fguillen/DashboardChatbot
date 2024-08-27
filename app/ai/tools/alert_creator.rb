@@ -1,4 +1,4 @@
-class Tools::AlertCreator < AI::Tool
+class Tools::AlertCreator < LangMini::Tool
   def initialize(front_user:)
     @front_user = front_user
   end

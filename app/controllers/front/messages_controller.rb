@@ -11,7 +11,7 @@ class Front::MessagesController < Front::BaseController
     @message.conversation = @conversation
 
     if @message.valid?
-      @messages = Conversation::ProcessUserMessageOpenRouterService.perform(@conversation, @message.role, @message.content, @message.model)
+      @messages = Conversation::ProcessUserMessageService.perform(@conversation, @message.role, @message.content, @message.model)
 
       # Notifications::OnNewMessageNotificationService.perform(@message)
       HiPrometheus::Metrics.counter_increment(:num_messages, { user: current_front_user.id })

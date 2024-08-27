@@ -1,6 +1,6 @@
 class Alerts::GenerateAlertEmailContent < Service
   def perform(alert:, conversation:)
-    ai_conversation = Conversation::ConversationToAIConversationService.perform(conversation)
+    ai_conversation = Conversation::ConversationToLangMiniConversationService.perform(conversation)
     assistant =
       Assistants::ConversationAssistant.new(
         ai_conversation: ai_conversation,

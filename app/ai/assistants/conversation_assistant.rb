@@ -1,4 +1,4 @@
-class Assistants::ConversationAssistant < AI::Assistant
+class Assistants::ConversationAssistant < Lang::Assistant
   # def after_initialize
   #   clean_conversation
   # end

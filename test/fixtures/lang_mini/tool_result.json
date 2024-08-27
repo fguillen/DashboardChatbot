@@ -1,0 +1,6 @@
+  {
+    "role": "tool",
+    "tool_call_id": "call_Z79bsWuK4twmLNx9smS7M1bI",
+    "name": "LangMini-Tools-Math__sum",
+    "content": "5"
+  }
