@@ -1,4 +1,4 @@
-class Tools::Math < AI::Tool
+class LangMini::Tools::Math < LangMini::Tool
   def tool_description_path
     "#{__dir__}/math.json"
   end

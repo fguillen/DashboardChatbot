@@ -21,19 +21,19 @@
 #   }
 # }
 
-class AI::Completion
-  attr_reader :raw
+class LangMini::Completion
+  attr_reader :data
 
-  def initialize(raw)
-    @raw = raw
+  def initialize(data)
+    @data = LangMini::Utils.symbolize_keys(data)
   end
 
   def message
-    @raw["choices"][0]["message"]
+    @data[:choices][0][:message]
   end
 
   def tool_calls
-    @raw["choices"][0]["message"]["tool_calls"]
+    @data[:choices][0][:message][:tool_calls]
   end
 
   def tools?

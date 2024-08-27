@@ -1,0 +1,35 @@
+{
+  "id": "gen-AlGCrOYJ5KFfqC4x0SVR5nv3iSYI",
+  "model": "openai/gpt-4o",
+  "object": "chat.completion",
+  "created": 1724791536,
+  "choices": [
+    {
+      "logprobs": null,
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "refusal": null,
+        "tool_calls": [
+          {
+            "index": 0,
+            "id": "call_Z79bsWuK4twmLNx9smS7M1bI",
+            "type": "function",
+            "function": {
+              "name": "LangMini-Tools-Math__sum",
+              "arguments": "{\"num_1\":2,\"num_2\":3}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "system_fingerprint": "fp_cb7cc8e106",
+  "usage": {
+    "prompt_tokens": 86,
+    "completion_tokens": 29,
+    "total_tokens": 115
+  }
+}

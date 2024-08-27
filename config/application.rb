@@ -1,6 +1,8 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
+
+require_relative "../lib/lang_mini/lang_mini.rb" # TODO: remove this once it is separatated in a gem
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

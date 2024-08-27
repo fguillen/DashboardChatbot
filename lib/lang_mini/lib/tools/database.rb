@@ -1,7 +1,7 @@
 require "sequel"
 
 # Inspired in: https://github.com/dghirardo/langchainrb/blob/5cd81647caf02a0520cd210db9fbbbb52fec4a44/lib/langchain/tool/database.rb
-class Tools::Database < AI::Tool
+class LangMini::Tools::Database < LangMini::Tool
 
   def tool_description_path
     "#{__dir__}/database.json"

@@ -21,12 +21,12 @@
 #   }
 # }
 
-class AI::Message
-  attr_reader :data, :raw
+class LangMini::Message
+  attr_reader :data, :completion
 
-  def initialize(data:, raw: nil)
+  def initialize(data:, completion: nil)
     @data = data
-    @raw = raw
+    @completion = completion
   end
 
   private_class_method :new
@@ -39,8 +39,8 @@ class AI::Message
     @data&.dig(:content)
   end
 
-  def raw
-    @raw
+  def completion
+    @completion
   end
 
   def tool_calls
@@ -52,21 +52,24 @@ class AI::Message
   end
 
   def model
-    @raw&.dig("model")
+    @completion&.dig(:model)
   end
 
   def self.from_hash(hash)
-    new(data: hash, raw: hash)
+    new(data: hash)
   end
 
-  def self.from_completion(completion)
-    data = completion.message
-    raw = completion.raw
+  def self.from_completion(p_completion)
+    data = LangMini::Utils.symbolize_keys(p_completion.message)
+    completion = LangMini::Utils.symbolize_keys(p_completion.data)
 
-    new(data:, raw:)
+    new(data:, completion:)
   end
 
-  def to_s
-    raw
+  def to_hash
+    {
+      data: @data,
+      completion: @completion
+    }
   end
 end

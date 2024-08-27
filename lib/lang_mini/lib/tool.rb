@@ -1,4 +1,4 @@
-class AI::Tool
+class LangMini::Tool
   # Tool description like in here: https://openrouter.ai/docs/requests#tool-calls
   def tool_description_path
   end
