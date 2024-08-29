@@ -1,0 +1,24 @@
+{
+  "id": "gen-5Sw0eZpysTZKtUTRkIScI6azTmA2",
+  "model": "openai/gpt-4o",
+  "object": "chat.completion",
+  "created": 1724961642,
+  "choices": [
+    {
+      "logprobs": null,
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "I have access to the following tools:\n\n1. **Math Tool**: \n   - `LangMini-Tools-Math__sum`: Sums two numbers.\n\n2. **Database Tools**:\n   - `LangMini-Tools-Database__describe_tables`: Returns the schema for a list of tables.\n   - `LangMini-Tools-Database__list_tables`: Returns a list of tables in the database.\n   - `LangMini-Tools-Database__execute`: Executes a SQL query and returns the results.\n\n3. **Chart Tools**:\n   - `Tools-Chart__create_line_chart`: Creates a line chart of the data.\n   - `Tools-Chart__create_column_chart`: Creates a column chart of the data.\n\n4. **AlertCreator Tool**:\n   - `Tools-AlertCreator__create_alert`: Creates a recurrent alert email that will be sent to the user with the specified regularity.\n\n5. **Multi Tool Use**:\n   - `multi_tool_use.parallel`: Allows running multiple tools simultaneously if they can operate in parallel.\n\nFeel free to ask for any specific operations or queries you need!",
+        "refusal": ""
+      }
+    }
+  ],
+  "system_fingerprint": "fp_157b3831f5",
+  "usage": {
+    "prompt_tokens": 1562,
+    "completion_tokens": 229,
+    "total_tokens": 1791
+  }
+}

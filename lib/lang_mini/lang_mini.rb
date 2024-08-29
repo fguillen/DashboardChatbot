@@ -1,4 +1,6 @@
 module LangMini
+  DEFAULT_MODEL = "openai/gpt-4o"
+
   def self.reset
     @@logger = nil
   end

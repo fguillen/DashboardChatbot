@@ -1,6 +1,6 @@
 require "chartkick"
 
-class Tools::Chart < AI::Tool
+class Tools::Chart < LangMini::Tool
   def tool_description_path
     "#{__dir__}/chart.json"
   end

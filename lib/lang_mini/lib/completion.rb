@@ -39,4 +39,8 @@ class LangMini::Completion
   def tools?
     tool_calls.present?
   end
+
+  def model
+    @data[:model]
+  end
 end

@@ -1,0 +1,151 @@
+{
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "LangMini-Tools-Math__sum",
+        "description": "Math Tool: sum two numbers",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "num_1": {
+              "type": "number",
+              "description": "The first number to sum"
+            },
+            "num_2": {
+              "type": "number",
+              "description": "The second number to sum"
+            }
+          },
+          "required": [
+            "num_1",
+            "num_2"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "LangMini-Tools-Database__describe_tables",
+        "description": "Database Tool: Returns the schema for a list of tables",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "tables": {
+              "type": "string",
+              "description": "The tables to describe."
+            }
+          },
+          "required": [
+            "tables"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "LangMini-Tools-Database__list_tables",
+        "description": "Database Tool: Returns a list of tables in the database",
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "LangMini-Tools-Database__execute",
+        "description": "Database Tool: Executes a SQL query and returns the results",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "string",
+              "description": "SQL query to be executed"
+            }
+          },
+          "required": [
+            "input"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "Tools-Chart__create_line_chart",
+        "description": "Chart Tool: Creates a line chart of the data. You don't need to parse the response of this function.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "string",
+              "description": "The data to display in the chart. In the format of an array of arrays [key, value]"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "Tools-Chart__create_column_chart",
+        "description": "Chart Tool: Creates a column chart of the data. You don't need to parse the response of this function.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "string",
+              "description": "The data to display in the chart. In the format of an array of hashes, each hash: {name: <serie_name>, data: [[<value_label_1>, <data_1>], ...] }"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "Tools-AlertCreator__create_alert",
+        "description": "AlertCreator Tool: Creates a recurrent alert email that will be sent to the user with the regularity specified in the parameters.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the alert. Descriptive and human friendly name that describes the content of the alert. Max length: 120 characters."
+            },
+            "schedule": {
+              "type": "string",
+              "description": "The regularity of the alert expressed in the crontab format. Like: 0 0 * * * for every day at 00:00"
+            },
+            "context": {
+              "type": "string",
+              "description": "The context that You need to understand what is the meaning of the prompt."
+            },
+            "prompt": {
+              "type": "string",
+              "description": "The prompt the user can use to ask you for the requested information."
+            }
+          },
+          "required": [
+            "name",
+            "schedule",
+            "context",
+            "prompt"
+          ]
+        }
+      }
+    }
+  ],
+  "temperature": 0
+}

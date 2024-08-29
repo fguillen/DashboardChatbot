@@ -16,6 +16,19 @@ class Front::ConversationsControllerTest < ActionDispatch::IntegrationTest
     assert_primary_keys([conversation_2, conversation_1], assigns(:conversations))
   end
 
+  def test_index_should_not_show_alert_email_conversations
+    alert_email = FactoryBot.create(:alert_email)
+
+    conversation_1 = FactoryBot.create(:conversation, created_at: "2020-04-25", front_user: @front_user)
+    conversation_2 = FactoryBot.create(:conversation, created_at: "2020-04-26", front_user: @front_user, alert_email: alert_email) # should not be shown
+    conversation_3 = FactoryBot.create(:conversation, created_at: "2020-04-27") # should not be shown
+
+    get front_conversations_path
+
+    assert_template "front/conversations/index"
+    assert_primary_keys([conversation_1], assigns(:conversations))
+  end
+
   def test_show
     conversation = FactoryBot.create(:conversation, front_user: @front_user)
     message = FactoryBot.create(:message, conversation: conversation)

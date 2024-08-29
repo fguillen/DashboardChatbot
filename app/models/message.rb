@@ -16,6 +16,10 @@ class Message < ApplicationRecord
   before_create :init_order
   before_save :set_model_from_raw, if: Proc.new { |message| message.model.nil? }
 
+  serialize :raw, coder: JsonSerializerWithSymbolKeys
+  serialize :completion_raw, coder: JsonSerializerWithSymbolKeys
+  serialize :tool_calls, coder: JsonSerializerWithSymbolKeys
+
   after_create_commit do |message|
     puts ">>>>> broadcasting to: '#{conversation.id}_messages_stream'"
     broadcast_append_to(
@@ -56,9 +60,6 @@ class Message < ApplicationRecord
   # If content can be parsed to JSON
   # store it as JSON
   def content=(data)
-    puts ">>> message.data: #{data}"
-    puts ">>> message.data.class.name: #{data.class.name}"
-
     if data.nil?
       super(data)
       return

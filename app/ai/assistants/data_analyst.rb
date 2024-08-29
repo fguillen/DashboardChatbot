@@ -1,11 +1,11 @@
-class Assistants::DataAnalyst < AI::Assistant
+class Assistants::DataAnalyst < LangMini::Assistant
   def initialize(
-    model: "openrouter/auto",
-    ai_conversation: nil,
+    model: LangMini::DEFAULT_MODEL,
+    lang_mini_conversation: nil,
     on_new_message: nil,
     front_user:
   )
-    super(model:, ai_conversation:, on_new_message:)
+    super(model:, conversation: lang_mini_conversation, on_new_message:, client: self.client)
     @front_user = front_user
   end
 
@@ -14,33 +14,15 @@ class Assistants::DataAnalyst < AI::Assistant
   end
 
   def client
-    AI_CLIENT.client
+    AI_CLIENT
   end
 
   def tools
     [
-      Tools::Math.new,
-      Tools::Database.new(connection_string: APP_CONFIG["dashboard_db_connection"]),
+      LangMini::Tools::Math.new,
+      LangMini::Tools::Database.new(connection_string: APP_CONFIG["dashboard_db_connection"]),
       Tools::Chart.new,
       Tools::AlertCreator.new(front_user: @front_user)
     ]
   end
-
-  # def after_initialize
-  #   clean_conversation
-  # end
-
-  # # TODO: investigate why this is needed
-  # # If not I get error:
-  # # {
-  # # "message": "Invalid value for 'content': expected a string, got null.",
-  # # "type": "invalid_request_error",
-  # # "param": "messages.[4].content",
-  # # "code": null
-  # # }
-  # def clean_conversation
-  #   @conversation.messages.each do |message|
-  #     message.data[:content] = "" if message.content.nil?
-  #   end
-  # end
 end

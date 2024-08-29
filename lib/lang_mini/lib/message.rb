@@ -28,8 +28,18 @@ class LangMini::Message
     @data = data
     @completion = completion
   end
-
   private_class_method :new
+
+  def self.from_hash(hash)
+    new(data: hash)
+  end
+
+  def self.from_completion(p_completion)
+    data = LangMini::Utils.symbolize_keys(p_completion.message)
+    completion = p_completion
+
+    new(data:, completion:)
+  end
 
   def role
     @data&.dig(:role)
@@ -37,10 +47,6 @@ class LangMini::Message
 
   def content
     @data&.dig(:content)
-  end
-
-  def completion
-    @completion
   end
 
   def tool_calls
@@ -52,24 +58,13 @@ class LangMini::Message
   end
 
   def model
-    @completion&.dig(:model)
-  end
-
-  def self.from_hash(hash)
-    new(data: hash)
-  end
-
-  def self.from_completion(p_completion)
-    data = LangMini::Utils.symbolize_keys(p_completion.message)
-    completion = LangMini::Utils.symbolize_keys(p_completion.data)
-
-    new(data:, completion:)
+    @completion&.model
   end
 
   def to_hash
     {
       data: @data,
-      completion: @completion
+      completion: @completion.data
     }
   end
 end
