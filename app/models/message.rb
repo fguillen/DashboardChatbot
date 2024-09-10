@@ -74,27 +74,27 @@ class Message < ApplicationRecord
 
   def self.extract_function_arguments(tool_call)
     puts ">>>> tool_call: #{tool_call}"
-    case tool_call["function"]["name"]
+    case tool_call[:function][:name]
     when "Tools-Database__execute"
-      JSON.parse(tool_call["function"]["arguments"])["input"]
+      JSON.parse(tool_call[:function][:arguments])[:input]
     when "Tools-Database__describe_tables"
-      JSON.parse(tool_call["function"]["arguments"])["tables"]
+      JSON.parse(tool_call[:function][:arguments])[:tables]
     when "Tools-Database__list_tables"
       nil
     when "Tools-Chart__create_line_chart"
-      JSON.parse(tool_call["function"]["arguments"])["data"]
+      JSON.parse(tool_call[:function][:arguments])[:data]
     when "Tools-Chart__create_column_chart"
-      JSON.parse(tool_call["function"]["arguments"])["data"]
+      JSON.parse(tool_call[:function][:arguments])[:data]
     when "Tools-Math__sum"
-      JSON.parse(tool_call["function"]["arguments"])["data"]
+      JSON.parse(tool_call[:function][:arguments])[:data]
     else
-      puts ">>> (extract_function_arguments) unknown tool call name: '#{tool_call["function"]["name"]}'"
+      puts ">>> (extract_function_arguments) unknown tool call name: '#{tool_call[:function][:name]}'"
 
     end
   end
 
   def self.extract_function_arguments_language(tool_call)
-    case tool_call["function"]["name"]
+    case tool_call[:function][:name]
     when "Tools-Database__execute"
       "sql"
     when "Tools-Database__describe_tables"
@@ -104,7 +104,7 @@ class Message < ApplicationRecord
     when "Tools-Chart__create_column_chart"
       "chart_column"
     else
-      puts ">>> (extract_function_arguments_language) unknown tool call name: '#{tool_call["function"]["name"]}'"
+      puts ">>> (extract_function_arguments_language) unknown tool call name: '#{tool_call[:function][:name]}'"
     end
   end
 
@@ -121,7 +121,7 @@ class Message < ApplicationRecord
       return "markdown"
     end
 
-    case tool_call["function"]["name"]
+    case tool_call[:function][:name]
     when "Tools-Database__execute"
       "json"
     when "Tools-Database__describe_tables"
@@ -133,7 +133,7 @@ class Message < ApplicationRecord
     when "Tools-Chart__create_column_chart"
       "chart_column"
     else
-      puts ">>> (content_language) unknown tool call name: '#{tool_call["function"]["name"]}'"
+      puts ">>> (content_language) unknown tool call name: '#{tool_call[:function][:name]}'"
       "txt"
     end
 
@@ -151,7 +151,7 @@ class Message < ApplicationRecord
       return "#{message}\n\n#{content}"
     end
 
-    case tool_call["function"]["name"]
+    case tool_call[:function][:name]
     when "Tools-Database__execute"
       # content_fixed = content.gsub(/:(\w+)=>/, '"\1":')
       # content_fixed = content_fixed.gsub(":nil", ":null")
@@ -173,7 +173,7 @@ class Message < ApplicationRecord
     when "Tools-Math__sum"
       content
     else
-      message = "Message.content_parsed 2 ToolCall not Found: #{tool_call["function"]["name"]}"
+      message = "Message.content_parsed 2 ToolCall not Found: #{tool_call[:function][:name]}"
       puts ">>> #{message}"
       Rails.logger.error(message)
 
@@ -196,6 +196,6 @@ class Message < ApplicationRecord
   def set_model_from_raw
     return if raw.nil?
 
-    self.model ||= raw["model"]
+    self.model ||= raw[:model]
   end
 end

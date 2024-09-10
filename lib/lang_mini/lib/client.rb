@@ -34,7 +34,7 @@ module LangMini
     private
 
     def log(message)
-      LangMini.logger.debug("LangMini::Client: #{message}")
+      ::LangMini.logger.debug("LangMini::Client: #{message}")
     end
   end
 end

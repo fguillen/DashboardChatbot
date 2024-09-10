@@ -30,6 +30,9 @@ module DashboardChatbot
       require "log_book/event"
     end
 
+    # lang_mini
+    require "#{Rails.root}/lib/lang_mini/lang_mini.rb"
+
     config.active_storage.variant_processor = :mini_magick
 
     config.log_tags = {

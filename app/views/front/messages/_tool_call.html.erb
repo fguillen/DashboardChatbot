@@ -1,10 +1,10 @@
 <dl>
   <dt>ID</dt>
-  <dd><%= tool_call["id"] %></dd>
+  <dd><%= tool_call[:id] %></dd>
   <dt>Type</dt>
-  <dd><%= tool_call["type"] %></dd>
+  <dd><%= tool_call[:type] %></dd>
   <dt>Function.name</dt>
-  <dd><%= tool_call["function"]["name"] %></dd>
+  <dd><%= tool_call[:function][:name] %></dd>
 
   <% if Message.extract_function_arguments(tool_call).present? %>
     <dt>Function.arguments</dt>
