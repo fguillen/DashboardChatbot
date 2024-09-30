@@ -51,6 +51,18 @@ class Conversation < ApplicationRecord
     JSON.pretty_generate(to_hash)
   end
 
+  def to_hash_for_api
+    {
+      uuid:,
+      title:,
+      first_message_at: first_message_at&.to_formatted_s(:datetime_with_time_zone),
+      last_message_at: last_message_at&.to_formatted_s(:datetime_with_time_zone),
+      messages_count: messages.count,
+      models: messages.map(&:model).compact.uniq,
+      tokens:
+    }
+  end
+
   def tokens
     messages.map(&:tokens).compact.sum
   end
