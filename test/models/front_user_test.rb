@@ -14,6 +14,15 @@ class FrontUserTest < ActiveSupport::TestCase
     assert_not_nil(front_user.uuid)
   end
 
+  def test_api_token_on_create
+    front_user = FactoryBot.build(:front_user)
+    assert_nil(front_user.api_token)
+
+    front_user.save!
+
+    assert_not_nil(front_user.api_token)
+  end
+
   def test_primary_key
     front_user = FactoryBot.create(:front_user)
 

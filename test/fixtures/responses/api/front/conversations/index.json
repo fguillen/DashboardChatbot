@@ -1,0 +1,22 @@
+{
+  "conversations": [
+    {
+      "uuid": "CONVERSATION_UUID_2",
+      "title": "TITLE_2",
+      "first_message_at": null,
+      "last_message_at": null,
+      "messages_count": 0,
+      "models": [],
+      "tokens": 0
+    },
+    {
+      "uuid": "CONVERSATION_UUID_1",
+      "title": "TITLE_1",
+      "first_message_at": "2020-04-25 10:10:00 UTC",
+      "last_message_at": "2020-04-25 20:10:00 UTC",
+      "messages_count": 2,
+      "models": [],
+      "tokens": 0
+    }
+  ]
+}

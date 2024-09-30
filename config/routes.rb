@@ -36,6 +36,12 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :admin_users, only: [:index, :show, :create, :update, :destroy], param: :uuid
     end
+
+    namespace :front do
+      resources :conversations, only: [:show, :new, :create, :index] do
+        resources :messages, only: [:create]
+      end
+    end
   end
 
   namespace :front do
@@ -59,7 +65,7 @@ Rails.application.routes.draw do
       get :process_alert, on: :member
     end
     resources :messages, only: [:show]
-    resources :front_users, only: [:show, :edit, :update] # , :new, :create, :destroy
+    resources :front_users, only: [:edit, :update] # , :new, :create, :destroy
   end
 
   namespace :guest do
