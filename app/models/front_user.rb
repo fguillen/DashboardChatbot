@@ -4,6 +4,7 @@ class FrontUser < ApplicationRecord
 
   self.primary_key = :uuid
   include HasUuid
+  include HasApiToken
 
   acts_as_authentic do |config|
     config.crypto_provider = ::Authlogic::CryptoProviders::SCrypt
@@ -16,6 +17,7 @@ class FrontUser < ApplicationRecord
 
   has_many :articles, dependent: :destroy
   has_many :conversations, dependent: :destroy
+  has_many :messages, through: :conversations
   has_many :alerts, dependent: :destroy
 
   validates :name, presence: true

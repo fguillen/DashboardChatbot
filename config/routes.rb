@@ -59,7 +59,7 @@ Rails.application.routes.draw do
       get :process_alert, on: :member
     end
     resources :messages, only: [:show]
-    resources :front_users, only: [:show, :edit, :update] # , :new, :create, :destroy
+    resources :front_users, only: [:edit, :update] # , :new, :create, :destroy
   end
 
   namespace :guest do

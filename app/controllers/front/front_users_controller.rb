@@ -3,45 +3,45 @@ class Front::FrontUsersController < Front::BaseController
   before_action :load_front_user, only: [:show, :edit, :update, :destroy]
   before_action :validate_current_front_user, only: [:show, :edit, :update, :destroy]
 
-  def show; end
+  # def show; end
 
-  def new
-    @front_user = FrontUser.new
-    render layout: "front/base_login"
-  end
+  # def new
+  #   @front_user = FrontUser.new
+  #   render layout: "front/base_login"
+  # end
 
-  def create
-    @front_user = FrontUser.new(front_user_params)
+  # def create
+  #   @front_user = FrontUser.new(front_user_params)
 
-    captcha = valid_captcha?(model: @front_user)
+  #   captcha = valid_captcha?(model: @front_user)
 
-    if !captcha
-      HiPrometheus::Metrics.counter_increment(:captcha_fail)
-    end
+  #   if !captcha
+  #     HiPrometheus::Metrics.counter_increment(:captcha_fail)
+  #   end
 
-    if captcha && @front_user.save
-      redirect_to [:front, @front_user], notice: t("controllers.front_users.create.success")
-    else
-      flash.now[:alert] = t("controllers.front_users.create.error")
-      render action: :new, layout: "front/base_login"
-    end
-  end
+  #   if captcha && @front_user.save
+  #     redirect_to [:front, @front_user], notice: t("controllers.front_users.create.success")
+  #   else
+  #     flash.now[:alert] = t("controllers.front_users.create.error")
+  #     render action: :new, layout: "front/base_login"
+  #   end
+  # end
 
   def edit; end
 
   def update
     if @front_user.update(front_user_params)
-      redirect_to [:front, @front_user], notice: t("controllers.front_users.update.success")
+      redirect_to edit_front_front_user_path(@front_user), notice: t("controllers.front_users.update.success")
     else
       flash.now[:alert] = t("controllers.front_users.update.error")
       render action: :edit
     end
   end
 
-  def destroy
-    @front_user.destroy
-    redirect_to :front_root, notice: t("controllers.front_users.destroy.success")
-  end
+  # def destroy
+  #   @front_user.destroy
+  #   redirect_to :front_root, notice: t("controllers.front_users.destroy.success")
+  # end
 
   def reset_password
     load_front_user_from_perishable_token
@@ -63,7 +63,7 @@ class Front::FrontUsersController < Front::BaseController
   end
 
   def my_profile
-    redirect_to action: "show", id: current_front_user
+    redirect_to action: :edit, id: current_front_user
   end
 
   protected

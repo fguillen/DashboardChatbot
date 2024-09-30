@@ -2,10 +2,77 @@
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><%= link_to t("layouts.breadcrumbs.front_users"), :front_front_users %></li>
-    <li class="breadcrumb-item"><%= link_to @front_user.name, [:front, @front_user] %></li>
-    <li class="breadcrumb-item active"><%= t("layouts.breadcrumbs.edit") %></li>
+    <li class="breadcrumb-item active">Your profile</li>
   </ol>
 </nav>
 
-<%= render "form" %>
+<div class="mb-9">
+  <div class="row g-6">
+    <div class="col-12 col-xl-4">
+      <div class="card mb-5">
+        <div class="card-header hover-actions-trigger position-relative mb-6" style="min-height: 130px; ">
+          <div class="bg-holder rounded-top" style="background-image: linear-gradient(0deg, #000000 -3%, rgba(0, 0, 0, 0) 83%), url(<%= image_url("phoenix/assets/img/generic/59.png") %>)">
+            <input class="d-none" id="upload-settings-cover-image" type="file" />
+            <label class="cover-image-file-input" for="upload-settings-cover-image"></label>
+            <div class="hover-actions end-0 bottom-0 pe-1 pb-2 text-white dark__text-gray-1100"><span class="fa-solid fa-camera me-2"></span></div>
+          </div>
+          <input class="d-none" id="upload-settings-porfile-picture" type="file" />
+          <label class="avatar avatar-4xl status-online feed-avatar-profile cursor-pointer" for="upload-settings-porfile-picture">
+            <%= image_tag("phoenix/assets/img/team/40x40/1.webp", class: "rounded-circle img-thumbnail shadow-sm border-0", width: "200") %>
+          </label>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex flex-wrap mb-2 align-items-center">
+                <h3 class="me-2"><%= @front_user.name %></h3><span class="fw-normal fs-8">u/<%= @front_user.name.parameterize %></span>
+              </div>
+              <div class="d-flex d-xl-block d-xxl-flex align-items-center">
+                <div class="d-flex mb-xl-2 mb-xxl-0"><span class="fa-solid fa-user-group fs-10 me-2 me-lg-1 me-xl-2"></span>
+                  <h6 class="d-inline-block mb-0"><%= @front_user.conversations.count %><span class="fw-semibold ms-1 me-4">Conversations</span></h6>
+                </div>
+                <div class="d-flex"><span class="fa-solid fa-user-check fs-10 me-2 me-lg-1 me-xl-2"></span>
+                  <h6 class="d-block d-xl-inline-block mb-0"><%= @front_user.messages.count %><span class="fw-semibold ms-1">Messages</span></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-xl-8">
+      <%= form_for [:front, @front_user] do |f| %>
+        <div class="border-bottom mb-4">
+          <div class="mb-6">
+            <h4 class="mb-4">Personal Information</h4>
+            <div class="row g-3">
+              <div class="col-12 col-sm-6">
+                <div class="form-icon-container">
+                  <div class="form-floating">
+                    <%= f.text_field :name, class: "form-control form-icon-input", placeholder: t("activerecord.attributes.front_user.name") %>
+                    <%= f.label :name, class: "text-body-tertiary form-icon-label"%>
+                  </div><span class="fa-solid fa-user text-body fs-9 form-icon"></span>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="form-icon-container">
+                  <div class="form-floating">
+                    <%= f.text_field :email, class: "form-control form-icon-input", placeholder: t("activerecord.attributes.front_user.email") %>
+                    <%= f.label :email, class: "text-body-tertiary form-icon-label"%>
+                  </div><span class="fa-solid fa-envelope text-body fs-9 form-icon"></span>
+                </div>
+              </div>
+            </div>
+            <h4 class="mt-4 mb-4">API Token</h4>
+            <p><%= @front_user.api_token %>
+          </div>
+          <div class="text-end mb-6">
+            <div>
+              <%= f.submit class: "btn btn-phoenix-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
