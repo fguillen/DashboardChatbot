@@ -35,8 +35,8 @@ class Api::Front::ConversationsControllerTest < ActionDispatch::IntegrationTest
 
   def test_index
     conversation_1 = FactoryBot.create(:conversation, created_at: "2020-04-25", title: "TITLE_1", front_user: @front_user, uuid: "CONVERSATION_UUID_1")
-    conversation_2 = FactoryBot.create(:conversation, created_at: "2020-04-26", title: "TITLE_2", front_user: @front_user, uuid: "CONVERSATION_UUID_2")
-    conversation_3 = FactoryBot.create(:conversation, created_at: "2020-04-27", title: "TITLE_3")
+    _conversation_2 = FactoryBot.create(:conversation, created_at: "2020-04-26", title: "TITLE_2", front_user: @front_user, uuid: "CONVERSATION_UUID_2")
+    _conversation_3 = FactoryBot.create(:conversation, created_at: "2020-04-27", title: "TITLE_3")
 
     _message_1 = FactoryBot.create(:message, role: "user", content: "MESSAGE_1", created_at: "2020-04-25 10:10", conversation: conversation_1, uuid: "MESSAGE_UUID_1")
     _message_2 = FactoryBot.create(:message, role: "user", content: "MESSAGE_1", created_at: "2020-04-25 20:10", conversation: conversation_1, uuid: "MESSAGE_UUID_2")
@@ -54,7 +54,7 @@ class Api::Front::ConversationsControllerTest < ActionDispatch::IntegrationTest
 
   def test_show
     conversation = FactoryBot.create(:conversation, front_user: @front_user, uuid: "CONVERSATION_UUID", created_at: "2024-10-01 09:10", title: "CONVERSATION_TITLE")
-    message = FactoryBot.create(:message, conversation: conversation, uuid: "MESSAGE_UUID", role: "user", content: "MESSAGE_CONTENT", created_at: "2024-10-01 10:10")
+    _message = FactoryBot.create(:message, conversation: conversation, uuid: "MESSAGE_UUID", role: "user", content: "MESSAGE_CONTENT", created_at: "2024-10-01 10:10")
 
     get(
       api_front_conversation_path(conversation),

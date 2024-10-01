@@ -6,6 +6,7 @@
     "last_message_at": "2024-10-01 10:10:00 UTC",
     "messages": [
       {
+        "created_at": "2024-10-01 10:10:00 UTC",
         "role": "user",
         "content": "MESSAGE_CONTENT",
         "raw": null

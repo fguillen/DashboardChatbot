@@ -37,6 +37,7 @@ class Message < ApplicationRecord
 
   def to_hash
     hash = {
+      created_at: created_at.to_formatted_s(:datetime_with_time_zone),
       role:,
       content:,
       raw:
