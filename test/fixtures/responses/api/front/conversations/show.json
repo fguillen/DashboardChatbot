@@ -1,0 +1,15 @@
+{
+  "conversation": {
+    "uuid": "CONVERSATION_UUID",
+    "title": "CONVERSATION_TITLE",
+    "first_message_at": "2024-10-01 10:10:00 UTC",
+    "last_message_at": "2024-10-01 10:10:00 UTC",
+    "messages": [
+      {
+        "role": "user",
+        "content": "MESSAGE_CONTENT",
+        "raw": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "conversation": {
+    "uuid": "CONVERSATION_UUID",
+    "title": "The Title Wadus",
+    "first_message_at": null,
+    "last_message_at": null,
+    "messages": []
+  }
+}
