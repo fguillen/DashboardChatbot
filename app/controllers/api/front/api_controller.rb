@@ -2,6 +2,8 @@ class Api::Front::ApiController < ApplicationController
   include Api::Concerns::CaptureErrors
   include Api::Concerns::AuthenticateViaApiToken
 
+  protect_from_forgery with: :null_session
+
   before_action :load_current_user
 
   def load_current_user
