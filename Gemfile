@@ -11,6 +11,7 @@ gem "rails", "7.1.3.3"
 
 # Please: keep the gem declarations sorted.
 #   This will make future mergings MUCH easier. <3
+# gem "rails_semantic_logger"
 gem "active_storage_validations"
 gem "acts-as-taggable-on"
 gem "amazing_print"
@@ -45,7 +46,7 @@ gem "opentelemetry-instrumentation-rails"
 gem "pg" # For dashboard db connection with Sequel
 gem "prometheus-client"
 gem "puma"
-# gem "rails_semantic_logger"
+gem "rack-cors"
 gem "redcarpet"
 gem "rexml"
 gem "rollbar"
