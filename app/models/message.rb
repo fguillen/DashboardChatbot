@@ -76,18 +76,18 @@ class Message < ApplicationRecord
   def self.extract_function_arguments(tool_call)
     puts ">>>> tool_call: #{tool_call}"
     case tool_call[:function][:name]
-    when "Tools-Database__execute"
-      JSON.parse(tool_call[:function][:arguments])[:input]
-    when "Tools-Database__describe_tables"
-      JSON.parse(tool_call[:function][:arguments])[:tables]
-    when "Tools-Database__list_tables"
+    when "LangMini-Tools-Database__execute"
+      JSON.parse(tool_call[:function][:arguments]).deep_symbolize_keys[:input]
+    when "LangMini-Tools-Database__describe_tables"
+      JSON.parse(tool_call[:function][:arguments]).deep_symbolize_keys[:tables]
+    when "LangMini-Tools-Database__list_tables"
       nil
     when "Tools-Chart__create_line_chart"
-      JSON.parse(tool_call[:function][:arguments])[:data]
+      JSON.parse(tool_call[:function][:arguments]).deep_symbolize_keys[:data]
     when "Tools-Chart__create_column_chart"
-      JSON.parse(tool_call[:function][:arguments])[:data]
+      JSON.parse(tool_call[:function][:arguments]).deep_symbolize_keys[:data]
     when "Tools-Math__sum"
-      JSON.parse(tool_call[:function][:arguments])[:data]
+      JSON.parse(tool_call[:function][:arguments]).deep_symbolize_keys[:data]
     else
       puts ">>> (extract_function_arguments) unknown tool call name: '#{tool_call[:function][:name]}'"
 
@@ -96,9 +96,9 @@ class Message < ApplicationRecord
 
   def self.extract_function_arguments_language(tool_call)
     case tool_call[:function][:name]
-    when "Tools-Database__execute"
+    when "LangMini-Tools-Database__execute"
       "sql"
-    when "Tools-Database__describe_tables"
+    when "LangMini-Tools-Database__describe_tables"
       "txt"
     when "Tools-Chart__create_line_chart"
       "chart_line"
@@ -123,11 +123,11 @@ class Message < ApplicationRecord
     end
 
     case tool_call[:function][:name]
-    when "Tools-Database__execute"
+    when "LangMini-Tools-Database__execute"
       "json"
-    when "Tools-Database__describe_tables"
+    when "LangMini-Tools-Database__describe_tables"
       "sql"
-    when "Tools-Database__list_tables"
+    when "LangMini-Tools-Database__list_tables"
       "json"
     when "Tools-Chart__create_line_chart"
       "chart_line"
@@ -153,7 +153,7 @@ class Message < ApplicationRecord
     end
 
     case tool_call[:function][:name]
-    when "Tools-Database__execute"
+    when "LangMini-Tools-Database__execute"
       # content_fixed = content.gsub(/:(\w+)=>/, '"\1":')
       # content_fixed = content_fixed.gsub(":nil", ":null")
       # content_fixed = content_fixed.gsub(/:(\w{3},\s[\w\s]+\d{4})/) { |e| ":\"#{Date.parse(e)}\"" } # dates like: "Thu, 09 May 2024"
@@ -161,9 +161,9 @@ class Message < ApplicationRecord
       # JSON.pretty_generate(JSON.parse(content_fixed))
 
       JSON.pretty_generate(SafeRuby.eval(content))
-    when "Tools-Database__describe_tables"
+    when "LangMini-Tools-Database__describe_tables"
       content
-    when "Tools-Database__list_tables"
+    when "LangMini-Tools-Database__list_tables"
       # content_fixed = content.gsub(/:(\w+)/, '"\1"')
       # JSON.pretty_generate(JSON.parse(content_fixed))
       JSON.pretty_generate(SafeRuby.eval(content))
