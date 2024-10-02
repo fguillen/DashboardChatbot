@@ -64,7 +64,7 @@ class LangMini::Message
   def to_hash
     {
       data: @data,
-      completion: @completion.data
+      completion: @completion&.data
     }
   end
 end

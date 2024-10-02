@@ -8,6 +8,8 @@ module Api::Concerns::CaptureErrors
   private
 
   def show_errors(exception)
+    Rails.logger.error(exception)
+    Rails.logger.error(exception.backtrace.join("\n"))
     render json: { errors: [exception.message] }, status: :unprocessable_entity
   end
 end

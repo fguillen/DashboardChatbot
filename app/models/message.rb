@@ -37,10 +37,14 @@ class Message < ApplicationRecord
 
   def to_hash
     hash = {
+      uuid:,
+      tokens:,
+      model:,
       created_at: created_at&.to_formatted_s(:datetime_with_time_zone),
       role:,
       content:,
-      raw:
+      raw:,
+      completion_raw:
     }
 
     hash[:tool_calls] = tool_calls if tool_calls.present?
@@ -54,7 +58,7 @@ class Message < ApplicationRecord
   end
 
   def tokens
-    raw&.dig("usage", "total_tokens")
+    completion_raw&.dig(:usage, :total_tokens)
   end
 
 

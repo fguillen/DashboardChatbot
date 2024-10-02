@@ -19,7 +19,6 @@ class Api::Front::ConversationsControllerTest < ActionDispatch::IntegrationTest
     )
     assert_response :unprocessable_entity
 
-
     get(
       api_front_conversations_path(@front_user),
       headers: { "Authorization" => "NON_EXISTS_TOKEN" }
