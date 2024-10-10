@@ -40,7 +40,6 @@ docker compose run --rm --entrypoint "\
     -subj '/CN=localhost'" certbot
 ```
 
-
 ### Start the app
 
 (Included in the server_setup.sh script)
