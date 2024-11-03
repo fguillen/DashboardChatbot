@@ -27,7 +27,6 @@ class Front::MessagesController < Front::BaseController
         format.turbo_stream
       end
     else
-      puts ">>>> message.errors: #{@message.errors.full_messages}"
       flash.now[:alert] = t("controllers.messages.create.error")
       render template: "front/conversations/show"
     end

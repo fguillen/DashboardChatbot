@@ -8,7 +8,7 @@ New AlertEmail has been created
 * Prompt: ALERT_PROMPT
 * Alert name: ALERT_NAME
 * Model: ALERT_MODEL
-* ID: 1HRccfPcwl34dJodwioYxq
+* ID: 3hz6bzSk2qYi949GoOiWZK
 
 ## Content
 
@@ -17,3 +17,4 @@ ALERT_CONTENT
 =======
 DashboardChatbot
 * hello sales-api.kelmia.com.test
+

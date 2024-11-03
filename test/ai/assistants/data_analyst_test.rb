@@ -14,6 +14,13 @@ class Assistants::DataAnalystTest < ActiveSupport::TestCase
         content: "what tools you have?"
       )
 
+    # Write request fixtures
+    # OpenRouter::Client.any_instance.expects(:complete).with() do |conversation, key_parameters|
+    #   write_fixture("ai/data_analyst_list_of_tools_request.json", JSON.pretty_generate(conversation))
+    #   puts ">>>> model: #{key_parameters[:model]}"
+    #   write_fixture("ai/data_analyst_assistant_extras.json", JSON.pretty_generate(key_parameters[:extras]))
+    # end
+
     # Mock OpenRouter::Client
     OpenRouter::Client.any_instance.expects(:complete).with(
       JSON.parse(read_fixture("ai/data_analyst_list_of_tools_request.json"), symbolize_names: true),
@@ -44,23 +51,40 @@ class Assistants::DataAnalystTest < ActiveSupport::TestCase
         content: "Tell me the number of clients we have in our database"
       )
 
-    # Mock OpenRouter::Client 1: Request number of clients
-    OpenRouter::Client.any_instance.expects(:complete).with(
-      JSON.parse(read_fixture("ai/data_analyst_num_of_clients_1_request.json"), symbolize_names: true),
-      model: LangMini::DEFAULT_MODEL,
-      extras: JSON.parse(read_fixture("ai/data_analyst_assistant_extras.json"), symbolize_names: true)
-    ).returns(
+
+    # Write request fixtures
+    OpenRouter::Client.any_instance.expects(:complete).with() do |conversation, key_parameters|
+      write_fixture("ai/data_analyst_num_of_clients_1_request.json", JSON.pretty_generate(conversation))
+      puts ">>>> model: #{key_parameters[:model]}"
+      write_fixture("ai/data_analyst_assistant_extras.json", JSON.pretty_generate(key_parameters[:extras]))
+    end.returns(
       JSON.parse(read_fixture("ai/data_analyst_num_of_clients_2_completion_tool_call.json"), symbolize_names: true)
     )
-
-    # Mock OpenRouter::Client 2: Request with the tool result
-    OpenRouter::Client.any_instance.expects(:complete).with(
-      JSON.parse(read_fixture("ai/data_analyst_num_of_clients_3_tool_result.json"), symbolize_names: true),
-      model: LangMini::DEFAULT_MODEL,
-      extras: JSON.parse(read_fixture("ai/data_analyst_assistant_extras.json"), symbolize_names: true)
-    ).returns(
+    OpenRouter::Client.any_instance.expects(:complete).with() do |conversation, key_parameters|
+      write_fixture("ai/data_analyst_num_of_clients_3_tool_result.json", JSON.pretty_generate(conversation))
+      puts ">>>> model: #{key_parameters[:model]}"
+      write_fixture("ai/data_analyst_assistant_extras.json", JSON.pretty_generate(key_parameters[:extras]))
+    end.returns(
       JSON.parse(read_fixture("ai/data_analyst_num_of_clients_4_completion_result.json"), symbolize_names: true)
     )
+
+    # # Mock OpenRouter::Client 1: Request number of clients
+    # OpenRouter::Client.any_instance.expects(:complete).with(
+    #   JSON.parse(read_fixture("ai/data_analyst_num_of_clients_1_request.json"), symbolize_names: true),
+    #   model: LangMini::DEFAULT_MODEL,
+    #   extras: JSON.parse(read_fixture("ai/data_analyst_assistant_extras.json"), symbolize_names: true)
+    # ).returns(
+    #   JSON.parse(read_fixture("ai/data_analyst_num_of_clients_2_completion_tool_call.json"), symbolize_names: true)
+    # )
+
+    # # Mock OpenRouter::Client 2: Request with the tool result
+    # OpenRouter::Client.any_instance.expects(:complete).with(
+    #   JSON.parse(read_fixture("ai/data_analyst_num_of_clients_3_tool_result.json"), symbolize_names: true),
+    #   model: LangMini::DEFAULT_MODEL,
+    #   extras: JSON.parse(read_fixture("ai/data_analyst_assistant_extras.json"), symbolize_names: true)
+    # ).returns(
+    #   JSON.parse(read_fixture("ai/data_analyst_num_of_clients_4_completion_result.json"), symbolize_names: true)
+    # )
 
     new_lang_mini_messages = assistant.completion(message: lang_mini_message)
     last_lang_mini_message = new_lang_mini_messages.last

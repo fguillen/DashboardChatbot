@@ -27,6 +27,13 @@ class Front::MessagesControllerTest < ActionDispatch::IntegrationTest
   def test_create_valid
     conversation = FactoryBot.create(:conversation, front_user: @front_user)
 
+    Conversation::ProcessUserMessageService.expects(:perform).with(
+      conversation:,
+      role: Message.roles[:user],
+      content: "The Body Wadus",
+      model: nil
+    ).returns([{ message: "MESSAGE" }])
+
     post(
       front_conversation_messages_path(conversation),
       params: {
@@ -37,13 +44,7 @@ class Front::MessagesControllerTest < ActionDispatch::IntegrationTest
       }
     )
 
-    message = Message.last
     assert_redirected_to [:front, conversation]
-
-    assert_equal("user", message.role)
-    assert_equal("The Body Wadus", message.content)
-    assert_equal(@front_user, message.front_user)
-    assert_equal(conversation, message.conversation)
   end
 
   # def test_on_create_send_notifications

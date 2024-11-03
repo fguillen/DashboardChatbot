@@ -77,7 +77,7 @@ gem "virtus"
 group :test do
   gem "factory_bot"
   gem "minitest"
-  gem "mocha"
+  gem "mocha", require: false
   gem "rails-controller-testing"
   gem "simplecov", require: false
 end
