@@ -2,8 +2,8 @@ Front Notification
 
 New Article has been created
 
-* http://dashboardchatbot.fernandoguillen.info.test/front/articles/ARTICLE_UUID
+* http://sales-api.kelmia.com.test/front/articles/ARTICLE_UUID
 
 =======
 DashboardChatbot
-* hello dashboardchatbot.fernandoguillen.info.test
+* hello sales-api.kelmia.com.test

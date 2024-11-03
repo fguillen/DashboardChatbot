@@ -33,7 +33,7 @@ Rails.application.configure do
 
   # Cable config
   config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
-  config.hosts << "dashboardchatbot.fernandoguillen.info"
+  config.hosts << "sales-api.kelmia.com"
   config.hosts << "localhost"
   config.hosts << "upstream_app"
 end

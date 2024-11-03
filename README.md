@@ -29,8 +29,8 @@ Check there for:
 
 ```
 BASE_PATH="./data/certbot"
-CERT_PATH="/etc/letsencrypt/live/dashboardchatbot.fernandoguillen.info"
-mkdir -p $BASE_PATH/conf/live/dashboardchatbot.fernandoguillen.info
+CERT_PATH="/etc/letsencrypt/live/sales-api.kelmia.com"
+mkdir -p $BASE_PATH/conf/live/sales-api.kelmia.com
 curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf > "$BASE_PATH/conf/options-ssl-nginx.conf"
   curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot/certbot/ssl-dhparams.pem > "$BASE_PATH/conf/ssl-dhparams.pem"
 docker compose run --rm --entrypoint "\

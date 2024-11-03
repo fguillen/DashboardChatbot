@@ -1,6 +1,6 @@
 ---
 test:
-  host: dashboardchatbot.fernandoguillen.info.test
+  host: sales-api.kelmia.com.test
   admin_email: fernando@playcocola.com
   google_auth:
     client_id: "GOOGLE_AUTH_CLIENT_ID"
@@ -28,7 +28,7 @@ test:
   redis_url: "redis://localhost:6379/1"
 
 development:
-  host: dashboardchatbot.fernandoguillen.info.pizza
+  host: sales-api.kelmia.com.pizza
   admin_email: fernando@playcocola.com
   google_auth:
     client_id: "<%= Rails.application.credentials.google_auth.client_id %>"
@@ -54,7 +54,7 @@ development:
   redis_url: "redis://localhost:6379/1"
 
 production:
-  host: dashboardchatbot.fernandoguillen.info
+  host: sales-api.kelmia.com
   admin_email: fernando@playcocola.com
   google_auth:
     client_id: "<%= Rails.application.credentials.google_auth.client_id %>"

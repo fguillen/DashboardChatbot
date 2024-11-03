@@ -15,5 +15,5 @@ scrape_configs:
       - targets:
           - localhost
         labels:
-          job: dashboardchatbot.fernandoguillen.info
+          job: sales-api.kelmia.com
           __path__: /var/log/rails/*.log

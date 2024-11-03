@@ -16,5 +16,4 @@ ALERT_CONTENT
 
 =======
 DashboardChatbot
-* hello dashboardchatbot.fernandoguillen.info.test
-
+* hello sales-api.kelmia.com.test
