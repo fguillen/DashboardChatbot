@@ -3,6 +3,8 @@ class Front::MessagesController < Front::BaseController
   before_action :load_conversation, only: [:create]
   before_action :load_message, only: [:show]
 
+  # after_action :confirm_last_model_answer, only: [:create]
+
   def show
   end
 
@@ -11,13 +13,14 @@ class Front::MessagesController < Front::BaseController
     @message.conversation = @conversation
 
     if @message.valid?
-      @messages =
-        Conversation::ProcessUserMessageService.perform(
-          conversation: @conversation,
-          role: @message.role,
-          content: @message.content,
-          model: @message.model
-        )
+      Conversation::ProcessUserMessageService.perform(
+        conversation: @conversation,
+        role: @message.role,
+        content: @message.content,
+        model: @message.model
+      )
+
+      Conversation::ConfirmLastModelAnswer.perform(conversation: @conversation)
 
       # Notifications::OnNewMessageNotificationService.perform(@message)
       HiPrometheus::Metrics.counter_increment(:num_messages, { user: current_front_user.id })
@@ -47,4 +50,8 @@ class Front::MessagesController < Front::BaseController
   def load_message
     @message = Message.find(params[:id])
   end
+
+  # def confirm_last_model_answer
+  #   Conversation::ConfirmLastModelAnswer.perform(conversation: @conversation)
+  # end
 end

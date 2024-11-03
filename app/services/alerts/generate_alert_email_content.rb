@@ -3,7 +3,7 @@ class Alerts::GenerateAlertEmailContent < Service
     ai_conversation = Conversation::ConversationToLangMiniConversationService.perform(conversation)
     assistant =
       Assistants::ConversationAssistant.new(
-        ai_conversation: ai_conversation,
+        ai_conversation:,
         model: alert.model
       )
 

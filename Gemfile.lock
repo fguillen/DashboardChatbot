@@ -154,6 +154,9 @@ GEM
       activerecord (>= 6.1)
       railties (>= 6.1)
     date (3.3.4)
+    debug (1.9.2)
+      irb (~> 1.10)
+      reline (>= 0.3.8)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     docile (1.4.0)
@@ -600,6 +603,7 @@ DEPENDENCIES
   chartkick
   cronex
   data_migrate
+  debug
   dockerfile-rails (>= 1.6)
   dotenv-rails
   error_highlight (>= 0.4.0)

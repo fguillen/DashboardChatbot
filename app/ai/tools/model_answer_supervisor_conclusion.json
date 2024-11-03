@@ -1,0 +1,23 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "supervisor_conclusion",
+      "description": "Supervisor conclusion: Send the conclusion you have made of the analysis of the conversation",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "boolean",
+            "description": "If your conclusion is that the model is correct or not. In case of correct answer with 'true', in case of incorrect answer with 'false'."
+          },
+          "content": {
+            "content": "string",
+            "description": "Your explanation of your conclusion. In case of necessary give clear instructions to the model to generate a proper answer."
+          }
+        },
+        "required": ["result", "content"]
+      }
+    }
+  }
+]
