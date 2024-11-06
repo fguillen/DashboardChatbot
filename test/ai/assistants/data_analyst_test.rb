@@ -94,4 +94,20 @@ class Assistants::DataAnalystTest < ActiveSupport::TestCase
     assert_equal("We have 68,144 clients in our database.", last_lang_mini_message.content)
     assert_equal("gen-iCy9Y4VTNaNpESbnFUgUdfhrZfqG", last_lang_mini_message.completion.data[:id])
   end
+
+  def test_tool_send_csv
+    front_user = FactoryBot.create(:front_user)
+    assistant = Assistants::DataAnalyst.new(front_user:)
+    lang_mini_message =
+      LangMini::Message.from_hash(
+        role: "user",
+        content: "Send by email the list of clients in our database"
+      )
+
+    new_lang_mini_messages = assistant.completion(message: lang_mini_message)
+    # last_lang_mini_message = new_lang_mini_messages.last
+
+    puts ">>>>>>>>>>>"
+    puts new_lang_mini_messages.map(&:content)
+  end
 end

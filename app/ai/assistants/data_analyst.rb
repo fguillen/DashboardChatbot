@@ -22,7 +22,8 @@ class Assistants::DataAnalyst < LangMini::Assistant
       LangMini::Tools::Math.new,
       LangMini::Tools::Database.new(connection_string: APP_CONFIG["dashboard_db_connection"]),
       Tools::Chart.new,
-      Tools::AlertCreator.new(front_user: @front_user)
+      Tools::AlertCreator.new(front_user: @front_user),
+      Tools::SendCsv.new(front_user: @front_user)
     ]
   end
 end

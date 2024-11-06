@@ -10,7 +10,7 @@ module LangMini
   end
 
   def self.logger
-    @@logger ||= Logger.new($stdout)
+    @@logger ||= Rails.logger
   end
 end
 

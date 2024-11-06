@@ -1,0 +1,23 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "send_csv",
+      "description": "SendCSV Tool: Generates a CSV file with the provided data and sends it as an email to the user.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "description": "The subject of the email. Descriptive and human friendly name that describes the content of the data. Max length: 120 characters."
+          },
+          "data": {
+            "type": "string",
+            "description": "The data to send in the email. The data should be in the format of an array of hashes like: [{key1: '<value1>', key2: '<value2>'}, {key1: '<value1>', key2: '<value2>'}, ...]"
+          }
+        },
+        "required": ["subject", "data"]
+      }
+    }
+  }
+]

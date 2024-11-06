@@ -21,4 +21,12 @@ class Notifications::Front::Mailer < ActionMailer::Base
       subject: "[DashboardChatbot] New Alert: #{@alert_email.subject}"
     )
   end
+
+  def send_csv(subject:, csv:, user:)
+    attachments['dashboard_chatbot_data.csv'] = { mime_type: 'text/csv', content: csv }
+    mail(
+      to: user.email,
+      subject: "[DashboardChatbot] #{subject}"
+    )
+  end
 end
