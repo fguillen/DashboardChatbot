@@ -11,7 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
-  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_id", null: false
     t.string "record_type", null: false
@@ -21,7 +24,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,13 +36,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "active_storage_variant_records", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "admin_authorizations", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "admin_authorizations", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
     t.string "admin_user_id"
@@ -48,7 +51,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["admin_user_id"], name: "index_admin_authorizations_on_admin_user_id"
   end
 
-  create_table "admin_users", primary_key: "uuid", id: :string, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "admin_users", primary_key: "uuid", id: :string, force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.string "crypted_password"
@@ -63,7 +66,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["uuid"], name: "index_admin_users_on_uuid", unique: true
   end
 
-  create_table "alert_emails", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "alert_emails", primary_key: "uuid", id: { type: :string, limit: 36 }, force: :cascade do |t|
     t.string "subject"
     t.text "content"
     t.string "from"
@@ -75,7 +78,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["uuid"], name: "index_alert_emails_on_uuid", unique: true
   end
 
-  create_table "alerts", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "alerts", primary_key: "uuid", id: { type: :string, limit: 36 }, force: :cascade do |t|
     t.string "schedule", null: false
     t.text "context", null: false
     t.text "prompt", null: false
@@ -90,7 +93,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["uuid"], name: "index_alerts_on_uuid", unique: true
   end
 
-  create_table "articles", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "articles", primary_key: "uuid", id: { type: :string, limit: 36 }, force: :cascade do |t|
     t.string "title", null: false
     t.text "body", null: false
     t.string "front_user_id"
@@ -100,7 +103,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["uuid"], name: "index_articles_on_uuid", unique: true
   end
 
-  create_table "conversations", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "conversations", primary_key: "uuid", id: { type: :string, limit: 36 }, force: :cascade do |t|
     t.string "title", null: false
     t.string "front_user_id"
     t.datetime "created_at", precision: nil, null: false
@@ -111,10 +114,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["uuid"], name: "index_conversations_on_uuid", unique: true
   end
 
-  create_table "data_migrations", primary_key: "version", id: :string, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
-  create_table "front_authorizations", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "front_authorizations", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
     t.string "front_user_id"
@@ -123,7 +126,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["front_user_id"], name: "index_front_authorizations_on_front_user_id"
   end
 
-  create_table "front_users", primary_key: "uuid", id: :string, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "front_users", primary_key: "uuid", id: :string, force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.string "crypted_password"
@@ -139,87 +142,78 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["uuid"], name: "index_front_users_on_uuid", unique: true
   end
 
-  create_table "log_book_events", id: :integer, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "log_book_events", id: :integer, default: nil, force: :cascade do |t|
     t.string "historian_id", limit: 36
-    t.string "historian_type"
+    t.string "historian_type", limit: 255
     t.string "historizable_id", limit: 36
-    t.string "historizable_type"
-    t.text "differences", size: :medium
+    t.string "historizable_type", limit: 255
+    t.text "differences"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.index ["created_at"], name: "index_log_book_events_on_created_at"
-    t.index ["historizable_id", "historizable_type", "created_at"], name: "index_log_book_events_on_historizable_and_created_at"
+    t.index ["created_at"], name: "log_book_events_created_at_idx"
+    t.index ["historizable_id", "historizable_type", "created_at"], name: "log_book_events_historizabb4698-4319-4be5-87c9-c6c1ed13ebd2_idx"
   end
 
-  create_table "messages", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "messages", primary_key: "uuid", id: { type: :string, limit: 36 }, force: :cascade do |t|
     t.integer "order", null: false
-    t.string "role", null: false
+    t.string "role", limit: 255, null: false
     t.text "content"
-    t.string "tool_call_id"
-    t.string "conversation_id"
+    t.string "tool_call_id", limit: 255
+    t.string "conversation_id", limit: 255
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.json "raw"
-    t.string "model"
+    t.string "model", limit: 255
     t.json "tool_calls"
     t.json "completion_raw"
-    t.index ["conversation_id"], name: "fk_rails_7f927086d2"
-    t.index ["uuid"], name: "index_messages_on_uuid", unique: true
+    t.index ["conversation_id"], name: "messages_conversation_id_idx"
+    t.index ["uuid"], name: "messages_uuid_idx", unique: true
   end
 
-  create_table "sessions", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
-    t.string "session_id", null: false
+  create_table "sessions", id: :bigint, default: nil, force: :cascade do |t|
+    t.string "session_id", limit: 255, null: false
     t.text "data"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.index ["session_id"], name: "index_sessions_on_session_id"
-    t.index ["updated_at"], name: "index_sessions_on_updated_at"
+    t.index ["session_id"], name: "sessions_session_id_idx"
+    t.index ["updated_at"], name: "sessions_updated_at_idx"
   end
 
-  create_table "taggings", id: :integer, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "taggings", id: :integer, default: nil, force: :cascade do |t|
     t.integer "tag_id"
-    t.string "taggable_type"
+    t.string "taggable_type", limit: 255
     t.string "taggable_id", limit: 36
-    t.string "tagger_type"
+    t.string "tagger_type", limit: 255
     t.integer "tagger_id"
     t.string "context", limit: 128
     t.datetime "created_at", precision: nil
-    t.index ["context"], name: "index_taggings_on_context"
-    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-    t.index ["taggable_id", "taggable_type", "context"], name: "taggings_taggable_context_idx"
-    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
-    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
-    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
-    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
-    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
+    t.index ["context"], name: "taggings_context_idx"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_tag_id_taggable_i60a9b-9e86-4fc5-a017-74739e1d8217_idx", unique: true
+    t.index ["taggable_id", "taggable_type", "context"], name: "taggings_taggable_id_taggable_type_context_idx"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_taggable_id_taggable_type_tagger_id_context_idx"
+    t.index ["taggable_id"], name: "taggings_taggable_id_idx"
+    t.index ["taggable_type"], name: "taggings_taggable_type_idx"
+    t.index ["tagger_id", "tagger_type"], name: "taggings_tagger_id_tagger_type_idx"
+    t.index ["tagger_id"], name: "taggings_tagger_id_idx"
   end
 
-  create_table "tags", id: :integer, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
-    t.string "name", collation: "utf8mb3_bin"
+  create_table "tags", id: :integer, default: nil, force: :cascade do |t|
+    t.string "name", limit: 255
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.integer "taggings_count", default: 0
-    t.index ["name"], name: "index_tags_on_name", unique: true
+    t.index ["name"], name: "tags_name_idx", unique: true
   end
 
-  create_table "user_notifications_configs", primary_key: "uuid", id: :string, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "user_notifications_configs", primary_key: "uuid", id: { type: :string, limit: 255 }, force: :cascade do |t|
     t.json "active_notifications"
-    t.string "user_id"
-    t.string "user_type"
+    t.string "user_id", limit: 255
+    t.string "user_type", limit: 255
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_type", "user_id"], name: "index_user_notifications_configs_on_user_type_and_user_id", unique: true
-    t.index ["uuid"], name: "index_user_notifications_configs_on_uuid", unique: true
+    t.index ["user_type", "user_id"], name: "user_notifications_configs_user_type_user_id_idx", unique: true
+    t.index ["uuid"], name: "user_notifications_configs_uuid_idx", unique: true
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "alert_emails", "alerts", primary_key: "uuid"
-  add_foreign_key "alerts", "conversations", primary_key: "uuid"
-  add_foreign_key "alerts", "front_users", primary_key: "uuid"
-  add_foreign_key "articles", "front_users", primary_key: "uuid"
-  add_foreign_key "conversations", "alert_emails", primary_key: "uuid"
-  add_foreign_key "conversations", "front_users", primary_key: "uuid"
-  add_foreign_key "messages", "conversations", primary_key: "uuid"
-  add_foreign_key "taggings", "tags"
+  add_foreign_key "taggings", "tags", name: "taggings_tag_id_fkey"
 end
