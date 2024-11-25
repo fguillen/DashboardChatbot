@@ -5,7 +5,6 @@
     <a class="navbar-brand me-1 me-sm-3" href="../index.html">
       <div class="d-flex align-items-center">
         <div class="d-flex align-items-center">
-          <%= image_tag("phoenix/assets/img/icons/logo.png", width: 2) %>
           <h5 class="logo-text ms-2 d-none d-sm-block">phoenix</h5>
         </div>
       </div>
@@ -137,7 +136,6 @@
   <ul class="navbar-nav navbar-nav-icons flex-row">
     <li class="nav-item">
       <div class="theme-control-toggle fa-icon-wait px-2">
-        <input class="form-check-input ms-0 theme-control-toggle-input" type="checkbox" data-theme-control="phoenixTheme" value="dark" id="themeControlToggle" />
         <label class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Switch theme" style="height:32px;width:32px;"><span class="icon" data-feather="moon"></span></label>
         <label class="mb-0 theme-control-toggle-label theme-control-toggle-dark" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Switch theme" style="height:32px;width:32px;"><span class="icon" data-feather="sun"></span></label>
       </div>
@@ -159,7 +157,7 @@
               <div class="px-2 px-sm-3 py-3 notification-card position-relative read border-bottom">
                 <div class="d-flex align-items-center justify-content-between position-relative">
                   <div class="d-flex">
-                    <div class="avatar avatar-m status-online me-3"><%= image_tag("phoenix/assets/img/team/40x40/1.webp", class: "rounded-circle") %>
+                    <div class="avatar avatar-m status-online me-3">
                     </div>
                     <div class="flex-1 me-sm-3">
                       <h4 class="fs-9 text-body-emphasis">Jessie Samson</h4>
@@ -195,7 +193,7 @@
                 <div class="d-flex align-items-center justify-content-between position-relative">
                   <div class="d-flex">
                     <div class="avatar avatar-m status-online me-3">
-                      <%= image_tag("phoenix/assets/img/team/40x40/1.webp", class: "rounded-circle avatar-placeholder") %>
+
                     </div>
                     <div class="flex-1 me-sm-3">
                       <h4 class="fs-9 text-body-emphasis">Jessie Samson</h4>
@@ -212,7 +210,8 @@
               <div class="px-2 px-sm-3 py-3 notification-card position-relative unread border-bottom">
                 <div class="d-flex align-items-center justify-content-between position-relative">
                   <div class="d-flex">
-                    <div class="avatar avatar-m status-online me-3"><%= image_tag("phoenix/assets/img/team/40x40/1.webp", class: "rounded-circle") %>
+                    <div class="avatar avatar-m status-online me-3">
+
                     </div>
                     <div class="flex-1 me-sm-3">
                       <h4 class="fs-9 text-body-emphasis">Kiera Anderson</h4>
@@ -229,7 +228,8 @@
               <div class="px-2 px-sm-3 py-3 notification-card position-relative unread border-bottom">
                 <div class="d-flex align-items-center justify-content-between position-relative">
                   <div class="d-flex">
-                    <div class="avatar avatar-m status-online me-3"><%= image_tag("phoenix/assets/img/team/40x40/1.webp", class: "rounded-circle") %>
+                    <div class="avatar avatar-m status-online me-3">
+
                     </div>
                     <div class="flex-1 me-sm-3">
                       <h4 class="fs-9 text-body-emphasis">Herman Carter</h4>
@@ -246,7 +246,8 @@
               <div class="px-2 px-sm-3 py-3 notification-card position-relative read ">
                 <div class="d-flex align-items-center justify-content-between position-relative">
                   <div class="d-flex">
-                    <div class="avatar avatar-m status-online me-3"><%= image_tag("phoenix/assets/img/team/40x40/1.webp", class: "rounded-circle") %>
+                    <div class="avatar avatar-m status-online me-3">
+
                     </div>
                     <div class="flex-1 me-sm-3">
                       <h4 class="fs-9 text-body-emphasis">Benjamin Button</h4>
@@ -270,7 +271,6 @@
     </li>
     <li class="nav-item dropdown"><a class="nav-link lh-1 pe-0" id="navbarDropdownUser" href="#!" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
         <div class="avatar avatar-l ">
-          <%= image_tag("phoenix/assets/img/team/40x40/1.webp", class: "rounded-circle") %>
         </div>
       </a>
       <div class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-profile shadow border" aria-labelledby="navbarDropdownUser">
@@ -278,7 +278,6 @@
           <div class="card-body p-0">
             <div class="text-center pt-4 pb-3">
               <div class="avatar avatar-xl ">
-                <%= image_tag("phoenix/assets/img/team/40x40/1.webp", class: "rounded-circle") %>
               </div>
               <h6 class="mt-2 text-body-emphasis">Jerry Seinfield</h6>
             </div>
@@ -308,7 +307,7 @@
             </ul>
             <hr />
             <div class="px-3">
-              <%= link_to front_logout_path, class: "btn btn-phoenix-secondary d-flex flex-center w-100" do %>
+              <%= link_to front_logout_path, class: "btn btn-secondary d-flex flex-center w-100" do %>
                 <span class="me-2" data-feather="log-out"> </span>
                 Sign out
               <% end %>

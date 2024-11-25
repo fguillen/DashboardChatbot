@@ -11,14 +11,8 @@
     <div class="col-12 col-xl-4">
       <div class="card mb-5">
         <div class="card-header hover-actions-trigger position-relative mb-6" style="min-height: 130px; ">
-          <div class="bg-holder rounded-top" style="background-image: linear-gradient(0deg, #000000 -3%, rgba(0, 0, 0, 0) 83%), url(<%= image_url("phoenix/assets/img/generic/59.png") %>)">
-            <input class="d-none" id="upload-settings-cover-image" type="file" />
-            <label class="cover-image-file-input" for="upload-settings-cover-image"></label>
-            <div class="hover-actions end-0 bottom-0 pe-1 pb-2 text-white dark__text-gray-1100"><span class="fa-solid fa-camera me-2"></span></div>
-          </div>
           <input class="d-none" id="upload-settings-porfile-picture" type="file" />
           <label class="avatar avatar-4xl status-online feed-avatar-profile cursor-pointer" for="upload-settings-porfile-picture">
-            <%= image_tag("phoenix/assets/img/team/40x40/1.webp", class: "rounded-circle img-thumbnail shadow-sm border-0", width: "200") %>
           </label>
         </div>
         <div class="card-body">
@@ -68,7 +62,7 @@
           </div>
           <div class="text-end mb-6">
             <div>
-              <%= f.submit class: "btn btn-phoenix-primary" %>
+              <%= f.submit class: "btn btn-primary" %>
             </div>
           </div>
         </div>

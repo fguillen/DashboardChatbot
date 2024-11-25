@@ -76,7 +76,7 @@
 }
 
 .message .blockquote-footer {
-  color: var(--phoenix-secondary-light);
+  color: var(--secondary);
 }
 
 .message-id a {

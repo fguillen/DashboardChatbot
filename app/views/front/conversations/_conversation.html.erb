@@ -2,11 +2,11 @@
   <div class="d-flex flex-column h-100">
     <div class="card-header p-3 p-md-4 d-flex flex-between-center">
       <div class="d-flex align-items-center">
-        <button class="btn ps-0 pe-2 text-body-tertiary d-sm-none" data-phoenix-toggle="offcanvas" data-phoenix-target="#chat-sidebar">
+        <button class="btn ps-0 pe-2 text-body-tertiary d-sm-none" data-toggle="offcanvas" data-target="#chat-sidebar">
           <span class="fa-solid fa-chevron-left"></span>
         </button>
         <div class="d-flex flex-column flex-md-row align-items-md-center">
-          <button class="btn fs-7 fw-semibold text-body-emphasis d-flex align-items-center p-0 me-3 text-start" data-phoenix-toggle="offcanvas" data-phoenix-target="#thread-details-<%= conversation.id %>">
+          <button class="btn fs-7 fw-semibold text-body-emphasis d-flex align-items-center p-0 me-3 text-start" data-toggle="offcanvas" data-target="#thread-details-<%= conversation.id %>">
             <span class="line-clamp-1"><%= conversation.title %></span>
             <span class="fa-solid fa-chevron-down ms-2 fs-10"></span>
           </button>
@@ -18,7 +18,7 @@
           <i class="bi bi-plus-lg"></i>
         <% end %>
         <button class="btn btn-icon btn-primary me-1"><span class="fa-solid fa-video"></span></button>
-        <button class="btn btn-icon btn-phoenix-primary" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-ellipsis-vertical"></span></button>
+        <button class="btn btn-icon btn-primary" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-ellipsis-vertical"></span></button>
         <ul class="dropdown-menu dropdown-menu-end p-0">
           <li><a class="dropdown-item" href="#!">Add to favourites</a></li>
           <li><a class="dropdown-item" href="#!">View profile</a></li>
@@ -42,10 +42,10 @@
       <%= render partial: "/front/messages/form", locals: { conversation:, message: @message } %>
     </div>
 
-    <div class="conversation-details-over phoenix-offcanvas phoenix-offcanvas-top h-100 w-100 bg-body-emphasis scrollbar z-index-0 rounded" id="thread-details-<%= conversation.id %>">
+    <div class="conversation-details-over h-100 w-100 bg-body-emphasis scrollbar z-index-0 rounded" id="thread-details-<%= conversation.id %>">
       <div class="border-bottom border-translucent p-4">
         <div class="d-flex flex-between-center">
-          <button class="btn p-0" data-phoenix-dismiss="offcanvas"><span class="fa-solid fa-chevron-left text-body-tertiary"></span></button>
+          <button class="btn p-0" data-dismiss="offcanvas"><span class="fa-solid fa-chevron-left text-body-tertiary"></span></button>
           <button class="btn p-0 btn-reveal dropdown-toggle dropdown-caret-none transition-none" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-v text-body-tertiary"></span></button>
           <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item" href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
             <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Remove</a>
