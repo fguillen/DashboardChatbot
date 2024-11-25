@@ -1,0 +1,40 @@
+<div class="modal fade" id="negative-reaction-modal-<%= message.id %>" tabindex="-1" aria-labelledby="negative-reaction-modal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <%=
+      form_for(
+        [:front, message, UserReaction.new],
+        data: {
+          controller: "user-reaction-form",
+          action: "turbo:submit-end->user-reaction-form#submitEnd turbo:submit-start->user-reaction-form#submitStart",
+          turbo: true,
+          "user-reaction-form-modal-id-value": "negative-reaction-modal-#{message.id}"
+        }
+      ) do |f|
+    %>
+      <%= f.hidden_field :kind, value: UserReaction.kinds[:negative] %>
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Negative reaction</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= f.label(:explanation, class: "form-label") do %>
+            Optional explanation
+          <% end %>
+          <%=
+            f.text_area(
+              :explanation,
+              class: "form-control"
+            )
+          %>
+          <div class="form-text">Optionally you explain why this is not a satisfactory answer for your question</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <%= f.button("Send negative feedback", class: "btn btn-primary") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

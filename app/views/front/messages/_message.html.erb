@@ -49,22 +49,18 @@
 
         <footer class="blockquote-footer mt-1"><%= message.created_at.to_formatted_s(:short) %></footer>
 
-        <% if message.role != "user" %>
+        <% if message.is_model_final_answer? %>
           <hr>
-          <div class="d-flex flex-row on-hover">
-            <a href="#" class="icon-link"><i class="bi bi-hand-thumbs-up"></i></a>
-            <a href="#" class="icon-link ms-1"><i class="bi bi-hand-thumbs-down"></i></a>
-            <a
-              href="#"
-              class="icon-link icon-link-hover ms-auto text-decoration-none"
-              style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);"
-              data-controller="copy-to-clipboard"
-              data-action="click->copy-to-clipboard#copy"
-              data-copy-to-clipboard-element-to-copy-value="#message-<%= message.id %> .message-body"
-            ><i class="bi bi-copy"></i> Copy</a>
-          </div>
+          <%= render partial: "/front/messages/control_buttons", locals: { message: } %>
         <% end %>
       </div>
     </div>
   </div>
 <% end %>
+
+<script>
+  var tooltipTriggerList = document.querySelectorAll('#message-<%= message.id %> [data-bs-toggle="tooltip"]');
+  tooltipTriggerList.forEach(element => {
+    new bootstrap.Tooltip(element)
+  });
+</script>

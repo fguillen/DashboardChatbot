@@ -40,7 +40,6 @@ export default class extends Controller {
     this.textarea.disabled = false;
     this.sending = false;
     this.textarea.focus();
-
   }
 
   addSubconversationDiv() {

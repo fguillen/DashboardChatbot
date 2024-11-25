@@ -1,11 +1,10 @@
 default: &default
-  adapter: mysql2
-  encoding: utf8mb4
-  collation: utf8mb4_bin
-  username: root
-  password: <%= Rails.application.credentials.rails_db_password %>
-  host: 127.0.0.1
-  port: 3306
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  username: postgres
+  password: postgres
 
 development:
   <<: *default

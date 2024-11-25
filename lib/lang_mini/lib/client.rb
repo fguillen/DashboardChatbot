@@ -5,9 +5,10 @@ module LangMini
     end
 
     def models
-      Rails.cache.fetch("lang_mini_models") do
-        @open_router_client.models.map { |e| e["id"] }.sort
-      end
+      @models ||=
+        Rails.cache.fetch("lang_mini_models") do
+          @open_router_client.models.map { |e| e["id"] }.sort
+        end
     end
 
     def complete(messages_hash, model:, extras: {})

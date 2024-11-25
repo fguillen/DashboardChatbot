@@ -35,10 +35,9 @@ pre:has(> code) {
   -ms-hyphens: none;
   -o-tab-size: 4;
   -webkit-hyphens: none;
-  background-color: var(--phoenix-docs-language-bg);
+  background-color: #331904;
   border-radius: 0;
   color: #f8f8f2;
-  font-family: var(--phoenix-font-monospace);
   font-size: .8rem;
   hyphens: none;
   line-height: 1;
@@ -51,4 +50,8 @@ pre:has(> code) {
   word-break: normal;
   word-spacing: normal;
   word-wrap: normal;
+}
+
+.alert p {
+  margin-bottom: 0;
 }

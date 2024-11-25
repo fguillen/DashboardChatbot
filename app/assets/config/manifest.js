@@ -2,5 +2,5 @@
 //= link_directory ../stylesheets .css
 //= link_tree ../../javascript .js
 
-// Phoenix Theme
-//= link_tree ../../../vendor/themes
+// Bootstrap
+//= link_tree ../../../vendor/bootstrap

@@ -1,0 +1,3 @@
+<%= turbo_stream.replace @message do %>
+  <%= render partial: "front/messages/message", locals: { message: @message } %>
+<% end %>

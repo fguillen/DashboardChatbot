@@ -18,3 +18,6 @@ application.register("message-form", MessageFormController)
 
 import SubmitOnCmdEnterController from "controllers/submit_on_cmd_enter_controller"
 application.register("submit-on-cmd-enter", SubmitOnCmdEnterController)
+
+import UserReactionFormController from "controllers/user_reaction_form_controller"
+application.register("user-reaction-form", UserReactionFormController)

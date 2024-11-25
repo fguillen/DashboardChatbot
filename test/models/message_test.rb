@@ -91,4 +91,48 @@ class MessageTest < ActiveSupport::TestCase
     message.save!
     assert_equal(1, message.order)
   end
+
+  def test_user_reaction_positive?
+    message = FactoryBot.create(:message)
+    refute(message.user_reaction_positive?)
+
+    _user_reaction = FactoryBot.create(:user_reaction, message:, kind: UserReaction.kinds[:positive])
+    message.reload
+    assert(message.user_reaction_positive?)
+  end
+
+  def test_user_reaction_negative?
+    message = FactoryBot.create(:message)
+    refute(message.user_reaction_negative?)
+
+    _user_reaction = FactoryBot.create(:user_reaction, message:, kind: UserReaction.kinds[:negative])
+    message.reload
+    assert(message.user_reaction_negative?)
+  end
+
+  def test_is_model_final_answer?
+    message = FactoryBot.create(:message, role: "user", content: nil)
+    refute(message.is_model_final_answer?)
+
+    message.content = "CONTENT"
+    refute(message.is_model_final_answer?)
+
+    message.role = "assistant"
+    assert(message.is_model_final_answer?)
+  end
+
+  def test_is_debug?
+    message = FactoryBot.create(:message, role: "tool")
+    assert(message.is_debug?)
+
+    message.role = "user"
+    refute(message.is_debug?)
+
+    message.role = "assistant"
+    message.content = nil
+    assert(message.is_debug?)
+
+    message.content = "CONTENT"
+    refute(message.is_debug?)
+  end
 end

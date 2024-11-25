@@ -35,10 +35,6 @@
   /* border: var(--bs-body-color), 2px solid !important; */
 }
 
-.message.role-tool .card hr {
-  /* background-color: var(--bs-body-color); */
-}
-
 .message.language-chart_line .card,
 .message.language-chart_column .card {
   width: 100%;
@@ -76,7 +72,7 @@
 }
 
 .message .blockquote-footer {
-  color: var(--phoenix-secondary-light);
+  color: var(--secondary);
 }
 
 .message-id a {
@@ -94,11 +90,6 @@
 .message-form .form-control::placeholder {
   /* color: #BFBCB5 !important; */
   opacity: 1;
-}
-
-.message-form select {
-  /* background-color: var(--bs-primary-border-subtle) !important; */
-  /* border: var(--bs-body-color), 2px solid !important; */
 }
 
 .message-form .input-group .form-control {
