@@ -96,11 +96,6 @@
   opacity: 1;
 }
 
-.message-form select {
-  /* background-color: var(--bs-primary-border-subtle) !important; */
-  /* border: var(--bs-body-color), 2px solid !important; */
-}
-
 .message-form .input-group .form-control {
   padding: 16px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
