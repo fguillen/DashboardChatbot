@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-US" dir="ltr" data-navigation-type="horizontal" data-navbar-horizontal-shape="default">
+<html lang="en-US" dir="ltr" data-navigation-type="horizontal" data-navbar-horizontal-shape="default" data-bs-theme="dark">
   <head>
     <%= render "/layouts/front/header" %>
   </head>
@@ -9,9 +9,10 @@
       <div class="environment_badge"><%= Rails.env %></div>
     <% end %>
 
-    <main class="main" id="top">
+    <main id="top">
       <%= render "layouts/front/menu" %>
-      <div class="content">
+
+      <div class="content container-fluid">
         <% flash.each do |type, message| %>
           <div class="toast show w-100 <%= bootstrap_alert_class(type.to_sym) %>" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
             <div class="toast-header">
@@ -27,8 +28,8 @@
 
         <%= render "layouts/front/footer" %>
       </div>
-
-      <%= render "layouts/front/javascripts" %>
     </div>
+
+    <%= render "layouts/front/javascripts" %>
   </body>
 </html>

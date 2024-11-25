@@ -1,16 +1,14 @@
 <% title t("views.conversations.show.title", :conversation_uuid => @conversation.uuid) %>
 
-<nav class="mb-3" aria-label="breadcrumb">
-  <ol class="breadcrumb mb-0">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Home</a></li>
     <li class="breadcrumb-item"><%= link_to t("layouts.breadcrumbs.conversations"), :front_conversations %></li>
     <li class="breadcrumb-item active"><%= @conversation.title %></li>
   </ol>
 </nav>
 
-
 <div class="chat d-flex pt-1 mt-n1 mb-9">
-
   <!-- Conversation/NavBar :: INI -->
   <%= render partial: "front/conversations/nav_bar", locals: { conversation_active: @conversation } %>
   <!-- Conversation/NavBar :: END -->
