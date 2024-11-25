@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "7.1.3.3"
+gem "rails", "7.2.2"
 
 # Please: keep the gem declarations sorted.
 #   This will make future mergings MUCH easier. <3
@@ -15,7 +15,7 @@ gem "rails", "7.1.3.3"
 gem "active_storage_validations"
 gem "acts-as-taggable-on"
 gem "amazing_print"
-gem "authlogic"
+gem "authlogic", github: "binarylogic/authlogic", ref: "refs/pull/770/head"
 gem "aws-sdk-s3", require: false
 gem "bluecloth"
 gem "bootsnap", require: false

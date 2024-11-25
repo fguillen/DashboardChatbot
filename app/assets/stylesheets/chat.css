@@ -35,10 +35,6 @@
   /* border: var(--bs-body-color), 2px solid !important; */
 }
 
-.message.role-tool .card hr {
-  /* background-color: var(--bs-body-color); */
-}
-
 .message.language-chart_line .card,
 .message.language-chart_column .card {
   width: 100%;
