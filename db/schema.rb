@@ -142,7 +142,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["uuid"], name: "index_front_users_on_uuid", unique: true
   end
 
-  create_table "log_book_events", id: :integer, default: nil, force: :cascade do |t|
+  create_table "log_book_events", id: :integer, force: :cascade do |t|
     t.string "historian_id", limit: 36
     t.string "historian_type", limit: 255
     t.string "historizable_id", limit: 36
@@ -170,7 +170,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["uuid"], name: "messages_uuid_idx", unique: true
   end
 
-  create_table "sessions", id: :bigint, default: nil, force: :cascade do |t|
+  create_table "sessions", id: :bigint, force: :cascade do |t|
     t.string "session_id", limit: 255, null: false
     t.text "data"
     t.datetime "created_at", precision: nil, null: false
@@ -179,7 +179,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["updated_at"], name: "sessions_updated_at_idx"
   end
 
-  create_table "taggings", id: :integer, default: nil, force: :cascade do |t|
+  create_table "taggings", id: :integer, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type", limit: 255
     t.string "taggable_id", limit: 36
@@ -197,7 +197,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["tagger_id"], name: "taggings_tagger_id_idx"
   end
 
-  create_table "tags", id: :integer, default: nil, force: :cascade do |t|
+  create_table "tags", id: :integer, force: :cascade do |t|
     t.string "name", limit: 255
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
