@@ -14,13 +14,8 @@
 
       <div class="content container-fluid">
         <% flash.each do |type, message| %>
-          <div class="toast show w-100 <%= bootstrap_alert_class(type.to_sym) %>" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-            <div class="toast-header">
-              <strong class="me-auto"><%= type %></strong><small class="text-body-secondary"></small>
-
-              <button class="btn ms-2 p-0" type="button" data-bs-dismiss="toast" aria-label="Close"><span class="uil uil-times fs-7"></span></button>
-            </div>
-            <div class="toast-body"><%= markdown(message).html_safe %></div>
+          <div class="alert <%= bootstrap_alert_class(type.to_sym) %>" role="alert">
+            <%= markdown(message).html_safe %>
           </div>
         <% end %>
 

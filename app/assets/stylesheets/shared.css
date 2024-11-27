@@ -51,3 +51,7 @@ pre:has(> code) {
   word-spacing: normal;
   word-wrap: normal;
 }
+
+.alert p {
+  margin-bottom: 0;
+}

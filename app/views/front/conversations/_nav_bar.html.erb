@@ -1,26 +1,26 @@
-<ul>
-  <% current_front_user.conversations.no_from_alert.order_by_recent.each do |conversation| %>
-    <li>
+<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary" style="width: 380px;">
+  <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
+    <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+    <span class="fs-5 fw-semibold">New Conversation</span>
+  </a>
+
+  <div class="list-group list-group-flush border-bottom scrollarea">
+    <% current_front_user.conversations.no_from_alert.order_by_recent.each do |conversation| %>
       <%=
         link_to(
           front_conversation_path(conversation),
-          class: "nav-link d-flex align-items-center justify-content-center p-2 #{"active" if conversation == conversation_active}",
+          class: "list-group-item list-group-item-action py-3 lh-sm #{"active" if conversation == conversation_active}",
           aria: { selected: conversation == conversation_active },
           role: "tab",
           turbo: false
         ) do
       %>
-        <div class="flex-1 d-sm-none d-xl-block">
-          <div class="d-flex justify-content-between align-items-center">
-            <h5 class="text-body fw-normal name line-clamp-1"><%= conversation.title %></h5>
-            <p class="fs-10 text-body-tertiary text-opacity-85 mb-0 text-nowrap"><%= formatted_date_or_empty(conversation.last_message_at) %></p>
-          </div>
-          <div class="d-flex justify-content-between">
-            <p class="fs-9 mb-0 line-clamp-1 text-body-tertiary text-opacity-85 message">Some small summary</p>
-            <span class="badge badge-primary px-1 unread-badge"><%= conversation.messages.count %></span>
-          </div>
+        <div class="d-flex w-100 align-items-center justify-content-between">
+          <strong class="mb-1"><%= conversation.title %></strong>
+          <small><%= formatted_date_or_empty(conversation.last_message_at) %> / <%= conversation.messages.count %></small>
         </div>
+        <div class="col-10 mb-1 small">Some small summary</div>
       <% end %>
-    </li>
-  <% end %>
-</ul>
+    <% end %>
+  </div>
+</div>
