@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_27_144658) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "reaction_kind", ["positive", "negative"]
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -142,7 +146,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["uuid"], name: "index_front_users_on_uuid", unique: true
   end
 
-  create_table "log_book_events", id: :integer, force: :cascade do |t|
+  create_table "log_book_events", id: :serial, force: :cascade do |t|
     t.string "historian_id", limit: 36
     t.string "historian_type", limit: 255
     t.string "historizable_id", limit: 36
@@ -170,7 +174,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["uuid"], name: "messages_uuid_idx", unique: true
   end
 
-  create_table "sessions", id: :bigint, force: :cascade do |t|
+  create_table "sessions", force: :cascade do |t|
     t.string "session_id", limit: 255, null: false
     t.text "data"
     t.datetime "created_at", precision: nil, null: false
@@ -179,7 +183,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["updated_at"], name: "sessions_updated_at_idx"
   end
 
-  create_table "taggings", id: :integer, force: :cascade do |t|
+  create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type", limit: 255
     t.string "taggable_id", limit: 36
@@ -197,7 +201,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["tagger_id"], name: "taggings_tagger_id_idx"
   end
 
-  create_table "tags", id: :integer, force: :cascade do |t|
+  create_table "tags", id: :serial, force: :cascade do |t|
     t.string "name", limit: 255
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
@@ -215,5 +219,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_28_092231) do
     t.index ["uuid"], name: "user_notifications_configs_uuid_idx", unique: true
   end
 
+  create_table "user_reactions", primary_key: "uuid", id: { type: :string, limit: 36 }, force: :cascade do |t|
+    t.string "message_id", null: false
+    t.enum "kind", null: false, enum_type: "reaction_kind"
+    t.text "explanation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uuid"], name: "index_user_reactions_on_uuid", unique: true
+  end
+
   add_foreign_key "taggings", "tags", name: "taggings_tag_id_fkey"
+  add_foreign_key "user_reactions", "messages", primary_key: "uuid"
 end

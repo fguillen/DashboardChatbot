@@ -60,4 +60,9 @@ FactoryBot.define do
     to { Faker::Internet.email }
   end
 
+  factory :user_reaction do
+    message
+    kind { "positive" }
+  end
+
 end
