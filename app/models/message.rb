@@ -9,6 +9,7 @@ class Message < ApplicationRecord
 
   belongs_to :conversation
   has_one :front_user, through: :conversation
+  has_many :user_reactions, dependent: :destroy
 
   validates :role, presence: true
   validates :order, uniqueness: { scope: :conversation_id }

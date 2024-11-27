@@ -64,7 +64,10 @@ Rails.application.routes.draw do
     resources :alerts, only: [:index, :show, :edit, :update, :destroy] do
       get :process_alert, on: :member
     end
-    resources :messages, only: [:show]
+    resources :messages, only: [:show] do
+      resources :user_reactions, only: [:create]
+    end
+
     resources :front_users, only: [:edit, :update] # , :new, :create, :destroy
   end
 
