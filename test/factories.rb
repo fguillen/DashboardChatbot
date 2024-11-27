@@ -62,7 +62,7 @@ FactoryBot.define do
 
   factory :user_reaction do
     message
-    kind { "positive" }
+    kind { UserReaction.kinds[:positive] }
   end
 
 end
