@@ -53,6 +53,12 @@
           <hr>
           <div class="d-flex flex-row on-hover">
             <a href="#" class="icon-link"><i class="bi bi-hand-thumbs-up"></i></a>
+
+            <%= button_to front_message_user_reactions_path(message, user_reaction: { kind: UserReaction.kinds[:positive] }), method: :post do %>
+              <i class="bi bi-hand-thumbs-up"></i>
+            <% end %>
+
+
             <a href="#" class="icon-link ms-1"><i class="bi bi-hand-thumbs-down"></i></a>
 
             <a href="#" class="icon-link" data-bs-toggle="modal" data-bs-target="#negative-reaction-modal">
