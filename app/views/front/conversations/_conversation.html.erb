@@ -1,21 +1,21 @@
-<div class="tab-pane h-100 fade <%= "active show" if active %>"% id="tab-conversation-<%= conversation.id %>" role="tabpanel" aria-labelledby="tab-conversation-<%= conversation.id %>">
-  <div class="d-flex flex-column h-100">
-    <div class="card-header p-3 p-md-4 d-flex flex-between-center">
-      <%= conversation.title %>
-    </div>
-    <div class="card-body p-3 p-sm-4 scrollbar chat-content-body-0" id="messages-list" data-controller="conversation-messages-list">
-      <%= turbo_stream_from "#{conversation.id}_messages_stream" %>
-      <% conversation.subconversations.each do |subconversation| %>
-        <div class="subconversation">
-          <% subconversation.each do |message| %>
-            <%= render partial: "front/messages/message", locals: { message: } %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+<%= turbo_stream_from "#{conversation.id}_messages_stream" %>
 
-    <div class="card-footer">
-      <%= render partial: "/front/messages/form", locals: { conversation:, message: @message } %>
-    </div>
+<div class="card flex-grow-1">
+  <div class="card-header p-3 p-md-4 d-flex flex-between-center">
+    <%= conversation.title %>
+  </div>
+
+  <div class="card-body p-3 p-sm-4 scrollbar chat-content-body-0" id="messages-list" data-controller="conversation-messages-list">
+    <% conversation.subconversations.each do |subconversation| %>
+      <div class="subconversation">
+        <% subconversation.each do |message| %>
+          <%= render partial: "front/messages/message", locals: { message: } %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="card-footer">
+    <%= render partial: "/front/messages/form", locals: { conversation:, message: @message } %>
   </div>
 </div>

@@ -13,7 +13,5 @@
   <%= render partial: "front/conversations/nav_bar", locals: { conversation_active: @conversation } %>
   <!-- Conversation/NavBar :: END -->
 
-  <div class="card tab-content flex-1">
-    <%= render partial: "front/conversations/conversation", locals: { conversation: @conversation, active: true } %>
-  </div>
+  <%= render partial: "front/conversations/conversation", locals: { conversation: @conversation, active: true } %>
 </div>

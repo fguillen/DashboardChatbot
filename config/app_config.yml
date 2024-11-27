@@ -48,7 +48,7 @@ development:
     secret_key: "<%= Rails.application.credentials.captcha.secret_key %>"
   opentelemetry:
     traces_exporter: "none" # console
-  dashboard_db_connection: "postgresql://@127.0.0.1/orbita_dashboard"
+  dashboard_db_connection: "postgresql://postgres@127.0.0.1/orbita_dashboard"
   open_router_key: "<%= Rails.application.credentials.open_router_key %>"
   sendgrid_api_key: "<%= Rails.application.credentials.sendgrid_api_key %>"
   redis_url: "redis://localhost:6379/1"
