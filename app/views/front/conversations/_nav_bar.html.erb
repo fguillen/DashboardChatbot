@@ -1,8 +1,8 @@
-<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary" style="width: 380px;">
-  <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
-    <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+<div class="d-flex flex-column align-items-stretch flex-shrink-0 me-5 sticky-top align-self-start pt-3" style="width: 380px;">
+  <%= link_to new_front_conversation_path, class: "p-3 text-decoration-none link-body-emphasis mb-3 bg-body-tertiary" do %>
+    <i class="bi bi-plus-lg me-2"></i>
     <span class="fs-5 fw-semibold">New Conversation</span>
-  </a>
+  <% end %>
 
   <div class="list-group list-group-flush border-bottom scrollarea">
     <% current_front_user.conversations.no_from_alert.order_by_recent.each do |conversation| %>
@@ -10,8 +10,6 @@
         link_to(
           front_conversation_path(conversation),
           class: "list-group-item list-group-item-action py-3 lh-sm #{"active" if conversation == conversation_active}",
-          aria: { selected: conversation == conversation_active },
-          role: "tab",
           turbo: false
         ) do
       %>
