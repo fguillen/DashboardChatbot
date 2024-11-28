@@ -88,8 +88,8 @@
 
 /* Message Form :: INI */
 .message-form .form-control::placeholder {
-  /* color: #BFBCB5 !important; */
-  opacity: 1;
+  color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+  opacity: 0.5;
 }
 
 .message-form .input-group .form-control {

@@ -1,9 +1,13 @@
 <% title t("views.conversations.show.title", :conversation_uuid => @conversation.uuid) %>
 
-<div class="chat d-flex justify-content-between pt-1 mt-n1 mb-9">
+<div class="row mb-9">
   <!-- Conversation/NavBar :: INI -->
-  <%= render partial: "front/conversations/nav_bar", locals: { conversation_active: @conversation } %>
+  <div class="d-none d-md-block col-md-4 col-xl-3 mt-4">
+    <%= render partial: "front/conversations/nav_bar", locals: { conversation_active: @conversation } %>
+  </div>
   <!-- Conversation/NavBar :: END -->
 
-  <%= render partial: "front/conversations/conversation", locals: { conversation: @conversation, active: true } %>
+  <div class="col-md-8 col-xl-8 col-xxl-6 mx-auto">
+    <%= render partial: "front/conversations/conversation", locals: { conversation: @conversation, active: true } %>
+  </div>
 </div>
