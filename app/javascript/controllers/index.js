@@ -7,6 +7,9 @@ import { application } from "controllers/application"
 import ConversationMessagesListController from "controllers/conversation_messages_list_controller"
 application.register("conversation-messages-list", ConversationMessagesListController)
 
+import ConversationShowDebugToggleController from "controllers/conversation_show_debug_toggle_controller"
+application.register("conversation-show-debug-toggle", ConversationShowDebugToggleController)
+
 import CopyToClipboardController from "controllers/copy_to_clipboard_controller"
 application.register("copy-to-clipboard", CopyToClipboardController)
 

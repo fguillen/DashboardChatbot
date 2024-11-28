@@ -1,5 +1,11 @@
 <!doctype html>
-<html lang="en-US" dir="ltr" data-navigation-type="horizontal" data-navbar-horizontal-shape="default" data-bs-theme="dark">
+<html
+  lang="en-US"
+  dir="ltr"
+  data-navigation-type="horizontal"
+  data-navbar-horizontal-shape="default"
+  data-bs-theme="dark"
+>
   <head>
     <%= render "/layouts/front/header" %>
   </head>
@@ -9,10 +15,10 @@
       <div class="environment_badge"><%= Rails.env %></div>
     <% end %>
 
-    <main id="top">
+    <main id="top" class="d-flex flex-column">
       <%= render "layouts/front/menu" %>
 
-      <div class="content container-fluid">
+      <div class="content container-fluid flex-grow-1 d-flex flex-column">
         <% flash.each do |type, message| %>
           <div class="alert <%= bootstrap_alert_class(type.to_sym) %>" role="alert">
             <%= markdown(message).html_safe %>

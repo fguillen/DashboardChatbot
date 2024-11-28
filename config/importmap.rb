@@ -11,3 +11,4 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 # chartkick
 pin "chartkick", to: "chartkick.js"
 pin "Chart.bundle", to: "Chart.bundle.js"
+pin "js-cookie" # @3.0.5

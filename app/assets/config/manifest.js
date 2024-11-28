@@ -4,3 +4,6 @@
 
 // Bootstrap
 //= link_tree ../../../vendor/bootstrap
+
+// Cookies
+//= link js-cookie.js

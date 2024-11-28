@@ -40,6 +40,10 @@
   width: 100%;
 }
 
+#conversation-box:not(.show-debug) .debug-element {
+  display: none !important;
+}
+
 .message-id span {
   /* color: #989898; */
   font-weight: 400;

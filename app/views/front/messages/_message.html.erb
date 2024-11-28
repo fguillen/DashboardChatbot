@@ -1,8 +1,8 @@
 <%= turbo_frame_tag message do %>
-  <div class="message mt-3 d-flex flex-row role-<%= message.role %> language-<%= message.content_language %>" id="message-<%= message.id %>" data-order="<%= message.order %>">
+  <div class="message mt-3 d-flex role-<%= message.role %> language-<%= message.content_language %> <%= "debug-element" if message.is_debug? %>" id="message-<%= message.id %>" data-order="<%= message.order %>">
     <div class="card <%= message_card_classes_by_role(message.role)%>">
       <div class="card-body">
-        <div class="d-flex flex-row mb-2 message-id on-hover">
+        <div class="d-flex mb-2 message-id on-hover">
           <a href="#message-<%= message.id %>" data-turbo="false">
             <i class="bi bi-link"></i>
           </a>
