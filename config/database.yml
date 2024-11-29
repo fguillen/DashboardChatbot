@@ -17,5 +17,6 @@ test:
 production:
   <<: *default
   host: db
-  database: dashboardchatbot
-  password: root
+  database: dbchatbot
+  username: dbchatbot
+  password: dbchatbot

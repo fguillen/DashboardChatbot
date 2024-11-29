@@ -9,7 +9,6 @@ services:
     restart: always
     depends_on:
       - db
-      - dashboard_db
       - redis
       - sidekiq
 
@@ -24,15 +23,15 @@ services:
     command: bundle exec sidekiq
 
   db:
-    image: mysql:8.0
-    volumes:
-      - ./_data/mysql:/var/lib/mysql
-    restart: always
+    image: postgres:16-alpine
     ports:
-      - 127.0.0.1:13306:3306
+      - 127.0.0.1:15432:5432
+    volumes:
+      - ./_data/dbchatbot:/var/lib/postgresql/data
     environment:
-      MYSQL_ROOT_PASSWORD: root
-    command: [--default-authentication-plugin=mysql_native_password]
+      - POSTGRES_PASSWORD=dbchatbot
+      - POSTGRES_USER=dbchatbot
+      - POSTGRES_DB=dbchatbot
 
   redis:
     image: "redis:7-alpine"
@@ -40,17 +39,6 @@ services:
       - 6379
     volumes:
     - ./_data/redis:/var/lib/redis/data
-
-  dashboard_db:
-    image: postgres:16-alpine
-    ports:
-      - 127.0.0.1:15432:5432
-    volumes:
-      - ./_data/postgres:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=dashboard
-      - POSTGRES_USER=dashboard
-      - POSTGRES_DB=dashboard
 
   web:
     build:
