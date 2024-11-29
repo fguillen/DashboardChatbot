@@ -9,7 +9,7 @@ class Message < ApplicationRecord
 
   belongs_to :conversation
   has_one :front_user, through: :conversation
-  has_many :user_reactions, dependent: :destroy
+  has_one :user_reaction, dependent: :destroy
 
   validates :role, presence: true
   validates :order, uniqueness: { scope: :conversation_id }
@@ -206,15 +206,16 @@ class Message < ApplicationRecord
   end
 
   def user_reaction_positive?
-    user_reactions.where(kind: UserReaction.kinds[:positive]).any?
+    user_reaction&.positive?
   end
 
   def user_reaction_negative?
-    user_reactions.where(kind: UserReaction.kinds[:negative]).any?
+    user_reaction&.negative?
   end
 
   def user_reaction_negative_explanation
-    user_reactions.where(kind: UserReaction.kinds[:negative]).order_by_recent.first&.explanation
+    return if user_reaction&.positive?
+    user_reaction&.explanation
   end
 
   def is_model_final_answer?

@@ -43,4 +43,14 @@ class Front::UserReactionsControllerTest < ActionDispatch::IntegrationTest
     assert_equal(message, user_reaction.message)
     assert(user_reaction.positive?)
   end
+
+  def test_destroy
+    message = FactoryBot.create(:message, front_user: @front_user)
+    user_reaction = FactoryBot.create(:user_reaction, message:)
+
+    delete front_message_user_reaction_path(message, user_reaction)
+
+    assert_redirected_to front_conversation_path(message.conversation)
+    assert_not(UserReaction.exists?(user_reaction.uuid))
+  end
 end

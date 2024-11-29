@@ -6,11 +6,11 @@ class UserReactionTest < ActiveSupport::TestCase
   end
 
   def test_uuid_on_create
-    user_reaction = FactoryBot.build(:user_reaction)
+    message = FactoryBot.create(:message)
+    user_reaction = FactoryBot.build(:user_reaction, message:)
     assert_nil(user_reaction.uuid)
 
     user_reaction.save!
-
     assert_not_nil(user_reaction.uuid)
   end
 
@@ -55,6 +55,15 @@ class UserReactionTest < ActiveSupport::TestCase
     user_reaction_2 = FactoryBot.create(:user_reaction, created_at: "2021-04-03")
     user_reaction_3 = FactoryBot.create(:user_reaction, created_at: "2021-04-02")
 
-    assert_primary_keys([user_reaction_2, user_reaction_3, user_reaction_1], FrontUser.order_by_recent)
+    assert_primary_keys([user_reaction_2, user_reaction_3, user_reaction_1], UserReaction.order_by_recent)
+  end
+
+  def test_uniqueness_by_message
+    message = FactoryBot.create(:message)
+    user_reaction_1 = FactoryBot.create(:user_reaction, message:)
+    assert(user_reaction_1.valid?)
+
+    user_reaction_2 = FactoryBot.build(:user_reaction, message:)
+    assert_not(user_reaction_2.valid?)
   end
 end

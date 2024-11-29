@@ -44,9 +44,10 @@ class MessageTest < ActiveSupport::TestCase
   end
 
   def test_serialize_fields
-    message = FactoryBot.create(:message, tool_calls: ["a", "b"])
+    tool_calls = [{ id: "ID", function: { name: "NAME" } }]
+    message = FactoryBot.create(:message, tool_calls:)
     message.reload
-    assert_equal(["a", "b"], message.tool_calls)
+    assert_equal(tool_calls, message.tool_calls)
   end
 
   def test_uuid_on_create
@@ -73,14 +74,14 @@ class MessageTest < ActiveSupport::TestCase
 
   def test_log_book_events
     conversation = FactoryBot.create(:conversation)
-    message = FactoryBot.build(:message, body: "BODY", conversation: conversation)
+    message = FactoryBot.build(:message, content: "CONTENT", conversation: conversation)
 
     assert_difference("LogBook::Event.count", 1) do
       message.save!
     end
 
     assert_difference("LogBook::Event.count", 1) do
-      message.update!(body: "NEW_BODY")
+      message.update!(content: "NEW_CONTENT")
     end
   end
 

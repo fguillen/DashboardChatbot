@@ -1,18 +1,25 @@
 <div class="d-flex">
   <% if !message.user_reaction_negative? %>
     <% if message.user_reaction_positive? %>
-      <span
-        data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        data-bs-title="Positive reaction added"
-      >
-        <a
-          href="#"
-          class="icon-link pe-none ps-0 pe-2"
-        >
-          <i class="bi bi-hand-thumbs-up-fill"></i>
-        </a>
-      </span>
+      <%=
+        button_to(
+          front_message_user_reaction_path(message, message.user_reaction),
+          method: :delete,
+          class: "btn btn-link icon-link ps-0 pe-2 on-hover",
+          data: {
+            turbo: true,
+            "bs-toggle": "tooltip",
+            "bs-placement": "top",
+            "bs-title": "Positive reaction added",
+          },
+          form: {
+            "data-type": "turbo_stream",
+            "data-turbo": true,
+          }
+        ) do
+      %>
+        <i class="bi bi-hand-thumbs-up-fill"></i>
+      <% end %>
     <% else %>
       <%=
         button_to(
@@ -35,18 +42,25 @@
 
   <% if !message.user_reaction_positive? %>
     <% if message.user_reaction_negative? %>
-      <span
-        data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        data-bs-title="Negative reaction added. <%= @message.user_reaction_negative_explanation %>"
-      >
-        <a
-          href="#"
-          class="icon-link pe-none"
-        >
-          <i class="bi bi-hand-thumbs-down-fill"></i>
-        </a>
-      </span>
+      <%=
+        button_to(
+          front_message_user_reaction_path(message, message.user_reaction),
+          method: :delete,
+          class: "btn btn-link icon-link ps-0 pe-2 on-hover",
+          data: {
+            turbo: true,
+            "bs-toggle": "tooltip",
+            "bs-placement": "top",
+            "bs-title": "Negative reaction added. #{@message.user_reaction_negative_explanation}",
+          },
+          form: {
+            "data-type": "turbo_stream",
+            "data-turbo": true,
+          }
+        ) do
+      %>
+        <i class="bi bi-hand-thumbs-down-fill"></i>
+      <% end %>
     <% else %>
       <a
         href="#" class="icon-link on-hover"
