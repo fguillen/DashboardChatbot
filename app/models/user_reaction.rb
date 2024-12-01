@@ -8,6 +8,8 @@ class UserReaction < ApplicationRecord
   enum :kind, positive: "positive", negative: "negative"
 
   belongs_to :message
+  has_one :user_favorite, dependent: :destroy
+  has_one :front_user, through: :message
 
   validates :message_id, presence: true, uniqueness: true
 

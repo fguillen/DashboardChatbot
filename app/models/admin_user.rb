@@ -40,5 +40,4 @@ class AdminUser < ApplicationRecord
       end
     end
   end
-
 end

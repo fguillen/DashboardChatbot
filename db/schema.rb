@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_27_144658) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_01_192353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "vector"
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
@@ -209,6 +210,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_27_144658) do
     t.index ["name"], name: "tags_name_idx", unique: true
   end
 
+  create_table "user_favorites", primary_key: "uuid", id: { type: :string, limit: 36 }, force: :cascade do |t|
+    t.text "prompt"
+    t.text "model_mental_process"
+    t.vector "prompt_embedding", limit: 384
+    t.string "user_reaction_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uuid"], name: "index_user_favorites_on_uuid", unique: true
+  end
+
   create_table "user_notifications_configs", primary_key: "uuid", id: { type: :string, limit: 255 }, force: :cascade do |t|
     t.json "active_notifications"
     t.string "user_id", limit: 255
@@ -229,5 +240,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_27_144658) do
   end
 
   add_foreign_key "taggings", "tags", name: "taggings_tag_id_fkey"
+  add_foreign_key "user_favorites", "user_reactions", primary_key: "uuid"
   add_foreign_key "user_reactions", "messages", primary_key: "uuid"
 end

@@ -21,10 +21,14 @@ class UserReactionTest < ActiveSupport::TestCase
   end
 
   def test_relations
-    message = FactoryBot.create(:message)
-    user_reaction = FactoryBot.create(:user_reaction, message: message)
+    front_user = FactoryBot.create(:front_user)
+    message = FactoryBot.create(:message, front_user:)
+    user_reaction = FactoryBot.create(:wuser_reaction, message:)
+    user_favorite = FactoryBot.create(:user_favorite, user_reaction:)
 
     assert_equal(message, user_reaction.message)
+    assert_equal(front_user, user_reaction.front_user)
+    assert_equal(user_favorite, user_reaction.user_favorite)
   end
 
   def test_log_book_events

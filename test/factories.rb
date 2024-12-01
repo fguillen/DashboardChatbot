@@ -65,4 +65,9 @@ FactoryBot.define do
     kind { UserReaction.kinds[:positive] }
   end
 
+  factory :user_favorite do
+    user_reaction
+    prompt { "The prompt" }
+    model_mental_process { "The model mental process" }
+  end
 end
