@@ -98,7 +98,7 @@ class LangMini::Assistant
   def init_system_directive
     return if system_directive.blank?
     return if @conversation.messages.filter do |m|
-      m.role == "system" && m.content == system_directive.strip
+      m.role == "system" && m.content.strip == system_directive.strip
     end.present?
 
     message = LangMini::Message.from_hash({ role: "system", content: system_directive })

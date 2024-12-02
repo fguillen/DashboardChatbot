@@ -8,6 +8,7 @@ class UserFavorites::PromptAugmenterWithExamples < Service
       #{user_prompt}
 
       Here are some examples from previous similar questions from the user:
+
       ```markdown
       #{generate_examples(neighbors)}
       ```

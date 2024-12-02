@@ -20,8 +20,10 @@
   <dd><%= link_to @message.conversation.id, front_conversation_path(@message.conversation) %></dd>
   <dt>Order</dt>
   <dd><%= @message.order %></dd>
+  <dt>Content Language</dt>
+  <dd><%= @message.content_language %>
   <dt>Content</dt>
-  <dd><%= @message.content %></dd>
+  <dd><pre><%= @message.content %></pre></dd>
   <dt>Tool Calls</dt>
   <dd>
     <% if @message.tool_calls.present? %>
