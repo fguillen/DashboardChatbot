@@ -70,4 +70,19 @@ class UserReactionTest < ActiveSupport::TestCase
     user_reaction_2 = FactoryBot.build(:user_reaction, message:)
     assert_not(user_reaction_2.valid?)
   end
+
+  def test_origianl_prompt
+    message_1 = FactoryBot.create(:message, order: 1, role: "user", content: "MESSAGE_1")
+    message_2 = FactoryBot.create(:message, order: 2, role: "assistant", content: "MESSAGE_2")
+    message_3 = FactoryBot.create(:message, order: 3, role: "user", content: "MESSAGE_3")
+    message_4 = FactoryBot.create(:message, order: 4, role: "tool", content: "MESSAGE_4")
+    message_5 = FactoryBot.create(:message, order: 5, role: "assistant", content: "MESSAGE_5")
+    message_6 = FactoryBot.create(:message, order: 6, role: "user", content: "MESSAGE_6")
+
+    conversation = FactoryBot.create(:conversation, messages: [message_1, message_2, message_3, message_4, message_5, message_6])
+
+    user_reaction = FactoryBot.create(:user_reaction, message: message_5)
+
+    assert_equal("MESSAGE_3", user_reaction.original_prompt)
+  end
 end
