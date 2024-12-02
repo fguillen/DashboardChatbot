@@ -23,6 +23,10 @@ class ActiveSupport::TestCase
     File.read(fixture(fixture_path))
   end
 
+  def read_json(fixture_path)
+    JSON.parse(read_fixture(fixture_path))
+  end
+
   def write_fixture(fixture_path, content)
     puts "ATTENTION: fixture: '#{fixture_path}' been written"
     File.open(fixture(fixture_path), "w") { |f| f.write content }

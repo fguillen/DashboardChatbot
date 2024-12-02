@@ -10,6 +10,11 @@ class Front::ConversationsController < Front::BaseController
   def show
     @message = @conversation.messages.new(role: Message.roles[:user])
     @message.model = @conversation.messages.in_order.last&.model || "openai/gpt-4o-2024-08-06"
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @conversation.to_hash_raw, layout: false }
+    end
   end
 
   def new

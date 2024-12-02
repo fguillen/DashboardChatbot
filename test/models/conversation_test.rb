@@ -68,4 +68,15 @@ class ConversationTest < ActiveSupport::TestCase
     assert_equal(conversation, message.conversation)
     assert_equal(message, conversation.messages.last)
   end
+
+  def test_messages_until
+    conversation = FactoryBot.create(:conversation)
+    message_1 = FactoryBot.create(:message, conversation:, order: 1, uuid: "UUID_1")
+    message_2 = FactoryBot.create(:message, conversation:, order: 2, uuid: "UUID_2")
+    message_3 = FactoryBot.create(:message, conversation:, order: 3, uuid: "UUID_3")
+    message_4 = FactoryBot.create(:message, conversation:, order: 4, uuid: "UUID_4")
+
+    assert_primary_keys([message_1], conversation.messages_until(message_1))
+    assert_primary_keys([message_1, message_2, message_3], conversation.messages_until(message_3))
+  end
 end

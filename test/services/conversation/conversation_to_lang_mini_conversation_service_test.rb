@@ -2,9 +2,14 @@ require "test_helper"
 
 class Conversation::ConversationToLangMiniConversationServiceTest < ActiveSupport::TestCase
   def test_perform
+    lang_ai_message_1 = LangMini::Message.from_hash({role: "user", content: "MESSAGE_1"})
+    lang_ai_message_2 = LangMini::Message.from_hash({role: "assistant", content: "MESSAGE_2"})
+    message_1 = Conversation::LangMiniMessageToAppMessage.perform(lang_ai_message_1)
+    message_2 = Conversation::LangMiniMessageToAppMessage.perform(lang_ai_message_2)
+
     conversation = FactoryBot.create(:conversation)
-    conversation.messages.create(role: "user", content: "MESSAGE_1")
-    conversation.messages.create(role: "assistant", content: "MESSAGE_2")
+    conversation.add_message(message_1)
+    conversation.add_message(message_2)
 
     result = Conversation::ConversationToLangMiniConversationService.perform(conversation)
 

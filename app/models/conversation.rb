@@ -37,6 +37,16 @@ class Conversation < ApplicationRecord
     Conversation::MessagesListToSubconversationsService.perform(self)
   end
 
+  def to_hash_raw
+    {
+      uuid:,
+      title:,
+      first_message_at: first_message_at&.to_formatted_s(:datetime_with_time_zone),
+      last_message_at: last_message_at&.to_formatted_s(:datetime_with_time_zone),
+      messages: messages.in_order.map(&:raw),
+    }
+  end
+
   def to_hash
     {
       uuid:,
@@ -65,5 +75,9 @@ class Conversation < ApplicationRecord
 
   def tokens
     messages.map(&:tokens).compact.sum
+  end
+
+  def messages_until(message)
+    messages.where("messages.order <= ?", message.order).in_order
   end
 end
