@@ -53,4 +53,25 @@ class Front::UserReactionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to front_conversation_path(message.conversation)
     assert_not(UserReaction.exists?(user_reaction.uuid))
   end
+
+  def test_on_create_if_positive_create_user_favorite
+    message = FactoryBot.create(:message, front_user: @front_user)
+
+    expected_args = ->(job_args) {
+      assert(job_args.first[:user_reaction].kind_of?(UserReaction))
+      assert_equal(message, job_args.first[:user_reaction].message)
+    }
+
+    assert_enqueued_with(job: UserFavoriteCreatorJob, args: expected_args) do
+      post(
+        front_message_user_reactions_path(message),
+        params: {
+          user_reaction: {
+            explanation: "THE EXPLANATION",
+            kind: UserReaction.kinds[:positive]
+          }
+        }
+      )
+    end
+  end
 end

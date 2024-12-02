@@ -67,7 +67,7 @@ FactoryBot.define do
 
   factory :user_favorite do
     user_reaction
-    prompt { "The prompt" }
-    model_mental_process { "The model mental process" }
+    sequence(:prompt) { |n| "THE_PROMPT_#{n}" }
+    sequence(:model_mental_process) { |n| "MODEL_MENTAL_PROCESS_#{n}" }
   end
 end

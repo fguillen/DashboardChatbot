@@ -9,7 +9,7 @@ class Front::ConversationsController < Front::BaseController
 
   def show
     @message = @conversation.messages.new(role: Message.roles[:user])
-    @message.model = @conversation.messages.in_order.last&.model || "openai/gpt-4o-2024-08-06"
+    @message.model = @conversation.messages.in_order.last&.model || "openai/gpt-4o-2024-11-20"
 
     respond_to do |format|
       format.html

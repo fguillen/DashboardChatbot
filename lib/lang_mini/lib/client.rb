@@ -1,7 +1,11 @@
 module LangMini
   class Client
-    def initialize(access_token:)
-      @open_router_client = OpenRouter::Client.new(access_token: access_token)
+    def initialize(access_token:, request_timeout: 240)
+      @open_router_client =
+        OpenRouter::Client.new(
+          access_token: access_token,
+          request_timeout:
+        )
     end
 
     def models

@@ -13,6 +13,8 @@ class Front::MessagesController < Front::BaseController
     @message.conversation = @conversation
 
     if @message.valid?
+      @message.content = UserFavorites::PromptAugmenterWithExamples.perform(user_prompt: @message.content)
+
       Conversation::ProcessUserMessageService.perform(
         conversation: @conversation,
         role: @message.role,

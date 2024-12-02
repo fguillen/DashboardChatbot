@@ -7,6 +7,10 @@ class Front::UserReactionsController < Front::BaseController
     @user_reaction = @message.build_user_reaction(user_reaction_params)
 
     if @user_reaction.save
+      if @user_reaction.positive?
+        UserFavoriteCreatorJob.perform_later(user_reaction: @user_reaction)
+      end
+
       respond_to do |format|
         format.html { redirect_to front_conversation_path(@message.conversation), notice: t("controllers.user_reactions.create.success") }
         format.turbo_stream

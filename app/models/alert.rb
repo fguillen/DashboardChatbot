@@ -31,7 +31,7 @@ class Alert < ApplicationRecord
   end
 
   def set_default_model
-    self.model ||= "openai/gpt-4o-2024-08-06"
+    self.model ||= "openai/gpt-4o-2024-11-20"
   end
 
   def last_time_sent_at
