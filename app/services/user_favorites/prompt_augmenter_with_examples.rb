@@ -7,11 +7,14 @@ class UserFavorites::PromptAugmenterWithExamples < Service
     result_prompt = <<~PROMPT
       #{user_prompt}
 
+      ---Examples::INI---
       Here are some examples from previous similar questions from the user:
 
-      ```markdown
+      """
       #{generate_examples(neighbors)}
-      ```
+
+      """
+      ---Examples::END---
     PROMPT
   end
 
@@ -22,6 +25,7 @@ class UserFavorites::PromptAugmenterWithExamples < Service
 
     neighbors.each.with_index do |neighbor, index|
       result << "Example #{index + 1}:"
+      result << ""
       result << neighbor.model_mental_process
       result << ""
     end

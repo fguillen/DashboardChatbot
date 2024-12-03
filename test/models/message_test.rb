@@ -136,4 +136,40 @@ class MessageTest < ActiveSupport::TestCase
     message.content = "CONTENT"
     refute(message.is_debug?)
   end
+
+  def test_content_without_examples
+    content = <<~EOS
+      This is the content
+
+      ---Examples::INI---
+      These are the examples
+      """
+      Example 1:
+      """
+      ---Examples::END---
+    EOS
+    message = FactoryBot.create(:message, content:)
+    assert_equal("This is the content", message.content_without_examples)
+
+    message = FactoryBot.create(:message, content: "Without examples")
+    assert_equal("Without examples", message.content_without_examples)
+  end
+
+  def test_content_examples
+    content = <<~EOS
+      This is the content
+
+      ---Examples::INI---
+      These are the examples
+      """
+      Example 1:
+      """
+      ---Examples::END---
+    EOS
+    message = FactoryBot.create(:message, content:)
+    assert_equal("These are the examples\nExample 1:", message.content_examples)
+
+    message = FactoryBot.create(:message, content: "Without examples")
+    assert_nil(message.content_examples)
+  end
 end

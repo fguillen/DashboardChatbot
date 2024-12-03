@@ -13,23 +13,37 @@
         </div>
 
         <div class="message-body mb-1">
-          <% if message.content.present? %>
+          <% if message.is_user? %>
             <div class="card-text message-content">
-              <%= message_content(message) %>
+              <%= markdown(message.content_without_examples) %>
+
+              <% if message.content_examples %>
+                <div class="message-examples debug-element position-relative text-start bg-light-subtle text-light-emphasis p-4 rounded">
+                  <span class="badge position-absolute rounded-pill text-bg-secondary">Examples</span>
+                  <%= markdown(message.content_examples) %>
+                </div>
+              <% end %>
             </div>
-          <% end %>
 
-          <% if message.tool_calls.present? %>
-            <h3>Tool calls</h3>
-            <% message.tool_calls.each do |tool_call| %>
-              <%= render partial: "/front/messages/tool_call", locals: { tool_call:, message: } %>
+          <% else %>
+            <% if message.content.present? %>
+              <div class="card-text message-content">
+                <%= message_content(message) %>
+              </div>
             <% end %>
-          <% end %>
 
-          <% if message.tool_call_id.present? %>
-            <p class="card-text  message-tool-call-id">
-              <%= message.tool_call_id %>
-            </p>
+            <% if message.tool_calls.present? %>
+              <h3>Tool calls</h3>
+              <% message.tool_calls.each do |tool_call| %>
+                <%= render partial: "/front/messages/tool_call", locals: { tool_call:, message: } %>
+              <% end %>
+            <% end %>
+
+            <% if message.tool_call_id.present? %>
+              <p class="card-text  message-tool-call-id">
+                <%= message.tool_call_id %>
+              </p>
+            <% end %>
           <% end %>
         </div>
 

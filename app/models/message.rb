@@ -225,4 +225,22 @@ class Message < ApplicationRecord
   def is_debug?
     role != "user" && !is_model_final_answer?
   end
+
+  def content_without_examples
+    return content if content.blank?
+    content.gsub(/---Examples::INI---.*?---Examples::END---/m, "").strip
+  end
+
+  def content_examples
+    return content if content.blank?
+    result = content.match(/---Examples::INI---(.*.*?)---Examples::END---/m)
+    return result if result.blank?
+    result = result[1]
+    return result if result.blank?
+    result.gsub(/"""\n/, "").strip
+  end
+
+  def is_user?
+    role == "user"
+  end
 end
