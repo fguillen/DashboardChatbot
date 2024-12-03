@@ -17,6 +17,6 @@ class UserReaction < ApplicationRecord
 
   def original_prompt
     messages = message.conversation.messages_until(message)
-    messages.reverse.find { |message| message.role == "user" }.content
+    messages.reverse.find { |message| message.role == "user" }.content_without_examples
   end
 end

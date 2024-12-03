@@ -77,4 +77,12 @@ class FrontUserTest < ActiveSupport::TestCase
     refute front_user.errors[:notifications_active].empty?
   end
   ## Notifications :: END
+
+  def test_user_reactions
+    front_user = FactoryBot.create(:front_user)
+    message = FactoryBot.create(:message, front_user:)
+    user_reaction = FactoryBot.create(:user_reaction, message:)
+
+    assert_primary_keys([user_reaction], front_user.user_reactions)
+  end
 end

@@ -32,6 +32,23 @@ class Front::UserReactionsController < Front::BaseController
     end
   end
 
+  def destroy_from_index
+    @user_reaction = UserReaction.find(params[:id])
+
+    if @user_reaction.destroy
+      respond_to do |format|
+        format.html { redirect_to front_user_reactions_path, notice: t("controllers.user_reactions.destroy.success") }
+        format.turbo_stream
+      end
+    else
+      redirect_to front_user_reactions_path, alert: t("controllers.user_reactions.destroy.error")
+    end
+  end
+
+  def index
+    @user_reactions = current_front_user.user_reactions.order_by_recent.page(params[:page]).per(10)
+  end
+
   private
 
   def user_reaction_params

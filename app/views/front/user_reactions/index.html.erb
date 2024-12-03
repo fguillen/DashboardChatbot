@@ -1,0 +1,21 @@
+<% title t("views.conversations.index.title") %>
+
+<nav class="mb-3 mt-2" aria-label="breadcrumb">
+  <ol class="breadcrumb mb-0">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active"><%= t "layouts.breadcrumbs.user_reactions" %></li>
+  </ol>
+</nav>
+
+<div class="row gx-6 gy-3 mb-4 align-items-center">
+  <div class="col-auto">
+    <h2 class="mb-0">
+      Reactions
+      <span class="fw-normal text-body-tertiary ms-3">(<%= turbo_frame_tag "#{current_front_user.id}_user_reactions_counter" do %><%= current_front_user.user_reactions.count %><% end %>)</span>
+    </h2>
+  </div>
+</div>
+
+<%= render partial: "list", locals: { user_reactions: @user_reactions } %>
+
+<%= paginate @user_reactions %>

@@ -5,6 +5,18 @@ class Front::UserReactionsControllerTest < ActionDispatch::IntegrationTest
     setup_front_user
   end
 
+  def test_index
+    user_reaction_1 = FactoryBot.create(:user_reaction, created_at: "2020-04-25", front_user: @front_user)
+    user_reaction_2 = FactoryBot.create(:user_reaction, created_at: "2020-04-26", front_user: @front_user)
+    user_reaction_3 = FactoryBot.create(:user_reaction, created_at: "2020-04-27")
+
+    get front_user_reactions_path
+
+    assert_template "front/user_reactions/index"
+    assert_primary_keys([user_reaction_2, user_reaction_1], assigns(:user_reactions))
+  end
+
+
   def test_create_invalid
     message = FactoryBot.create(:message, front_user: @front_user)
 
@@ -19,7 +31,7 @@ class Front::UserReactionsControllerTest < ActionDispatch::IntegrationTest
       }
     )
 
-    assert_redirected_to front_conversation_path(message.conversation)
+    assert_redirected_to front_user_reaction_path(message.user_reaction)
     assert_not_nil(flash[:alert])
   end
 
@@ -37,7 +49,7 @@ class Front::UserReactionsControllerTest < ActionDispatch::IntegrationTest
     )
 
     user_reaction = UserReaction.last
-    assert_redirected_to front_conversation_path(message.conversation)
+    assert_redirected_to front_user_reaction_path(message.user_reaction)
 
     assert_equal("THE EXPLANATION", user_reaction.explanation)
     assert_equal(message, user_reaction.message)
@@ -50,9 +62,20 @@ class Front::UserReactionsControllerTest < ActionDispatch::IntegrationTest
 
     delete front_message_user_reaction_path(message, user_reaction)
 
-    assert_redirected_to front_conversation_path(message.conversation)
+    assert_redirected_to front_user_reaction_path(message.user_reaction)
     assert_not(UserReaction.exists?(user_reaction.uuid))
   end
+
+  def test_destroy_from_index
+    message = FactoryBot.create(:message, front_user: @front_user)
+    user_reaction = FactoryBot.create(:user_reaction, message:)
+
+    delete destroy_from_index_front_user_reaction_path(user_reaction)
+
+    assert_redirected_to front_user_reactions_path
+    assert_not(UserReaction.exists?(user_reaction.uuid))
+  end
+
 
   def test_on_create_if_positive_create_user_favorite
     message = FactoryBot.create(:message, front_user: @front_user)

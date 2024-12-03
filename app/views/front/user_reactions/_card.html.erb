@@ -1,0 +1,39 @@
+<%= turbo_frame_tag user_reaction do %>
+  <div class="card h-100">
+    <div class="card-body">
+      <div class="d-flex align-items-center">
+        <h4 class="mb-2 flex-grow-1 me-5">
+          <% if user_reaction.negative? %>
+            <span class="badge text-bg-danger">Negative</span>
+          <% else %>
+            <span class="badge text-bg-success">Positive</span>
+          <% end %>
+          <%= user_reaction.original_prompt %>
+        </h4>
+        <div class="">
+          <%=
+            button_to(
+              destroy_from_index_front_user_reaction_path(user_reaction),
+              method: :delete,
+              class: "btn btn-danger btn-icon flex-shrink-0",
+              form: {
+                "data-turbo": true
+              }
+            ) do %>
+            <i class="bi bi-x"></i>
+          <% end %>
+        </div>
+      </div>
+
+      <% if user_reaction.explanation.present? %>
+        <h6 class="card-subtitle mb-2 text-body-secondary"><%= user_reaction.explanation %></h6>
+      <% end %>
+
+      <div class="d-flex align-items-center mt-4 mb-2">
+        <p class="mb-0 fw-bold fs-9">Created at:<span class="fw-semibold text-body-tertiary text-opactity-85 ms-1">	<%= formatted_date_or_empty(user_reaction.created_at) %></span></p>
+      </div>
+
+      <%= link_to "Original model's answer", front_conversation_path(user_reaction.message.conversation, anchor: "message-${user_reaction.message.id}"), class: "card-link" %>
+    </div>
+  </div>
+<% end %>

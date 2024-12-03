@@ -72,6 +72,9 @@ Rails.application.routes.draw do
     resources :messages, only: [:show] do
       resources :user_reactions, only: [:create, :destroy]
     end
+    resources :user_reactions, only: [:index] do
+      delete :destroy_from_index, on: :member
+    end
 
     resources :front_users, only: [:edit, :update] # , :new, :create, :destroy
   end
