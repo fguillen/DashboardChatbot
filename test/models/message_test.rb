@@ -115,26 +115,31 @@ class MessageTest < ActiveSupport::TestCase
     message = FactoryBot.create(:message, role: "user", content: nil)
     refute(message.is_model_final_answer?)
 
-    message.content = "CONTENT"
+    message = FactoryBot.create(:message, role: "user", content: "CONTENT")
     refute(message.is_model_final_answer?)
 
-    message.role = "assistant"
+    message = FactoryBot.create(:message, role: "assistant", content: "CONTENT")
     assert(message.is_model_final_answer?)
+
+    message = FactoryBot.create(:message, role: "assistant", content: "CONTENT", assistant_name: "ModelAnswerSupervisorAssistant")
+    refute(message.is_model_final_answer?)
   end
 
   def test_is_debug?
     message = FactoryBot.create(:message, role: "tool")
     assert(message.is_debug?)
 
-    message.role = "user"
+    message = FactoryBot.create(:message, role: "user")
     refute(message.is_debug?)
 
-    message.role = "assistant"
-    message.content = nil
+    message = FactoryBot.create(:message, role: "assistant", content: nil)
     assert(message.is_debug?)
 
-    message.content = "CONTENT"
+    message = FactoryBot.create(:message, role: "assistant", content: "CONTENT")
     refute(message.is_debug?)
+
+    message = FactoryBot.create(:message, role: "assistant", assistant_name: "ModelAnswerSupervisorAssistant")
+    assert(message.is_debug?)
   end
 
   def test_content_without_examples

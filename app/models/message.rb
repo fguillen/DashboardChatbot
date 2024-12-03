@@ -219,10 +219,12 @@ class Message < ApplicationRecord
   end
 
   def is_model_final_answer?
+    return false if assistant_name == "ModelAnswerSupervisorAssistant"
     role == "assistant" && content.present?
   end
 
   def is_debug?
+    return true if assistant_name == "ModelAnswerSupervisorAssistant"
     role != "user" && !is_model_final_answer?
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_01_192353) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_03_093741) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -171,6 +171,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_01_192353) do
     t.string "model", limit: 255
     t.json "tool_calls"
     t.json "completion_raw"
+    t.string "assistant_name"
     t.index ["conversation_id"], name: "messages_conversation_id_idx"
     t.index ["uuid"], name: "messages_uuid_idx", unique: true
   end

@@ -16,6 +16,7 @@ class Tools::ModelAnswerSupervisorConclusion < LangMini::Tool
         content: content
       })
       message = Conversation::LangMiniMessageToAppMessage.perform(lang_mini_message)
+      message.assistant_name = "ModelAnswerSupervisorAssistant"
       @conversation.add_message(message)
     # end
   end
