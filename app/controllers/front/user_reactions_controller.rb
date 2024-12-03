@@ -3,6 +3,10 @@ class Front::UserReactionsController < Front::BaseController
   before_action :load_message, only: [:create, :destroy]
   before_action :load_user_reaction, only: [:destroy]
 
+  def index
+    @user_reactions = current_front_user.user_reactions.order_by_recent.page(params[:page]).per(10)
+  end
+
   def create
     @user_reaction = @message.build_user_reaction(user_reaction_params)
 
@@ -33,7 +37,7 @@ class Front::UserReactionsController < Front::BaseController
   end
 
   def destroy_from_index
-    @user_reaction = UserReaction.find(params[:id])
+    @user_reaction = current_front_user.user_reactions.find(params[:id])
 
     if @user_reaction.destroy
       respond_to do |format|
@@ -43,10 +47,6 @@ class Front::UserReactionsController < Front::BaseController
     else
       redirect_to front_user_reactions_path, alert: t("controllers.user_reactions.destroy.error")
     end
-  end
-
-  def index
-    @user_reactions = current_front_user.user_reactions.order_by_recent.page(params[:page]).per(10)
   end
 
   private

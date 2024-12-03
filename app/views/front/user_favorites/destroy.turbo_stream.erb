@@ -1,0 +1,2 @@
+<%= turbo_stream.replace "#{current_front_user.id}_user_favorites_counter" do %><%= current_front_user.user_favorites.count %><% end %>
+<%= turbo_stream.remove @user_favorite %>

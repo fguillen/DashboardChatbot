@@ -1,0 +1,27 @@
+<%= turbo_frame_tag user_favorite do %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= user_favorite.prompt %></h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary"><%= formatted_date_or_empty(user_favorite.created_at) %></h6>
+
+      <div class="card-text">
+        <h6>Model mental process</h6>
+        <%= markdown(user_favorite.model_mental_process) %>
+      </div>
+      <div class="text-end mt-4">
+        <%=
+          button_to(
+            front_user_favorite_path(user_favorite),
+            method: :delete,
+            class: "btn btn-danger btn-icon flex-shrink-0",
+            form: {
+              "data-turbo": true
+            }
+          ) do
+        %>
+          Delete <i class="bi bi-x"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

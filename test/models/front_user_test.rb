@@ -85,4 +85,13 @@ class FrontUserTest < ActiveSupport::TestCase
 
     assert_primary_keys([user_reaction], front_user.user_reactions)
   end
+
+  def test_user_favorites
+    front_user = FactoryBot.create(:front_user)
+    message = FactoryBot.create(:message, front_user:)
+    user_reaction = FactoryBot.create(:user_reaction, message:)
+    user_favorite = FactoryBot.create(:user_favorite, user_reaction:)
+
+    assert_primary_keys([user_favorite], front_user.user_favorites)
+  end
 end

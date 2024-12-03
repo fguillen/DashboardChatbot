@@ -6,9 +6,12 @@ class Front::UserReactionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_index
-    user_reaction_1 = FactoryBot.create(:user_reaction, created_at: "2020-04-25", front_user: @front_user)
-    user_reaction_2 = FactoryBot.create(:user_reaction, created_at: "2020-04-26", front_user: @front_user)
-    user_reaction_3 = FactoryBot.create(:user_reaction, created_at: "2020-04-27")
+    message_1 = FactoryBot.create(:message, front_user: @front_user)
+    message_2 = FactoryBot.create(:message, front_user: @front_user)
+    message_3 = FactoryBot.create(:message)
+    user_reaction_1 = FactoryBot.create(:user_reaction, created_at: "2020-04-25", message: message_1)
+    user_reaction_2 = FactoryBot.create(:user_reaction, created_at: "2020-04-26", message: message_2)
+    user_reaction_3 = FactoryBot.create(:user_reaction, created_at: "2020-04-27", message: message_3)
 
     get front_user_reactions_path
 
@@ -31,7 +34,7 @@ class Front::UserReactionsControllerTest < ActionDispatch::IntegrationTest
       }
     )
 
-    assert_redirected_to front_user_reaction_path(message.user_reaction)
+    assert_redirected_to front_conversation_path(message.conversation)
     assert_not_nil(flash[:alert])
   end
 
@@ -49,7 +52,7 @@ class Front::UserReactionsControllerTest < ActionDispatch::IntegrationTest
     )
 
     user_reaction = UserReaction.last
-    assert_redirected_to front_user_reaction_path(message.user_reaction)
+    assert_redirected_to front_conversation_path(message.conversation)
 
     assert_equal("THE EXPLANATION", user_reaction.explanation)
     assert_equal(message, user_reaction.message)
@@ -62,7 +65,7 @@ class Front::UserReactionsControllerTest < ActionDispatch::IntegrationTest
 
     delete front_message_user_reaction_path(message, user_reaction)
 
-    assert_redirected_to front_user_reaction_path(message.user_reaction)
+    assert_redirected_to front_conversation_path(message.conversation)
     assert_not(UserReaction.exists?(user_reaction.uuid))
   end
 

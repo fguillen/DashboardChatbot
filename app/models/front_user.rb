@@ -19,7 +19,8 @@ class FrontUser < ApplicationRecord
   has_many :conversations, dependent: :destroy
   has_many :messages, through: :conversations
   has_many :alerts, dependent: :destroy
-  has_many :user_reactions, class_name: "UserReaction", through: :messages, dependent: :destroy
+  has_many :user_reactions, through: :messages
+  has_many :user_favorites, through: :user_reactions
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: RubyRegex::Email }
