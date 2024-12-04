@@ -295,7 +295,7 @@ GEM
     marcel (1.0.4)
     mini_magick (4.13.2)
     mini_mime (1.1.5)
-    minitest (5.25.2)
+    minitest (5.25.4)
     mocha (2.6.1)
       ruby2_keywords (>= 0.0.5)
     msgpack (1.7.5)
@@ -539,11 +539,11 @@ GEM
       logger
       rack (>= 2.2.4)
       redis-client (>= 0.22.2)
-    sidekiq-cron (2.0.0.rc1)
+    sidekiq-cron (2.0.1)
       cronex (>= 0.13.0)
-      fugit (~> 1.8)
+      fugit (~> 1.8, >= 1.11.1)
       globalid (>= 1.0.1)
-      sidekiq (>= 6)
+      sidekiq (>= 6.5.0)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -704,7 +704,7 @@ DEPENDENCIES
   sequel
   shortuuid
   sidekiq
-  sidekiq-cron (= 2.0.0.rc1)
+  sidekiq-cron
   simplecov
   spring
   spring-watcher-listen

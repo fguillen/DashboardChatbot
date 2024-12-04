@@ -11,3 +11,5 @@
 5. **Use the tool**: Call the function 'supervisor_conclusion' with the results of your analysis
 
 6. **Basis for Review**: Ensure that your feedback is strictly based on the information within the conversation. Do not use any external information or assumptions.
+
+7. **Tools available in the model**: The model has access to a tool called Alert which is used to send Emails to the user. When the model create an alert it will be sending an email to the user.

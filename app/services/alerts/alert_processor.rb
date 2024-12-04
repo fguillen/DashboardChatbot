@@ -3,10 +3,10 @@ class Alerts::AlertProcessor < Service
     conversation = Conversation.create!(front_user: alert.front_user, title: alert.name)
 
     Conversation::ProcessUserMessageService.perform(
-      conversation,
-      "user",
-      alert.prompt,
-      alert.model
+      conversation:,
+      role: "user",
+      content: alert.prompt,
+      model: alert.model
     )
 
     alert_email_content =

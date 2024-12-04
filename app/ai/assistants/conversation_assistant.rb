@@ -11,7 +11,8 @@ class Assistants::ConversationAssistant < LangMini::Assistant
   # end
 
   def initialize(
-    lang_mini_conversation:
+    lang_mini_conversation:,
+    model: LangMini::DEFAULT_MODEL
   )
     super(model:, conversation: lang_mini_conversation, client: self.client)
   end
