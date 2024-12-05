@@ -28,9 +28,9 @@ module ApplicationHelper
     if content_language == "markdown"
       markdown(message.content)
     elsif content_language == "chart_line"
-      line_chart(SafeRuby.eval(message.content.gsub("null", "nil")))
+      line_chart(SafeRuby.eval(message.content.gsub("null", "nil")), id: "chart-#{message.id}") # line_chart is a chartkick helper
     elsif content_language == "chart_column"
-      column_chart(SafeRuby.eval(message.content.gsub("null", "nil")))
+      column_chart(SafeRuby.eval(message.content.gsub("null", "nil")), id: "chart-#{message.id}") # column_chart is a chartkick helper
     else
       result = <<~HTML.html_safe
         <pre><code
@@ -44,7 +44,7 @@ module ApplicationHelper
     Rails.logger.error(e)
     Rails.logger.error(e.backtrace.join("\n"))
 
-    "ERROR, trying to parse content type: #{message.content_language} for this content:\n #{message.content}"
+    "ERROR, trying to parse content type: #{message.content_language} for this content:\n ```#{message.content}```. The error is: #{e.message}"
   end
 
   def formatted_date_or_empty(date)
