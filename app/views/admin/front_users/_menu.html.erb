@@ -7,6 +7,11 @@
     <%= link_to "Articles", articles_admin_front_user_path(@front_user), class: "nav-link #{"active" if active == "articles"}" %>
   </li>
 
+  <li class="nav-item">
+    <%= link_to "Conversations", conversations_admin_front_user_path(@front_user), class: "nav-link #{"active" if active == "converations"}" %>
+  </li>
+
+
   <li class="nav-item position-relative">
     <%= link_to log_book_events_admin_front_user_path(@front_user), class: "nav-link #{"active" if active == "log_book_events"}" do %>
       Log Book

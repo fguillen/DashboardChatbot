@@ -1,0 +1,25 @@
+<% title t("views.conversations.show.title", :conversation_title => @conversation.title) %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("layouts.breadcrumbs.conversations"), :admin_conversations %></li>
+    <li class="breadcrumb-item active"><%= @conversation.title %></li>
+  </ol>
+</nav>
+
+<dl class="row">
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.conversation.uuid" %></dt><dd class="col-sm-10"><%= @conversation.uuid %></dd>
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.conversation.title" %></dt><dd class="col-sm-10"><%= @conversation.title %></dd>
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.conversation.front_user.name" %></dt><dd class="col-sm-10"><%= @conversation.front_user.name %></dd>
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.conversation.alert_email" %></dt><dd class="col-sm-10"><%= @conversation.alert_email_id || "-" %></dd>
+</dl>
+
+<pre>
+  <%= @conversation.to_json %>
+</pre>
+
+<div class="controls text-right">
+  <p>
+    <%= link_to t("views.conversations.show.delete_button"), [:admin, @conversation], :data => { :confirm => t("views.conversations.show.delete_confirmation") }, :method => :delete, :class => "btn btn-danger" %>
+  </p>
+</div>

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :log_book_events, only: [:index]
     resources :front_users do
       get "articles", on: :member
+      get "conversations", on: :member
       get "log_book_events", on: :member
     end
     resources :articles
@@ -30,6 +31,9 @@ Rails.application.routes.draw do
     resources :articles_filters, only: [:new, :show] do
       get "create", on: :collection
     end
+
+    resources :conversations
+
   end
 
   namespace :api do

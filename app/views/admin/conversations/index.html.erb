@@ -1,0 +1,11 @@
+<% title t("views.conversations.index.title") %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active"><%= t "layouts.breadcrumbs.conversations" %></li>
+  </ol>
+</nav>
+
+<%= render partial: "list", locals: { conversations: @conversations } %>
+
+<%= paginate @conversations %>

@@ -91,7 +91,7 @@ end
 group :development do
   gem "brakeman"
   gem "bundle-audit"
-  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+  gem "error_highlight", platforms: [:ruby]
   gem "spring-watcher-listen"
   gem "spring"
   gem "web-console"

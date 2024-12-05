@@ -1,0 +1,17 @@
+<table class="table table-striped table-hover">
+  <tr>
+    <th><%= t "activerecord.attributes.conversation.title" %></th>
+    <th><%= t "activerecord.attributes.conversation.front_user.name" %></th>
+    <th><%= t "activerecord.attributes.conversation.alert_email" %></th>
+    <th><%= t "activerecord.attributes.conversation.created_at" %> At</th>
+  </tr>
+
+  <% conversations.each do |conversation| %>
+    <tr>
+      <td><%= link_to conversation.title, admin_conversation_path(conversation) %></td>
+      <td><%= conversation.front_user.name %></td>
+      <td><%= conversation.alert_email_id || "-" %></td>
+      <td><%= conversation.created_at.to_fs(:datetimedb) %></td>
+    </tr>
+  <% end %>
+</table>
