@@ -224,6 +224,7 @@ class Message < ApplicationRecord
   end
 
   def is_debug?
+    return false if ["chart_line", "chart_column"].include?(content_language)
     return true if assistant_name == "ModelAnswerSupervisorAssistant"
     role != "user" && !is_model_final_answer?
   end

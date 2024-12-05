@@ -140,6 +140,14 @@ class MessageTest < ActiveSupport::TestCase
 
     message = FactoryBot.create(:message, role: "assistant", assistant_name: "ModelAnswerSupervisorAssistant")
     assert(message.is_debug?)
+
+    message = FactoryBot.create(:message, role: "tool")
+    message.expects(:content_language).returns("chart_line")
+    refute(message.is_debug?)
+
+    message = FactoryBot.create(:message, role: "tool")
+    message.expects(:content_language).returns("chart_column")
+    refute(message.is_debug?)
   end
 
   def test_content_without_examples
