@@ -13,6 +13,9 @@ RUN apk add --no-cache jhead --repository http://dl-cdn.alpinelinux.org/alpine/e
 RUN npm install -g --force --unsafe-perm=true --allow-root svgo advpng-bin
 RUN apk add --update --no-cache openssh
 
+# Informer gem (onnxruntime)
+RUN apk add --no-cache onnxruntime --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ -X http://dl-cdn.alpinelinux.org/alpine/edge/community/ -X http://dl-cdn.alpinelinux.org/alpine/edge/main
+
 # For mysql
 RUN apk add --no-cache mariadb-dev
 
