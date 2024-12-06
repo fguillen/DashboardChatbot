@@ -14,6 +14,7 @@ RUN npm install -g --force --unsafe-perm=true --allow-root svgo advpng-bin
 RUN apk add --update --no-cache openssh
 
 # Informer gem (onnxruntime)
+# I have to install the onnxruntime library by hand https://github.com/ankane/informers/issues/12
 RUN apk add --no-cache onnxruntime --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ -X http://dl-cdn.alpinelinux.org/alpine/edge/community/ -X http://dl-cdn.alpinelinux.org/alpine/edge/main
 
 # For mysql
