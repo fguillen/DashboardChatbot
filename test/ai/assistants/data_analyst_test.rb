@@ -110,4 +110,13 @@ class Assistants::DataAnalystTest < ActiveSupport::TestCase
     puts ">>>>>>>>>>>"
     puts new_lang_mini_messages.map(&:content)
   end
+
+  def test_system_directive_dynamic_fields
+    Timecop.freeze("2024-12-01") do
+      front_user = FactoryBot.create(:front_user)
+      assistant = Assistants::DataAnalyst.new(front_user:)
+      assert(assistant.system_directive.include?("current year (2024)"))
+      assert(assistant.system_directive.include?("Today is: 2024-12-01"))
+    end
+  end
 end
