@@ -6,6 +6,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {
     console.log(">>>> ConversationMessagesList controller connected");
+    setTimeout(this.scrollToBottom.bind(this), 100);
     this.setMutationObserver();
   }
 
@@ -19,12 +20,18 @@ export default class extends Controller {
     for (const mutation of mutations) {
       if (mutation.type === "childList") {
         console.log("A child node has been added or removed.");
-        const messagesListElement = document.querySelector("#messages-list");
-        this.element.scrollTo({
-          top: messagesListElement.scrollHeight,
-          behavior: "smooth"
-        })
+
+        this.scrollToBottom();
       }
     }
+  }
+
+  scrollToBottom() {
+    const html = document.querySelector("html");
+    html.scrollTo({ top: html.scrollHeight });
+    html.scrollTo({
+      top: html.scrollHeight,
+      behavior: "smooth"
+    });
   }
 }

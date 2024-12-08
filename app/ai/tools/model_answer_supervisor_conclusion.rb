@@ -10,7 +10,7 @@ class Tools::ModelAnswerSupervisorConclusion < LangMini::Tool
   def supervisor_conclusion(result:, content:)
     puts ">>>> ModelAnswerSupervisorConclusion: conversation_id: #{@conversation.id}, result: #{result}, content: #{content}"
 
-    # if !result
+    if !result
       lang_mini_message = LangMini::Message.from_hash({
         role: "assistant",
         content: content
@@ -18,6 +18,6 @@ class Tools::ModelAnswerSupervisorConclusion < LangMini::Tool
       message = Conversation::LangMiniMessageToAppMessage.perform(lang_mini_message)
       message.assistant_name = "ModelAnswerSupervisorAssistant"
       @conversation.add_message(message)
-    # end
+    end
   end
 end

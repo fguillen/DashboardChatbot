@@ -130,4 +130,8 @@
   margin-left: 8px;
 }
 
+.message-form textarea:disabled {
+  color: var(--bs-tertiary-color) !important;
+}
+
 /* Message Form :: END */
