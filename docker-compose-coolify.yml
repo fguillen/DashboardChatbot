@@ -1,0 +1,40 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/DockerFile
+    volumes:
+      - .:/var/www/app
+    restart: always
+    depends_on:
+      - db
+      - redis
+      - sidekiq
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: ./docker/app/DockerFile
+    volumes:
+      - .:/var/www/app
+    depends_on:
+      - redis
+    command: bundle exec sidekiq
+
+  db:
+    image: pgvector/pgvector:pg16
+    ports:
+      - 127.0.0.1:15432:5432
+    volumes:
+      - ./_data/dbchatbot:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=dbchatbot
+      - POSTGRES_USER=dbchatbot
+      - POSTGRES_DB=dbchatbot
+
+  redis:
+    image: "redis:7-alpine"
+    ports:
+      - 6379
+    volumes:
+    - ./_data/redis:/var/lib/redis/data
