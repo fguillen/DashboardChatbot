@@ -76,6 +76,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.hosts << "sales-api.kelmia.com.pizza"
+  config.hosts << "dbchatbot.zebra.town"
 
   # config.rails_semantic_logger.format = :color
 end
