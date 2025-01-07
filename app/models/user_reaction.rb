@@ -7,7 +7,7 @@ class UserReaction < ApplicationRecord
 
   enum :kind, positive: "positive", negative: "negative"
 
-  belongs_to :message
+  belongs_to :message, autosave: true
   has_one :user_favorite, dependent: :destroy
   has_one :front_user, through: :message
 

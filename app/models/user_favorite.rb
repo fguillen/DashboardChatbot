@@ -7,7 +7,7 @@ class UserFavorite < ApplicationRecord
 
   has_neighbors :prompt_embedding
 
-  belongs_to :user_reaction
+  belongs_to :user_reaction, autosave: true
   has_one :front_user, through: :user_reaction
 
   validates :user_reaction, presence: true, uniqueness: true
