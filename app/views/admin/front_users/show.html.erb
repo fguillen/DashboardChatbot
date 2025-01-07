@@ -13,8 +13,9 @@
   <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.front_user.uuid" %></dt><dd class="col-sm-10"><%= @front_user.uuid %></dd>
   <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.front_user.name" %></dt><dd class="col-sm-10"><%= @front_user.name %></dd>
   <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.front_user.email" %></dt><dd class="col-sm-10"><%= @front_user.email %></dd>
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.front_user.api_token" %></dt><dd class="col-sm-10"><%= @front_user.api_token %></dd>
   <dt class="col-sm-2 text-right"><%= t "views.impersonations.create" %></dt><dd class="col-sm-10">
-    <%= button_to admin_impersonations_path(front_user_id: @front_user.id), method: :post do %>
+    <%= link_to admin_impersonations_path(front_user_id: @front_user.id), data: { turbo_method: :post } do %>
       <i class="bi bi-person-badge"></i>
     <% end %>
   </dd>

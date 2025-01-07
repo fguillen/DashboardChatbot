@@ -146,6 +146,20 @@ class Admin::FrontUsersControllerTest < ActionController::TestCase
     assert_primary_keys([conversation], assigns(:conversations))
   end
 
+  def test_user_reactions
+    front_user = FactoryBot.create(:front_user)
+    user_reaction = FactoryBot.create(:user_reaction, front_user: front_user)
+
+    get(
+      :user_reactions,
+      params: {
+        id: front_user
+      }
+    )
+
+    assert_primary_keys([user_reaction], assigns(:user_reactions))
+  end
+
   def test_log_book_events
     front_user = FactoryBot.create(:front_user)
     log_book_event = FactoryBot.create(:log_book_event, historizable: front_user)

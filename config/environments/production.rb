@@ -36,4 +36,5 @@ Rails.application.configure do
   config.hosts << "sales-api.kelmia.com"
   config.hosts << "localhost"
   config.hosts << "upstream_app"
+  config.hosts << "dbchatbot.zebra.town"
 end

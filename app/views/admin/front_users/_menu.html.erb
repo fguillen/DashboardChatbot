@@ -3,21 +3,29 @@
     <%= link_to "Info", [:admin, @front_user], class: "nav-link #{"active" if active == "show"}" %>
   </li>
 
-  <li class="nav-item">
-    <%= link_to "Articles", articles_admin_front_user_path(@front_user), class: "nav-link #{"active" if active == "articles"}" %>
+  <li class="nav-item position-relative">
+    <%= link_to conversations_admin_front_user_path(@front_user), class: "nav-link #{"active" if active == "conversations"}" do %>
+      Conversations
+      <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-primary">
+        <%= @front_user.conversations.count %>
+      </span>
+    <% end %>
   </li>
 
-  <li class="nav-item">
-    <%= link_to "Conversations", conversations_admin_front_user_path(@front_user), class: "nav-link #{"active" if active == "converations"}" %>
+  <li class="nav-item position-relative">
+    <%= link_to user_reactions_admin_front_user_path(@front_user), class: "nav-link #{"active" if active == "user_reactions"}" do %>
+      User Reactions
+      <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-primary">
+        <%= @front_user.user_reactions.count %>
+      </span>
+    <% end %>
   </li>
-
 
   <li class="nav-item position-relative">
     <%= link_to log_book_events_admin_front_user_path(@front_user), class: "nav-link #{"active" if active == "log_book_events"}" do %>
       Log Book
-      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+      <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-primary">
         <%= @front_user.log_book_events.count %>
-        <span class="visually-hidden">LogBook events</span>
       </span>
     <% end %>
   </li>

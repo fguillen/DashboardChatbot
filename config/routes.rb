@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     root to: redirect("admin/admin_users")
 
     get "login", to: "admin_sessions#new", as: :login
-    get "logout", to: "admin_sessions#destroy", as: :logout
+    delete "logout", to: "admin_sessions#destroy", as: :logout
     get "forgot_password", to: "admin_sessions#forgot_password", as: :forgot_password
     post "forgot_password", to: "admin_sessions#forgot_password_submit", as: :forgot_password_submit
     get "reset_password/:reset_password_code", to: "admin_users#reset_password", as: :reset_password
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :front_users do
       get "articles", on: :member
       get "conversations", on: :member
+      get "user_reactions", on: :member
       get "log_book_events", on: :member
     end
     resources :articles
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
     end
 
     resources :conversations
+    resources :user_reactions, only: [:index]
 
     resources :impersonations, only: [:create]
   end

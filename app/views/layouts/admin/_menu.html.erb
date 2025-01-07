@@ -7,16 +7,15 @@
   <ul class="nav nav-pills">
     <li class="nav-item"><%= link_to t("layouts.menu.admin_users"), :admin_admin_users, class: "nav-link" %></li>
     <li class="nav-item"><%= link_to t("layouts.menu.front_users"), :admin_front_users, class: "nav-link" %></li>
-    <li class="nav-item"><%= link_to t("layouts.menu.articles"), :admin_articles, class: "nav-link" %></li>
     <li class="nav-item"><%= link_to t("layouts.menu.conversations"), :admin_conversations, class: "nav-link" %></li>
-    <li class="nav-item"><%= link_to t("layouts.menu.articles_filters_new"), :new_admin_articles_filter, class: "nav-link" %></li>
+    <li class="nav-item"><%= link_to t("layouts.menu.user_reactions"), :admin_user_reactions, class: "nav-link" %></li>
     <li class="nav-item"><%= link_to t("layouts.menu.log_book_events"), :admin_log_book_events, class: "nav-link" %></li>
 
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><%= current_admin_user.name %></a>
       <ul class="dropdown-menu">
         <li class="nav-item"><%= link_to t("layouts.menu.profile"), [:admin, current_admin_user], class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to t("layouts.menu.logout"), admin_logout_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to t("layouts.menu.logout"), admin_logout_path, class: "nav-link", data: { turbo_method: :delete } %></li>
       </ul>
     </li>
   </ul>

@@ -19,8 +19,8 @@
     ],
 
     "boolean": [
-        { "style": "background-color: #91E391; color: #000;", "regex": "^(yes|1|true)$" },
-        { "style": "background-color: #E68585; color: #000;", "regex": "^(no|0|false)$" }
+        { "style": "background-color: #91E391; color: #000;", "regex": "^(yes|1|true|positive)$" },
+        { "style": "background-color: #E68585; color: #000;", "regex": "^(no|0|false|negative)$" }
     ],
 
     "tags": [

@@ -1,0 +1,9 @@
+<% title t("views.user_reactions.index.title") %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active"><%= t "layouts.breadcrumbs.user_reactions" %></li>
+  </ol>
+</nav>
+
+<%= render partial: "list", locals: { user_reactions: @user_reactions } %>

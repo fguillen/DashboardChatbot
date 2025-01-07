@@ -1,0 +1,19 @@
+<table class="table table-striped table-hover">
+  <tr>
+    <th><%= t "activerecord.attributes.user_reaction.created_at" %> At</th>
+    <th><%= t "activerecord.attributes.user_reaction.front_user" %></th>
+    <th><%= t "activerecord.attributes.user_reaction.original_prompt" %></th>
+    <th><%= t "activerecord.attributes.user_reaction.kind" %></th>
+    <th><%= t "activerecord.attributes.user_reaction.explanation" %></th>
+  </tr>
+
+  <% user_reactions.each do |user_reaction| %>
+    <tr>
+      <td><%= user_reaction.created_at.to_fs(:datetimedb) %></td>
+      <td><%= link_to user_reaction.front_user.name, admin_front_user_path(user_reaction.front_user) %></td>
+      <td><%= user_reaction.original_prompt %></td>
+      <td><%= render_label(user_reaction.kind, :boolean) %></td>
+      <td><%= user_reaction.explanation || "-" %></td>
+    </tr>
+  <% end %>
+</table>
