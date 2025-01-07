@@ -1,6 +1,6 @@
 class FrontUser < ApplicationRecord
   strip_attributes
-  log_book ignore: [:password]
+  log_book ignore: [:password, :perishable_token, :persistence_token, :password_salt]
 
   self.primary_key = :uuid
   include HasUuid

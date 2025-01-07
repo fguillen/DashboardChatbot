@@ -18,7 +18,7 @@ class Admin::FrontUsersController < Admin::BaseController
       redirect_to [:admin, @front_user], notice: t("controllers.front_users.create.success")
     else
       flash.now[:alert] = t("controllers.front_users.create.error")
-      render action: :new
+      render action: :new, status: :unprocessable_entity
     end
   end
 
@@ -29,7 +29,7 @@ class Admin::FrontUsersController < Admin::BaseController
       redirect_to [:admin, @front_user], notice: t("controllers.front_users.update.success")
     else
       flash.now[:alert] = t("controllers.front_users.update.error")
-      render action: :edit
+      render action: :edit, status: :unprocessable_entity
     end
   end
 

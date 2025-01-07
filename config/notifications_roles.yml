@@ -1,7 +1,9 @@
-front:
-  - on_new_article
+# front:
+#   - on_new_article
 
-admin:
-  - on_new_article
-  - on_new_front_user
-  - on_new_admin_user
+# admin:
+#   - on_new_article
+#   - on_new_front_user
+#   - on_new_admin_user
+xxx:
+  - nothing
