@@ -29,6 +29,11 @@ Rails.application.routes.draw do
     end
     resources :articles
 
+    resources :clients do
+      get "front_users", on: :member
+      get "log_book_events", on: :member
+    end
+
     resources :articles_filters, only: [:new, :show] do
       get "create", on: :collection
     end

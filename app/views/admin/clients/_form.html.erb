@@ -1,0 +1,53 @@
+<%= form_for [:admin, @client] do |f| %>
+  <%= render "/shared/form_errors", :object => f.object %>
+
+  <legend><%= "client attributes" %></legend>
+  <hr>
+
+
+  <div class="form-group row">
+    <%= f.label :name, class: "col-sm-2 col-form-label text-right"%>
+
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: "form-control", placeholder: t("activerecord.attributes.client.name") %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :db_connection, class: "col-sm-2 col-form-label text-right"%>
+
+    <div class="col-sm-10">
+      <%= f.text_field :db_connection, class: "form-control", placeholder: t("activerecord.attributes.client.db_connection") %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :api_key, class: "col-sm-2 col-form-label text-right"%>
+
+    <div class="col-sm-10">
+      <%= f.text_field :api_key, class: "form-control", placeholder: t("activerecord.attributes.client.api_key") %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :default_model, class: "col-sm-2 col-form-label text-right"%>
+
+    <div class="col-sm-10">
+      <%= f.select(:default_model, AI_CLIENT.models, {}, class: "form-control") %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :agent_instructions, class: "col-sm-2 col-form-label text-right"%>
+
+    <div class="col-sm-10">
+      <%= f.text_area :agent_instructions, class: "form-control", rows: 4, placeholder: t("activerecord.attributes.client.agent_instructions") %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="offset-sm-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

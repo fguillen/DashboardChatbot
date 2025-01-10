@@ -18,6 +18,7 @@ FactoryBot.define do
   end
 
   factory :front_user do
+    client
     name { Faker::Name.unique.name }
     email { Faker::Internet.unique.email }
     password { "Pass$$$!" }
@@ -69,5 +70,12 @@ FactoryBot.define do
     user_reaction
     sequence(:prompt) { |n| "THE_PROMPT_#{n}" }
     sequence(:model_mental_process) { |n| "MODEL_MENTAL_PROCESS_#{n}" }
+  end
+
+  factory :client do
+    name { Faker::Name.unique.name }
+    db_connection { "postgresql://localhost:5432/test" }
+    api_key { "API_KEY" }
+    default_model { "DEFAULT_MODEL" }
   end
 end

@@ -1,0 +1,17 @@
+<table class="table table-striped table-hover">
+  <tr>
+    <th><%= t "activerecord.attributes.client.uuid" %></th>
+    <th><%= t "activerecord.attributes.client.name" %></th>
+    <th><%= t "activerecord.attributes.client.created_at" %> At</th>
+    <th><%= t "activerecord.attributes.client.num_users" %></th>
+  </tr>
+
+  <% clients.each do |client| %>
+    <tr>
+      <td><%= link_to client.uuid, [:admin, client] %></td>
+      <td><%= link_to client.name, [:admin, client] %></td>
+      <td><%= client.created_at.to_fs(:datetimedb) %></td>
+      <td><%= client.front_users.count %></td>
+    </tr>
+  <% end %>
+</table>

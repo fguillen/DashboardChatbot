@@ -1,0 +1,13 @@
+<% title t("views.clients.index.title") %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active"><%= t "layouts.breadcrumbs.clients" %></li>
+  </ol>
+</nav>
+
+<p><%= link_to "New client", new_admin_client_path, :class => "btn btn-outline-primary" %></p>
+
+<%= render partial: "list", locals: { clients: @clients } %>
+
+<%= paginate @clients %>

@@ -29,6 +29,37 @@ class FrontUserTest < ActiveSupport::TestCase
     assert_equal(front_user, FrontUser.find(front_user.uuid))
   end
 
+  def test_validations
+    front_user = FactoryBot.build(:front_user)
+    assert(front_user.valid?)
+
+    front_user = FactoryBot.build(:front_user, name: nil)
+    refute(front_user.valid?)
+
+    front_user = FactoryBot.build(:front_user, email: nil)
+    refute(front_user.valid?)
+
+    front_user = FactoryBot.build(:front_user, client: nil)
+    refute(front_user.valid?)
+  end
+
+  def test_relations
+    client = FactoryBot.create(:client)
+    front_user = FactoryBot.create(:front_user, client:)
+
+    conversation = FactoryBot.create(:conversation, front_user:)
+    message = FactoryBot.create(:message, front_user:, conversation:)
+    alert = FactoryBot.create(:alert, front_user:)
+    user_reaction = FactoryBot.create(:user_reaction, message:)
+    user_favorite = FactoryBot.create(:user_favorite, user_reaction:)
+
+    assert(front_user.conversations.include?(conversation))
+    assert(front_user.messages.include?(message))
+    assert(front_user.alerts.include?(alert))
+    assert(front_user.user_reactions.include?(user_reaction))
+    assert(front_user.user_favorites.include?(user_favorite))
+  end
+
   def test_scope_order_by_recent
     front_user_1 = FactoryBot.create(:front_user, created_at: "2021-04-01")
     front_user_2 = FactoryBot.create(:front_user, created_at: "2021-04-02")

@@ -1,0 +1,23 @@
+<% title t("views.clients.clients.title") %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("layouts.breadcrumbs.clients"), :admin_clients %></li>
+    <li class="breadcrumb-item"><%= link_to @client.name, [:admin, @client] %></li>
+    <li class="breadcrumb-item active"><%= t("layouts.breadcrumbs.front_users") %></li>
+  </ol>
+</nav>
+
+<%= render partial: "menu", locals: { active: "front_users" }  %>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%= t "views.client.sections.front_users" %>
+    </h3>
+  </div>
+
+  <div class="panel-body">
+    <%= render partial: "admin/front_users/list", locals: { front_users: @front_users } %>
+  </div>
+</section>

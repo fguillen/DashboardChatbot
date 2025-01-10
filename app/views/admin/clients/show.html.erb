@@ -1,0 +1,27 @@
+<% title t("views.clients.show.title", :client_uuid => @client.uuid) %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("layouts.breadcrumbs.clients"), :admin_clients %></li>
+    <li class="breadcrumb-item active"><%= @client.name %></li>
+  </ol>
+</nav>
+
+<%= render partial: "menu", locals: { active: "show" }  %>
+
+<dl class="row">
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.client.uuid" %></dt><dd class="col-sm-10"><%= @client.uuid %></dd>
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.client.name" %></dt><dd class="col-sm-10"><%= @client.name %></dd>
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.client.front_users_count" %></dt><dd class="col-sm-10"><%= link_to(@client.front_users.count, front_users_admin_client_path(@client)) %></dd>
+</dl>
+
+<% if @client.agent_instructions.present? %>
+  <%= markdown(@client.agent_instructions) %>
+<% end %>
+
+<div class="controls text-right">
+  <p>
+    <%= link_to t("views.clients.show.edit_button"), edit_admin_client_path(@client), :class => "btn btn-primary" %>
+    <%= link_to t("views.clients.show.delete_button"), [:admin, @client], :data => { :confirm => t("views.clients.show.delete_confirmation") }, :method => :delete, :class => "btn btn-danger" %>
+  </p>
+</div>

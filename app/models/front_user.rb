@@ -21,11 +21,13 @@ class FrontUser < ApplicationRecord
   has_many :alerts, dependent: :destroy
   has_many :user_reactions, through: :messages
   has_many :user_favorites, through: :user_reactions
+  belongs_to :client
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: RubyRegex::Email }
   validates :password, presence: true, on: :create
   validates :password, confirmation: true, allow_blank: true
+  validates :client, presence: true
 
   validates_with PasswordValidator, unless: -> { password.blank? }
   validate :notifications_active_are_allowed, if: :notifications_active_changed?

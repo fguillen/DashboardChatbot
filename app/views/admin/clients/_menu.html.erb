@@ -1,0 +1,23 @@
+<ul class="nav nav-tabs mb-2">
+  <li class="nav-item">
+    <%= link_to "Info", [:admin, @client], class: "nav-link #{"active" if active == "show"}" %>
+  </li>
+
+  <li class="nav-item position-relative">
+    <%= link_to front_users_admin_client_path(@client), class: "nav-link #{"active" if active == "front_users"}" do %>
+      Front Users
+      <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-primary">
+        <%= @client.front_users.count %>
+      </span>
+    <% end %>
+  </li>
+
+  <li class="nav-item position-relative">
+    <%= link_to log_book_events_admin_client_path(@client), class: "nav-link #{"active" if active == "log_book_events"}" do %>
+      Log Book
+      <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-primary">
+        <%= @client.log_book_events.count %>
+      </span>
+    <% end %>
+  </li>
+</ul>

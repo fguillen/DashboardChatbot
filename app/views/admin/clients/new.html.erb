@@ -1,0 +1,15 @@
+<% title t("views.clients.new.title") %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("layouts.breadcrumbs.clients"), :admin_clients %></li>
+    <li class="breadcrumb-item active"><%= t "layouts.breadcrumbs.new" %></li>
+  </ol>
+</nav>
+
+<p class="lead">
+  <%= t("views.clients.new.text") %>
+</p>
+
+
+<%= render "form" %>

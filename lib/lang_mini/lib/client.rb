@@ -10,7 +10,7 @@ module LangMini
 
     def models
       @models ||=
-        Rails.cache.fetch("lang_mini_models") do
+        Rails.cache.fetch("lang_mini_models", expires_in: 24.hours) do
           @open_router_client.models.map { |e| e["id"] }.sort
         end
     end

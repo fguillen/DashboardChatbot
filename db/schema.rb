@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_03_093741) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_10_094346) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -108,6 +108,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_03_093741) do
     t.index ["uuid"], name: "index_articles_on_uuid", unique: true
   end
 
+  create_table "clients", primary_key: "uuid", id: { type: :string, limit: 36 }, force: :cascade do |t|
+    t.string "name", null: false
+    t.text "agent_instructions"
+    t.string "db_connection", null: false
+    t.string "api_key", null: false
+    t.string "default_model", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uuid"], name: "index_clients_on_uuid", unique: true
+  end
+
   create_table "conversations", primary_key: "uuid", id: { type: :string, limit: 36 }, force: :cascade do |t|
     t.string "title", null: false
     t.string "front_user_id"
@@ -142,6 +153,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_03_093741) do
     t.datetime "updated_at", precision: nil, null: false
     t.text "notifications_active"
     t.string "api_token"
+    t.string "client_id"
     t.index ["perishable_token"], name: "index_front_users_on_perishable_token", unique: true
     t.index ["persistence_token"], name: "index_front_users_on_persistence_token", unique: true
     t.index ["uuid"], name: "index_front_users_on_uuid", unique: true
@@ -240,6 +252,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_03_093741) do
     t.index ["uuid"], name: "index_user_reactions_on_uuid", unique: true
   end
 
+  add_foreign_key "front_users", "clients", primary_key: "uuid"
   add_foreign_key "taggings", "tags", name: "taggings_tag_id_fkey"
   add_foreign_key "user_favorites", "user_reactions", primary_key: "uuid"
   add_foreign_key "user_reactions", "messages", primary_key: "uuid"

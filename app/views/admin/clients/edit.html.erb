@@ -1,0 +1,15 @@
+<% title t("views.clients.edit.title", :client_uuid => @client.uuid) %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("layouts.breadcrumbs.clients"), :admin_clients %></li>
+    <li class="breadcrumb-item"><%= link_to @client.uuid, [:admin, @client] %></li>
+    <li class="breadcrumb-item active"><%= t "layouts.breadcrumbs.edit" %></li>
+  </ol>
+</nav>
+
+<p class="lead">
+  <%= t "views.clients.edit.text" %>
+</p>
+
+<%= render "form" %>
