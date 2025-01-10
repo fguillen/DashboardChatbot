@@ -12,6 +12,10 @@ en:
         password_confirmation: Password confirmation
         updated_at: Updated at
         uuid: UUID
+      alert:
+        name: Name
+        prompt: Prompt
+        schedule: Schedule
       article:
         body: Body
         created_at: Created at
@@ -30,9 +34,25 @@ en:
         front_user_name: Front user name
         tags: Tags
         title: Title
+      client:
+        agent_instructions: Agent instructions
+        api_key: Api key
+        created_at: Created at
+        db_connection: Db connection
+        front_users_count: Front users count
+        name: Name
+        num_users: Num users
+        uuid: Uuid
       conversation:
+        alert_email: Alert email
+        created_at: Created at
+        front_user:
+          name: Name
         title: Conversation
+        uuid: Uuid
       front_user:
+        api_token: Api token
+        client: Client
         created_at: Created at
         email: Email
         name: Name
@@ -50,6 +70,12 @@ en:
       message:
         content: Content
         role: Role
+      user_reaction:
+        created_at: Created at
+        explanation: Explanation
+        front_user: Front user
+        kind: Kind
+        original_prompt: Original prompt
     models:
       admin_user: Admin User
   controllers:
@@ -77,12 +103,15 @@ en:
         error: Errors were encountered when trying to update Admin User
         success: Successfully updated Admin User
     alerts:
-      send:
-        success: La alerta ha sido enviada.
-      updated:
-        success: La alerta ha sido actualizada.
       destroy:
         success: La alerta ha sido eliminada.
+      send:
+        success: La alerta ha sido enviada.
+      update:
+        error: Error
+        success: Success
+      updated:
+        success: La alerta ha sido actualizada.
     articles:
       create:
         error: Errors were encountered when trying to create Article
@@ -95,10 +124,24 @@ en:
     articles_filter:
       create:
         error: Error
+    clients:
+      create:
+        error: Error
+        success: Success
+      destroy:
+        success: Success
+      update:
+        error: Error
+        success: Success
     conversations:
       create:
         error: Errors were encountered when trying to create Conversation
         success: Successfully created Conversation
+      destroy:
+        success: Success
+      update:
+        error: Error
+        success: Success
     front:
       access_not_authorized: Access not authorized
       authentication_required: Authentication required
@@ -130,6 +173,17 @@ en:
       create:
         error: Errors were encountered when trying to create Message
         success: Successfully created Message
+    user_favorites:
+      destroy:
+        error: Error
+        success: Success
+    user_reactions:
+      create:
+        error: Error
+        success: Success
+      destroy:
+        error: Error
+        success: Success
   date:
     formats:
       ymd: "%Y-%d-%m"
@@ -146,8 +200,10 @@ en:
     breadcrumbs:
       admin_sessions: Forgotten Password
       admin_users: Admin Users
+      alerts: Alerts
       articles: Articles
       articles_filters: Articles filters
+      clients: Clients
       conversations: Conversations
       edit: Edit
       forgot_password: Forgotten Password
@@ -157,11 +213,15 @@ en:
       login_admin: Admin Login
       login_front: Login front
       new: New
+      reactions: Reactions
       reset_password: Reset your password
+      user_favorites: User favorites
+      user_reactions: User reactions
     menu:
       admin_users: Admin Users
       articles: See all articles
       articles_filters_new: Articles filters new
+      clients: Clients
       conversations: Conversations
       edit_profile: Edit Profile
       features: Features
@@ -175,6 +235,7 @@ en:
       pricing: Pricing
       profile: Profile
       signup: Signup
+      user_reactions: User reactions
   views:
     admin_sessions:
       forgot_password:
@@ -204,6 +265,13 @@ en:
         delete_confirmation: Are you sure you want to delete this Admin user?
         edit_button: Edit
         title: Admin Users | %{admin_user_name}
+    alerts:
+      edit:
+        title: Title
+      index:
+        title: Title
+      show:
+        title: Title
     articles:
       edit:
         body: Body
@@ -226,12 +294,36 @@ en:
       new:
         text: New Articles Filter
         title: Title
+    client:
+      sections:
+        front_users: Front users
+        log_book_events: Log book events
+    clients:
+      clients:
+        title: Title
+      edit:
+        text: Text
+        title: Title
+      index:
+        title: Title
+      log_book_events:
+        title: Title
+      new:
+        text: Text
+        title: Title
+      show:
+        delete_button: Delete button
+        delete_confirmation: Delete confirmation
+        edit_button: Edit button
+        title: Title
     conversations:
       index:
         title: Conversations
       new:
         title: New Conversation
       show:
+        delete_button: Delete button
+        delete_confirmation: Delete confirmation
         title: Conversation
     front_sessions:
       forgot_password:
@@ -243,7 +335,9 @@ en:
     front_user:
       sections:
         articles: Articles
+        conversations: Conversations
         log_book_events: LogBook Events
+        user_reactions: User reactions
     front_users:
       edit:
         text: Text
@@ -254,6 +348,8 @@ en:
         title: Front User | %{name} | LogBook Events
       new:
         text: Text
+        title: Title
+      reactions:
         title: Title
       reset_password:
         text: Please enter your new password
@@ -268,6 +364,9 @@ en:
     log_book_events:
       index:
         title: LogBook Events
+    messages:
+      show:
+        title: Title
     notifications:
       edit:
         text: Update your notifications preferences
@@ -288,3 +387,9 @@ en:
       next: Next &rsaquo;
       previous: "&lsaquo; Prev"
       truncate: "&hellip;"
+    user_favorites:
+      index:
+        title: Title
+    user_reactions:
+      index:
+        title: Title
