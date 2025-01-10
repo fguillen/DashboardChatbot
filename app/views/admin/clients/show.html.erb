@@ -16,6 +16,8 @@
 </dl>
 
 <% if @client.agent_instructions.present? %>
+  <h2>Agent instructions</h2>
+  <hr>
   <%= markdown(@client.agent_instructions) %>
 <% end %>
 

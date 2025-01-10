@@ -3,10 +3,12 @@ class Assistants::DataAnalyst < LangMini::Assistant
     model: LangMini::DEFAULT_MODEL,
     lang_mini_conversation: nil,
     on_new_message: nil,
+    system_directive: nil,
     front_user:
   )
-    super(model:, conversation: lang_mini_conversation, on_new_message:, client: self.client)
     @front_user = front_user
+    @system_directive = system_directive
+    super(model:, conversation: lang_mini_conversation, on_new_message:, client: self.client)
   end
 
   # TODO: Don't inject the directive multiple times
@@ -28,13 +30,17 @@ class Assistants::DataAnalyst < LangMini::Assistant
   end
 
   def client
-    AI_CLIENT
+    @client ||=
+      LangMini::Client.new(
+        access_token: @front_user.client.api_key,
+        request_timeout: 40 # 40 seconds
+      )
   end
 
   def tools
     [
       LangMini::Tools::Math.new,
-      LangMini::Tools::Database.new(connection_string: APP_CONFIG["dashboard_db_connection"]),
+      LangMini::Tools::Database.new(connection_string: @front_user.client.db_connection),
       Tools::Chart.new,
       Tools::AlertCreator.new(front_user: @front_user),
       Tools::SendCsv.new(front_user: @front_user)
