@@ -3,7 +3,7 @@ class Admin::FrontUsersController < Admin::BaseController
   before_action :load_front_user, only: [:show, :edit, :update, :destroy, :articles, :conversations, :user_reactions, :log_book_events]
 
   def index
-    @front_users = FrontUser.order_by_recent
+    @front_users = FrontUser.order_by_recent.page(params[:page]).per(50)
   end
 
   def show; end
